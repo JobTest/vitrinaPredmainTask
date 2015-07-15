@@ -13,73 +13,52 @@ import java.util.List;
  */
 public class Parser extends DefaultHandler {
 
-    public boolean bIssueID    = false;
-    public boolean bSubject    = false;
-    public boolean bStart_date = false;
-    public boolean bDue_date   = false;
-
-    public Issue issue;
-    public List<Issue> issues;
+    private boolean bIssueID    = false;
+    private boolean bSubject    = false;
+    private boolean bStart_date = false;
+    private boolean bDue_date   = false;
+    private Issue issue;
+    private List<Issue> issues;
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+        /* Tag 'Parent' */
+        if (qName.equals("parent"))
+            issue.setParentId(Integer.parseInt(attributes.getValue("id")));
+        /* Tag 'Subject' */
+        if (qName.equalsIgnoreCase("subject"))
+            bSubject = true;
+        /* Tag 'Start-Date' */
+        if (qName.equalsIgnoreCase("start_date"))
+            bStart_date = true;
+        /* Tag 'Due-Date' */
+        if (qName.equalsIgnoreCase("due_date"))
+            bDue_date = true;
+
         /* Tag 'Issue-ID' */
         if (qName.equalsIgnoreCase("id")) {
-            issue    = new Issue();
             bIssueID = true;
+            issue = new Issue();
         }
-
         /* Tag 'Project' */
         if (qName.equals("project")) {
             issue.setProjectId( Integer.parseInt(attributes.getValue("id")) );
             issue.setProjectName( attributes.getValue("name") );
-//            System.out.println(">> Project-ID: " + attributes.getValue("id"));
-//            System.out.println(">> Project-NAME: " + attributes.getValue("name"));
         }
-
         /* Tag 'Tracker' */
         if (qName.equals("tracker")) {
             issue.setTrackerId(Integer.parseInt(attributes.getValue("id")));
             issue.setTrackerName(attributes.getValue("name"));
-//            System.out.println(">> Tracker-ID: " + attributes.getValue("id"));
-//            System.out.println(">> Tracker-NAME: " + attributes.getValue("name"));
         }
-
         /* Tag 'Status' */
         if (qName.equals("status")) {
             issue.setStatusId(Integer.parseInt(attributes.getValue("id")));
             issue.setStatusName(attributes.getValue("name"));
-//            System.out.println(">> Status-ID: " + attributes.getValue("id"));
-//            System.out.println(">> Status-NAME: " + attributes.getValue("name"));
         }
-
         /* Tag 'Fixed-Version' */
         if (qName.equals("fixed_version")) {
             issue.setFixedVersionId(Integer.parseInt(attributes.getValue("id")));
             issue.setFixedVersionName(attributes.getValue("name"));
-//            System.out.println(">> Fixed-Version-ID: " + attributes.getValue("id"));
-//            System.out.println(">> Fixed-Version-NAME: " + attributes.getValue("name"));
-        }
-
-        /* Tag 'Parent' */
-        if (qName.equals("parent")) {
-            issue.setParentId(Integer.parseInt(attributes.getValue("id")));
-//            System.out.println(">> Parent-ID: " + attributes.getValue("id"));
-        }
-
-        /* Tag 'Subject' */
-        if (qName.equalsIgnoreCase("subject")) {
-            bSubject = true;
-        }
-
-        /* Tag 'Start-Date' */
-        if (qName.equalsIgnoreCase("start_date")) {
-            bStart_date = true;
-        }
-
-        /* Tag 'Due-Date' */
-        if (qName.equalsIgnoreCase("due_date")) {
-            bDue_date = true;
         }
 
         super.startElement(uri, localName, qName, attributes);
@@ -90,28 +69,21 @@ public class Parser extends DefaultHandler {
         /* Tag 'Issue' */
         if (bIssueID) {
             issue.setId(Integer.parseInt(new String(ch, start, length)));
-//            System.out.println("> Issue-ID: " + new String(ch, start, length));
             bIssueID = false;
         }
-
         /* Tag 'Subject' */
         if (bSubject) {
             issue.setSubject(new String(ch, start, length));
-//            System.out.println(">> Subject: " + new String(ch, start, length));
             bSubject = false;
         }
-
         /* Tag 'Subject' */
         if (bStart_date) {
             issue.setStartDate(new String(ch, start, length));
-//            System.out.println(">> Start-Date: " + new String(ch, start, length));
             bStart_date = false;
         }
-
         /* Tag 'Subject' */
         if (bDue_date) {
             issue.setDueDate(new String(ch, start, length));
-//            System.out.println(">> Due-Date: " + new String(ch, start, length));
             bDue_date = false;
         }
 
@@ -130,7 +102,7 @@ public class Parser extends DefaultHandler {
 
     @Override
     public void startDocument() throws SAXException {
-        issues = new LinkedList<Issue>();
+        issues = new LinkedList<>();
 
         super.startDocument();
     }
