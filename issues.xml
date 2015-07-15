@@ -1,0 +1,1155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues type="array" limit="100" offset="0" total_count="201"><issue><id>155819</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Нарская Елена (Dn190585bev)" id="103"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="151358"/><subject>Уведомление потребителей</subject><description>оформить письмо и отправить потребителям нового АПИ ПК Биплан</description><start_date>2013-09-09T00:00:00+03:00</start_date><due_date>2013-09-09T00:00:00+03:00</due_date><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-09T15:27:20+03:00</created_on><updated_on>2013-09-09T15:27:20+03:00</updated_on></issue><issue><id>155785</id><project name="API 2.x" id="2928"/><tracker name="Ошибка" id="1"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Финкель Евгения (dn020290fev)" id="7080"/><assigned_to name="Штепа Роман (dn170684sra)" id="393"/><fixed_version name="2.4. Доработки" id="9299"/><subject>В поле "name" тега &lt;service&gt; не отобразилось значение, прищедшое из задолженности</subject><description>Окружение:
+https://mw-bpweb-reliz-01.nc.pb.ua:8181/cashier/preparing/selectPA
+БД:71.88 biplane_reliz_ua
+получатель - 1038766
+Jenkins-Build-Number 560
+
+
+Запрос:
+&lt;pre&gt;
+&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;selectPA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" companyID="1038766" pointType="WKASS" lang="ru" bank="PB"&gt;
+&lt;property xsi:type="SimpleProperty" alias="BILL_MULTIPLE_CHOICE_PROPERTY" value="01032306100000008100"/&gt;
+&lt;/selectPA&gt;
+&lt;/pre&gt;
+
+Ответ:
+&lt;pre&gt;
+&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;selectPA_resp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" companyID="1038766" rID="reliz_n1.bd3c52609a1497"&gt;
+    &lt;head lang="ru" pointType="WKASS" bank="PB"&gt;
+        &lt;search&gt;
+            &lt;property value="01032306100000008100" alias="BILL_MULTIPLE_CHOICE_PROPERTY"/&gt;
+        &lt;/search&gt;
+    &lt;/head&gt;
+    &lt;services&gt;
+        &lt;service id="8437F336D46F2825062480E22A5B0A4E1B6C15035C3D6B99" name="За услуги" required="false" checked="false" forbidden="false"&gt;
+            &lt;property xsi:type="SimpleProperty" value="  ООО&amp;quot;ГЕРЦ&amp;quot;" alias="COMPANY"&gt;
+                &lt;config regEx="^.{3,160}$" name="Наименование" required="true" restriction="RO" default="  ООО&amp;quot;ГЕРЦ&amp;quot;"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="CountersProperty" alias="COUNTERS"&gt;
+                &lt;config freeze="false" numFreeze="false" deltaOnly="false" name="Счётчики" required="false"&gt;
+                    &lt;valueConf beforeCount="10" afterCount="2" delims="!"/&gt;
+                &lt;/config&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="Оплата за С Д П Т" alias="DEST"&gt;
+                &lt;config regEx="^.{10,160}$" name="Назначение" required="true" restriction="RO" default="Оплата за С Д П Т"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="PeriodProperty" alias="PERIOD"&gt;
+                &lt;config format="dd.MM.yy" withDay="false" name="Период" required="false"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="300614" alias="MFO"&gt;
+                &lt;config regEx="^[0-9]{6}$" name="МФО" required="true" restriction="RO" default="300614"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="26009500050678" alias="ACCOUNT"&gt;
+                &lt;config regEx="^[0-9]{5,14}$" name="Расчётный счёт" required="true" restriction="RO" default="26009500050678"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SumProperty" value="65.77" alias="SUM"&gt;
+                &lt;config name="Сумма" required="true" default="65.77"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="КП ЖКС &amp;quot;Вузовский&amp;quot;" alias="CUSTOM_COMPANY"&gt;
+                &lt;config regEx="^.{3,160}$" name="Получатель" required="true" restriction="RO" default="КП ЖКС &amp;quot;Вузовский&amp;quot;"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="ДЕМИН ВЛАДИМИР ЮРЬЕВИЧ" alias="FIO"&gt;
+                &lt;config regEx="^[.\D]{2,50}$" name="ФИО" required="true" default="ДЕМИН ВЛАДИМИР ЮРЬЕВИЧ"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="ListProperty" alias="KASS_SYMB"&gt;
+                &lt;config xsi:type="ComboBoxConf" name="Вид оплаты" required="true" restriction="RO" default="05#@#Hадходження виручки вiд усiх видiв платних послуг"&gt;
+                    &lt;view display="kass_symbol" key="kass_symbol"&gt;
+                        &lt;column name="kass_symbol" alias="kass_symbol"/&gt;
+                        &lt;column name="name" alias="name"/&gt;
+                    &lt;/view&gt;
+                    &lt;model&gt;
+                        &lt;row&gt;
+                            &lt;cell value="02"/&gt;
+                            &lt;cell value="Hадходження торговельнох виручки вiд продажу товарiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="05"/&gt;
+                            &lt;cell value="Hадходження виручки вiд усiх видiв платних послуг"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="12"/&gt;
+                            &lt;cell value="Hадходження податкiв та зборiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="14"/&gt;
+                            &lt;cell value="Надходження готівки в погашення кредитів"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="32"/&gt;
+                            &lt;cell value="Iншi надходження"/&gt;
+                        &lt;/row&gt;
+                    &lt;/model&gt;
+                &lt;/config&gt;
+                &lt;value key="05" val="Hадходження виручки вiд усiх видiв платних послуг"/&gt;
+            &lt;/property&gt;
+        &lt;/service&gt;
+        &lt;service id="8437F336D46F2825062480E22A5B0A4E510D352C82056E9E" name="За услуги" required="false" checked="false" forbidden="false"&gt;
+            &lt;property xsi:type="SimpleProperty" value="  ООО&amp;quot;ГЕРЦ&amp;quot;" alias="COMPANY"&gt;
+                &lt;config regEx="^.{3,160}$" name="Наименование" required="true" restriction="RO" default="  ООО&amp;quot;ГЕРЦ&amp;quot;"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="CountersProperty" alias="COUNTERS"&gt;
+                &lt;config freeze="false" numFreeze="false" deltaOnly="false" name="Счётчики" required="false"&gt;
+                    &lt;valueConf beforeCount="10" afterCount="2" delims="!"/&gt;
+                &lt;/config&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="Оплата за Вывоз мусора" alias="DEST"&gt;
+                &lt;config regEx="^.{10,160}$" name="Назначение" required="true" restriction="RO" default="Оплата за Вывоз мусора"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="PeriodProperty" alias="PERIOD"&gt;
+                &lt;config format="dd.MM.yy" withDay="false" name="Период" required="false"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="300614" alias="MFO"&gt;
+                &lt;config regEx="^[0-9]{6}$" name="МФО" required="true" restriction="RO" default="300614"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="26009500050678" alias="ACCOUNT"&gt;
+                &lt;config regEx="^[0-9]{5,14}$" name="Расчётный счёт" required="true" restriction="RO" default="26009500050678"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SumProperty" value="29.25" alias="SUM"&gt;
+                &lt;config name="Сумма" required="true" default="29.25"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="КП ЖКС &amp;quot;Вузовский&amp;quot;" alias="CUSTOM_COMPANY"&gt;
+                &lt;config regEx="^.{3,160}$" name="Получатель" required="true" restriction="RO" default="КП ЖКС &amp;quot;Вузовский&amp;quot;"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="ДЕМИН ВЛАДИМИР ЮРЬЕВИЧ" alias="FIO"&gt;
+                &lt;config regEx="^[.\D]{2,50}$" name="ФИО" required="true" default="ДЕМИН ВЛАДИМИР ЮРЬЕВИЧ"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="ListProperty" alias="KASS_SYMB"&gt;
+                &lt;config xsi:type="ComboBoxConf" name="Вид оплаты" required="true" restriction="RO" default="05#@#Hадходження виручки вiд усiх видiв платних послуг"&gt;
+                    &lt;view display="kass_symbol" key="kass_symbol"&gt;
+                        &lt;column name="kass_symbol" alias="kass_symbol"/&gt;
+                        &lt;column name="name" alias="name"/&gt;
+                    &lt;/view&gt;
+                    &lt;model&gt;
+                        &lt;row&gt;
+                            &lt;cell value="02"/&gt;
+                            &lt;cell value="Hадходження торговельнох виручки вiд продажу товарiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="05"/&gt;
+                            &lt;cell value="Hадходження виручки вiд усiх видiв платних послуг"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="12"/&gt;
+                            &lt;cell value="Hадходження податкiв та зборiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="14"/&gt;
+                            &lt;cell value="Надходження готівки в погашення кредитів"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="32"/&gt;
+                            &lt;cell value="Iншi надходження"/&gt;
+                        &lt;/row&gt;
+                    &lt;/model&gt;
+                &lt;/config&gt;
+                &lt;value key="05" val="Hадходження виручки вiд усiх видiв платних послуг"/&gt;
+            &lt;/property&gt;
+        &lt;/service&gt;
+        &lt;service id="4B754A0DDA77B5FAAD7BDE6CA7A4AFBB26916522DC475C69" name="За услуги" required="false" checked="false" forbidden="false"&gt;
+            &lt;property xsi:type="SimpleProperty" value="  ООО&amp;quot;ГЕРЦ&amp;quot;" alias="COMPANY"&gt;
+                &lt;config regEx="^.{3,160}$" name="Наименование" required="true" restriction="RO" default="  ООО&amp;quot;ГЕРЦ&amp;quot;"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="CountersProperty" alias="COUNTERS"&gt;
+                &lt;config freeze="true" numFreeze="true" deltaOnly="false" name="Счётчики" required="false"&gt;
+                    &lt;valueConf beforeCount="10" afterCount="2" delims="!"/&gt;
+                &lt;/config&gt;
+                &lt;value&gt;
+                    &lt;counter prevValue="411!0"/&gt;
+                &lt;/value&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="Оплата за Хол.вода(счетчик) и канализация" alias="DEST"&gt;
+                &lt;config regEx="^.{10,160}$" name="Назначение" required="true" restriction="RO" default="Оплата за Хол.вода(счетчик) и канализация"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="PeriodProperty" alias="PERIOD"&gt;
+                &lt;config format="dd.MM.yy" withDay="false" name="Период" required="false"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="307123" alias="MFO"&gt;
+                &lt;config regEx="^[0-9]{6}$" name="МФО" required="true" restriction="RO" default="307123"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="26005020119702" alias="ACCOUNT"&gt;
+                &lt;config regEx="^[0-9]{5,14}$" name="Расчётный счёт" required="true" restriction="RO" default="26005020119702"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SumProperty" value="58.61" alias="SUM"&gt;
+                &lt;config name="Сумма" required="true" default="58.61"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="ООО &amp;quot;ИНФОКС&amp;quot;" alias="CUSTOM_COMPANY"&gt;
+                &lt;config regEx="^.{3,160}$" name="Получатель" required="true" restriction="RO" default="ООО &amp;quot;ИНФОКС&amp;quot;"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="ДЕМИН ВЛАДИМИР ЮРЬЕВИЧ" alias="FIO"&gt;
+                &lt;config regEx="^[.\D]{2,50}$" name="ФИО" required="true" default="ДЕМИН ВЛАДИМИР ЮРЬЕВИЧ"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="ListProperty" alias="KASS_SYMB"&gt;
+                &lt;config xsi:type="ComboBoxConf" name="Вид оплаты" required="true" restriction="RO" default="05#@#Hадходження виручки вiд усiх видiв платних послуг"&gt;
+                    &lt;view display="kass_symbol" key="kass_symbol"&gt;
+                        &lt;column name="kass_symbol" alias="kass_symbol"/&gt;
+                        &lt;column name="name" alias="name"/&gt;
+                    &lt;/view&gt;
+                    &lt;model&gt;
+                        &lt;row&gt;
+                            &lt;cell value="02"/&gt;
+                            &lt;cell value="Hадходження торговельнох виручки вiд продажу товарiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="05"/&gt;
+                            &lt;cell value="Hадходження виручки вiд усiх видiв платних послуг"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="12"/&gt;
+                            &lt;cell value="Hадходження податкiв та зборiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="14"/&gt;
+                            &lt;cell value="Надходження готівки в погашення кредитів"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="32"/&gt;
+                            &lt;cell value="Iншi надходження"/&gt;
+                        &lt;/row&gt;
+                    &lt;/model&gt;
+                &lt;/config&gt;
+                &lt;value key="05" val="Hадходження виручки вiд усiх видiв платних послуг"/&gt;
+            &lt;/property&gt;
+        &lt;/service&gt;
+        &lt;service id="4B754A0DDA77B5FACC0303A7A6919976BECDAF713792B56C" name="За услуги" required="false" checked="false" forbidden="false"&gt;
+            &lt;property xsi:type="SimpleProperty" value="  ООО&amp;quot;ГЕРЦ&amp;quot;" alias="COMPANY"&gt;
+                &lt;config regEx="^.{3,160}$" name="Наименование" required="true" restriction="RO" default="  ООО&amp;quot;ГЕРЦ&amp;quot;"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="CountersProperty" alias="COUNTERS"&gt;
+                &lt;config freeze="true" numFreeze="true" deltaOnly="false" name="Счётчики" required="false"&gt;
+                    &lt;valueConf beforeCount="10" afterCount="2" delims="!"/&gt;
+                &lt;/config&gt;
+                &lt;value&gt;
+                    &lt;counter prevValue="215!0"/&gt;
+                &lt;/value&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="Оплата за Водоотв.cч.гор.воды" alias="DEST"&gt;
+                &lt;config regEx="^.{10,160}$" name="Назначение" required="true" restriction="RO" default="Оплата за Водоотв.cч.гор.воды"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="PeriodProperty" alias="PERIOD"&gt;
+                &lt;config format="dd.MM.yy" withDay="false" name="Период" required="false"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="307123" alias="MFO"&gt;
+                &lt;config regEx="^[0-9]{6}$" name="МФО" required="true" restriction="RO" default="307123"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="26005020119702" alias="ACCOUNT"&gt;
+                &lt;config regEx="^[0-9]{5,14}$" name="Расчётный счёт" required="true" restriction="RO" default="26005020119702"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SumProperty" value="0.00" alias="SUM"&gt;
+                &lt;config name="Сумма" required="true" default="0.00"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="ООО &amp;quot;ИНФОКС&amp;quot;" alias="CUSTOM_COMPANY"&gt;
+                &lt;config regEx="^.{3,160}$" name="Получатель" required="true" restriction="RO" default="ООО &amp;quot;ИНФОКС&amp;quot;"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="ДЕМИН ВЛАДИМИР ЮРЬЕВИЧ" alias="FIO"&gt;
+                &lt;config regEx="^[.\D]{2,50}$" name="ФИО" required="true" default="ДЕМИН ВЛАДИМИР ЮРЬЕВИЧ"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="ListProperty" alias="KASS_SYMB"&gt;
+                &lt;config xsi:type="ComboBoxConf" name="Вид оплаты" required="true" restriction="RO" default="05#@#Hадходження виручки вiд усiх видiв платних послуг"&gt;
+                    &lt;view display="kass_symbol" key="kass_symbol"&gt;
+                        &lt;column name="kass_symbol" alias="kass_symbol"/&gt;
+                        &lt;column name="name" alias="name"/&gt;
+                    &lt;/view&gt;
+                    &lt;model&gt;
+                        &lt;row&gt;
+                            &lt;cell value="02"/&gt;
+                            &lt;cell value="Hадходження торговельнох виручки вiд продажу товарiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="05"/&gt;
+                            &lt;cell value="Hадходження виручки вiд усiх видiв платних послуг"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="12"/&gt;
+                            &lt;cell value="Hадходження податкiв та зборiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="14"/&gt;
+                            &lt;cell value="Надходження готівки в погашення кредитів"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="32"/&gt;
+                            &lt;cell value="Iншi надходження"/&gt;
+                        &lt;/row&gt;
+                    &lt;/model&gt;
+                &lt;/config&gt;
+                &lt;value key="05" val="Hадходження виручки вiд усiх видiв платних послуг"/&gt;
+            &lt;/property&gt;
+        &lt;/service&gt;
+        &lt;service id="23B0E8FD98DE3E43062480E22A5B0A4E3E969D16C5CFF610" name="За услуги" required="false" checked="false" forbidden="false"&gt;
+            &lt;property xsi:type="SimpleProperty" value="  ООО&amp;quot;ГЕРЦ&amp;quot;" alias="COMPANY"&gt;
+                &lt;config regEx="^.{3,160}$" name="Наименование" required="true" restriction="RO" default="  ООО&amp;quot;ГЕРЦ&amp;quot;"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="CountersProperty" alias="COUNTERS"&gt;
+                &lt;config freeze="true" numFreeze="true" deltaOnly="false" name="Счётчики" required="false"&gt;
+                    &lt;valueConf beforeCount="10" afterCount="2" delims="!"/&gt;
+                &lt;/config&gt;
+                &lt;value&gt;
+                    &lt;counter prevValue="227!0"/&gt;
+                &lt;/value&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="Оплата за Горячая вода-счетчик" alias="DEST"&gt;
+                &lt;config regEx="^.{10,160}$" name="Назначение" required="true" restriction="RO" default="Оплата за Горячая вода-счетчик"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="PeriodProperty" alias="PERIOD"&gt;
+                &lt;config format="dd.MM.yy" withDay="false" name="Период" required="false"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="328845" alias="MFO"&gt;
+                &lt;config regEx="^[0-9]{6}$" name="МФО" required="true" restriction="RO" default="328845"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="26038300416451" alias="ACCOUNT"&gt;
+                &lt;config regEx="^[0-9]{5,14}$" name="Расчётный счёт" required="true" restriction="RO" default="26038300416451"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SumProperty" value="0.00" alias="SUM"&gt;
+                &lt;config name="Сумма" required="true" default="0.00"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="КП &amp;quot;ТГО&amp;quot;" alias="CUSTOM_COMPANY"&gt;
+                &lt;config regEx="^.{3,160}$" name="Получатель" required="true" restriction="RO" default="КП &amp;quot;ТГО&amp;quot;"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="ДЕМИН ВЛАДИМИР ЮРЬЕВИЧ" alias="FIO"&gt;
+                &lt;config regEx="^[.\D]{2,50}$" name="ФИО" required="true" default="ДЕМИН ВЛАДИМИР ЮРЬЕВИЧ"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="ListProperty" alias="KASS_SYMB"&gt;
+                &lt;config xsi:type="ComboBoxConf" name="Вид оплаты" required="true" restriction="RO" default="05#@#Hадходження виручки вiд усiх видiв платних послуг"&gt;
+                    &lt;view display="kass_symbol" key="kass_symbol"&gt;
+                        &lt;column name="kass_symbol" alias="kass_symbol"/&gt;
+                        &lt;column name="name" alias="name"/&gt;
+                    &lt;/view&gt;
+                    &lt;model&gt;
+                        &lt;row&gt;
+                            &lt;cell value="02"/&gt;
+                            &lt;cell value="Hадходження торговельнох виручки вiд продажу товарiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="05"/&gt;
+                            &lt;cell value="Hадходження виручки вiд усiх видiв платних послуг"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="12"/&gt;
+                            &lt;cell value="Hадходження податкiв та зборiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="14"/&gt;
+                            &lt;cell value="Надходження готівки в погашення кредитів"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="32"/&gt;
+                            &lt;cell value="Iншi надходження"/&gt;
+                        &lt;/row&gt;
+                    &lt;/model&gt;
+                &lt;/config&gt;
+                &lt;value key="05" val="Hадходження виручки вiд усiх видiв платних послуг"/&gt;
+            &lt;/property&gt;
+        &lt;/service&gt;
+        &lt;service id="23B0E8FD98DE3E43062480E22A5B0A4E9ACB2350BC50CDDF" name="За услуги" required="false" checked="false" forbidden="false"&gt;
+            &lt;property xsi:type="SimpleProperty" value="  ООО&amp;quot;ГЕРЦ&amp;quot;" alias="COMPANY"&gt;
+                &lt;config regEx="^.{3,160}$" name="Наименование" required="true" restriction="RO" default="  ООО&amp;quot;ГЕРЦ&amp;quot;"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="CountersProperty" alias="COUNTERS"&gt;
+                &lt;config freeze="false" numFreeze="false" deltaOnly="false" name="Счётчики" required="false"&gt;
+                    &lt;valueConf beforeCount="10" afterCount="2" delims="!"/&gt;
+                &lt;/config&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="Оплата за Отопление" alias="DEST"&gt;
+                &lt;config regEx="^.{10,160}$" name="Назначение" required="true" restriction="RO" default="Оплата за Отопление"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="PeriodProperty" alias="PERIOD"&gt;
+                &lt;config format="dd.MM.yy" withDay="false" name="Период" required="false"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="328845" alias="MFO"&gt;
+                &lt;config regEx="^[0-9]{6}$" name="МФО" required="true" restriction="RO" default="328845"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="26038300416451" alias="ACCOUNT"&gt;
+                &lt;config regEx="^[0-9]{5,14}$" name="Расчётный счёт" required="true" restriction="RO" default="26038300416451"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SumProperty" value="70.23" alias="SUM"&gt;
+                &lt;config name="Сумма" required="true" default="70.23"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="КП &amp;quot;ТГО&amp;quot;" alias="CUSTOM_COMPANY"&gt;
+                &lt;config regEx="^.{3,160}$" name="Получатель" required="true" restriction="RO" default="КП &amp;quot;ТГО&amp;quot;"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="ДЕМИН ВЛАДИМИР ЮРЬЕВИЧ" alias="FIO"&gt;
+                &lt;config regEx="^[.\D]{2,50}$" name="ФИО" required="true" default="ДЕМИН ВЛАДИМИР ЮРЬЕВИЧ"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="ListProperty" alias="KASS_SYMB"&gt;
+                &lt;config xsi:type="ComboBoxConf" name="Вид оплаты" required="true" restriction="RO" default="05#@#Hадходження виручки вiд усiх видiв платних послуг"&gt;
+                    &lt;view display="kass_symbol" key="kass_symbol"&gt;
+                        &lt;column name="kass_symbol" alias="kass_symbol"/&gt;
+                        &lt;column name="name" alias="name"/&gt;
+                    &lt;/view&gt;
+                    &lt;model&gt;
+                        &lt;row&gt;
+                            &lt;cell value="02"/&gt;
+                            &lt;cell value="Hадходження торговельнох виручки вiд продажу товарiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="05"/&gt;
+                            &lt;cell value="Hадходження виручки вiд усiх видiв платних послуг"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="12"/&gt;
+                            &lt;cell value="Hадходження податкiв та зборiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="14"/&gt;
+                            &lt;cell value="Надходження готівки в погашення кредитів"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="32"/&gt;
+                            &lt;cell value="Iншi надходження"/&gt;
+                        &lt;/row&gt;
+                    &lt;/model&gt;
+                &lt;/config&gt;
+                &lt;value key="05" val="Hадходження виручки вiд усiх видiв платних послуг"/&gt;
+            &lt;/property&gt;
+        &lt;/service&gt;
+        &lt;service id="F9F0FC70E1F59E73C22DE76FCE55E5CF4A9607EE9D190737" name="За услуги" required="false" checked="false" forbidden="false"&gt;
+            &lt;property xsi:type="SimpleProperty" value="  ООО&amp;quot;ГЕРЦ&amp;quot;" alias="COMPANY"&gt;
+                &lt;config regEx="^.{3,160}$" name="Наименование" required="true" restriction="RO" default="  ООО&amp;quot;ГЕРЦ&amp;quot;"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="CountersProperty" alias="COUNTERS"&gt;
+                &lt;config freeze="true" numFreeze="true" deltaOnly="false" name="Счётчики" required="false"&gt;
+                    &lt;valueConf beforeCount="10" afterCount="2" delims="!"/&gt;
+                &lt;/config&gt;
+                &lt;value&gt;
+                    &lt;counter prevValue="787!0"/&gt;
+                &lt;/value&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="Оплата за Газ по счетчику" alias="DEST"&gt;
+                &lt;config regEx="^.{10,160}$" name="Назначение" required="true" restriction="RO" default="Оплата за Газ по счетчику"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="PeriodProperty" alias="PERIOD"&gt;
+                &lt;config format="dd.MM.yy" withDay="false" name="Период" required="false"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="328845" alias="MFO"&gt;
+                &lt;config regEx="^[0-9]{6}$" name="МФО" required="true" restriction="RO" default="328845"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="2603130103944" alias="ACCOUNT"&gt;
+                &lt;config regEx="^[0-9]{5,14}$" name="Расчётный счёт" required="true" restriction="RO" default="2603130103944"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SumProperty" value="0.15" alias="SUM"&gt;
+                &lt;config name="Сумма" required="true" default="0.15"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="ПАО &amp;quot;ОдессаГаз&amp;quot;" alias="CUSTOM_COMPANY"&gt;
+                &lt;config regEx="^.{3,160}$" name="Получатель" required="true" restriction="RO" default="ПАО &amp;quot;ОдессаГаз&amp;quot;"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="ДЕМИН ВЛАДИМИР ЮРЬЕВИЧ" alias="FIO"&gt;
+                &lt;config regEx="^[.\D]{2,50}$" name="ФИО" required="true" default="ДЕМИН ВЛАДИМИР ЮРЬЕВИЧ"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="ListProperty" alias="KASS_SYMB"&gt;
+                &lt;config xsi:type="ComboBoxConf" name="Вид оплаты" required="true" restriction="RO" default="05#@#Hадходження виручки вiд усiх видiв платних послуг"&gt;
+                    &lt;view display="kass_symbol" key="kass_symbol"&gt;
+                        &lt;column name="kass_symbol" alias="kass_symbol"/&gt;
+                        &lt;column name="name" alias="name"/&gt;
+                    &lt;/view&gt;
+                    &lt;model&gt;
+                        &lt;row&gt;
+                            &lt;cell value="02"/&gt;
+                            &lt;cell value="Hадходження торговельнох виручки вiд продажу товарiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="05"/&gt;
+                            &lt;cell value="Hадходження виручки вiд усiх видiв платних послуг"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="12"/&gt;
+                            &lt;cell value="Hадходження податкiв та зборiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="14"/&gt;
+                            &lt;cell value="Надходження готівки в погашення кредитів"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="32"/&gt;
+                            &lt;cell value="Iншi надходження"/&gt;
+                        &lt;/row&gt;
+                    &lt;/model&gt;
+                &lt;/config&gt;
+                &lt;value key="05" val="Hадходження виручки вiд усiх видiв платних послуг"/&gt;
+            &lt;/property&gt;
+        &lt;/service&gt;
+        &lt;service id="8D23477EBDC938681BD4E67EF171AA11DAA2693C3F0A4A83" name="За услуги" required="false" checked="false" forbidden="false"&gt;
+            &lt;property xsi:type="SimpleProperty" value="  ООО&amp;quot;ГЕРЦ&amp;quot;" alias="COMPANY"&gt;
+                &lt;config regEx="^.{3,160}$" name="Наименование" required="true" restriction="RO" default="  ООО&amp;quot;ГЕРЦ&amp;quot;"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="CountersProperty" alias="COUNTERS"&gt;
+                &lt;config freeze="false" numFreeze="false" deltaOnly="false" name="Счётчики" required="false"&gt;
+                    &lt;valueConf beforeCount="10" afterCount="2" delims="!"/&gt;
+                &lt;/config&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="Оплата за Услуги кабель.ТВ" alias="DEST"&gt;
+                &lt;config regEx="^.{10,160}$" name="Назначение" required="true" restriction="RO" default="Оплата за Услуги кабель.ТВ"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="PeriodProperty" alias="PERIOD"&gt;
+                &lt;config format="dd.MM.yy" withDay="false" name="Период" required="false"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="328209" alias="MFO"&gt;
+                &lt;config regEx="^[0-9]{6}$" name="МФО" required="true" restriction="RO" default="328209"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="26006311022901" alias="ACCOUNT"&gt;
+                &lt;config regEx="^[0-9]{5,14}$" name="Расчётный счёт" required="true" restriction="RO" default="26006311022901"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SumProperty" value="-20.00" alias="SUM"&gt;
+                &lt;config name="Сумма" required="true" default="-20.00"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="Телекомпания &amp;quot;Черное море&amp;quot;" alias="CUSTOM_COMPANY"&gt;
+                &lt;config regEx="^.{3,160}$" name="Получатель" required="true" restriction="RO" default="Телекомпания &amp;quot;Черное море&amp;quot;"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="ДЁМИНА Н.В." alias="FIO"&gt;
+                &lt;config regEx="^[.\D]{2,50}$" name="ФИО" required="true" default="ДЁМИНА Н.В."/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="ListProperty" alias="KASS_SYMB"&gt;
+                &lt;config xsi:type="ComboBoxConf" name="Вид оплаты" required="true" restriction="RO" default="05#@#Hадходження виручки вiд усiх видiв платних послуг"&gt;
+                    &lt;view display="kass_symbol" key="kass_symbol"&gt;
+                        &lt;column name="kass_symbol" alias="kass_symbol"/&gt;
+                        &lt;column name="name" alias="name"/&gt;
+                    &lt;/view&gt;
+                    &lt;model&gt;
+                        &lt;row&gt;
+                            &lt;cell value="02"/&gt;
+                            &lt;cell value="Hадходження торговельнох виручки вiд продажу товарiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="05"/&gt;
+                            &lt;cell value="Hадходження виручки вiд усiх видiв платних послуг"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="12"/&gt;
+                            &lt;cell value="Hадходження податкiв та зборiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="14"/&gt;
+                            &lt;cell value="Надходження готівки в погашення кредитів"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="32"/&gt;
+                            &lt;cell value="Iншi надходження"/&gt;
+                        &lt;/row&gt;
+                    &lt;/model&gt;
+                &lt;/config&gt;
+                &lt;value key="05" val="Hадходження виручки вiд усiх видiв платних послуг"/&gt;
+            &lt;/property&gt;
+        &lt;/service&gt;
+    &lt;/services&gt;
+&lt;/selectPA_resp&gt;
+&lt;/pre&gt;
+</description><start_date>2013-09-09T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-09T14:42:56+03:00</created_on><updated_on>2013-09-09T14:45:58+03:00</updated_on></issue><issue><id>155784</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Серик Александр (dn050690saa)" id="95"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="149499"/><subject>Тестирование! Апдейт шаблонов. Изменение жестких полей</subject><description>необходимо проверить:
+1. Ключи (поля сравнения шаблонов):
+
+1.1 Из всех ключей, КРОМЕ категории Телекоммуникации (pkey=6) должно быть удалено поле “Телефон”.
+Для проверки:
+а)Сохранить шаблон на коммерческого получаетеля, с одним номером телефона. 
+б)Затем сохранить второй шаблон, аналогичный, но с другим номером телефона.
+с)Последний шаблон должен обновить первый (изменится значение в поле “Телефон”). 
+2.1 В Телекоммуникации (pkey=6) поле bill_identifier должно входить в ключ.
+а)Сохранить шаблон на получаетеля задолженности, с одним значением bill_identifier. 
+б)Затем сохранить второй шаблон, аналогичный, но с другим значением bill_identifier.
+с)Последний шаблон должен обновить первый (изменится значение в поле “bill_identifier”).
+
+2. Критерии апдейта:
+2.1 Для полей шаблона bill_identifier и phone проверить:
+- если было значение и при повторном сохранении шаблона пришел null - шаблон не должен обновиться
+- если было значение и при повторном сравнении шаблона пришло другое значение - шаблон должен обновиться
+- если был null и при повторном сохранении шаблона пришло значение - шаблон должен обновиться.
+2.2. Для полей шаблона ls проверять:
+- если было значение и при повторном сохранении шаблона пришел null - шаблон не должен обновиться
+- если было значение и при повторном сохранении шаблона пришло другое значение - шаблон должен создаться новый.
+- если был null и при повторном сохранении шаблона пришло значение - шаблон должен обновиться</description><start_date>2013-09-09T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-09T14:42:43+03:00</created_on><updated_on>2013-09-09T15:07:50+03:00</updated_on></issue><issue><id>155702</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Лущан Владислав (dn041189lvs)" id="380"/><fixed_version name="2.5 Доработки API" id="9422"/><parent id="145742"/><subject>Подсистема "Задолженность". Запрет изменения предыдущего значения счетчика</subject><description>Передавать признак meters_prev_freeze правило регулирует возможность изменения поля “Предыдущее значение”.
+</description><start_date>2013-09-19T00:00:00+03:00</start_date><due_date>2013-10-14T00:00:00+03:00</due_date><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-09T12:30:13+03:00</created_on><updated_on>2013-09-09T12:30:13+03:00</updated_on></issue><issue><id>155692</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Шумский Александр (dn021190saj)" id="6498"/><fixed_version name="2.5 Доработки API" id="9422"/><parent id="145742"/><subject>Сервис "Добавление заявки" и "Сохранение заявки как шаблона"</subject><description>Если параметр meters_prev_freeze = true - это означает , что предыдущее значение счетчика менять запрещено.
+Возможные варианты:
+1) Если на услуге установлен признак meters_prev_freeze = true, задолженность НЕ вернула данные по счетчику, клиент вернул предыдущее значение счетчика - пропускаем платеж на запись без счетчиков;
+2) Если на услуге установлен признак meters_prev_freeze  = true, задолженность НЕ вернула данные по счетчику, клиент НЕ вернул предыдущее значение счетчика - пропускаем платеж на запись без счетчиков;
+3) Если на услуге установлен признак meters_prev_freeze = true, задолженность вернула данные по счетчику, клиент вернул предыдущее значение счетчика, при этом значения полей “Предыдущее значение” совпадают - пропускаем;
+4) Если на услуге установлен признак meters_prev_freeze = true, задолженность вернула данные по счетчику, клиент вернул предыдущее значение счетчика, при этом значения полей “Предыдущее значение” НЕ совпадают - ошибка:
+KC_Err1210_32 - Поле “Предыдущее значение” параметра типа “Counters” изменять запрещено.
+5) Если на услуге установлен признак meters_prev_freeze = true, задолженность вернула данные по счетчику, клиент НЕ вернул предыдущее значение счетчика - ошибка:
+KC_Err1210_32 - Поле “Предыдущее значение” параметра &lt;Имя_параметра&gt; изменять запрещено.
+</description><start_date>2013-09-19T00:00:00+03:00</start_date><due_date>2013-10-14T00:00:00+03:00</due_date><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-09T12:21:37+03:00</created_on><updated_on>2013-09-09T12:21:37+03:00</updated_on></issue><issue><id>155689</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Шумский Александр (dn021190saj)" id="6498"/><fixed_version name="2.5 Доработки API" id="9422"/><parent id="145742"/><subject>Cервисы "Получение реквизитов получателя" и "Получение реквизитов по шаблону"</subject><description>Для работы со счетчиками задолженность может вернуть параметры : 
+...
+- meters_prev_freeze - правило регулирует возможность изменения поля “Предыдущее значение”.
+
+При получении данных параметров необходимо в xml настройках параметра “Счетчики” произвести изменения , а именно : 
+...
+- при meters_prev_freeze = true - необходимо prevfreeze поставить в true
+
+</description><start_date>2013-09-19T00:00:00+03:00</start_date><due_date>2013-10-14T00:00:00+03:00</due_date><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-09T12:17:07+03:00</created_on><updated_on>2013-09-09T12:17:07+03:00</updated_on></issue><issue><id>155662</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Дашкевич Светлана (dn050286dse)" id="105"/><fixed_version name="2.5 Доработки API" id="9422"/><parent id="147444"/><subject>Изменения DAO. Анонимный клиент.</subject><description>С версии 2.5. вместо ID клиента в ЕКБ и ID клиента в ОКБ в базу данных будет передаваться параметры “Тип идентификации” и “Идентификатор”. При этом параметр “Тип идентификации” обязателен к заполнению, а “Идентификатор”- нет. 
+
+1. Необходимо добавить новые поля в БД
+
+2. GetDataByPack заменить ID ЕКБ/ОКБ новыми полями идентификации 
+
+3. GetDataForTemplate - добавить проверку : Если в заявке сохранены данные по неидентифицированному клиенту (Тип идентификации не равен “EKB” )- запрещать сохранение шаблона.
+
+4. getPaidRequestList заменить ID ЕКБ/ОКБ новыми полями идентификации. В данном методе реализовать проверку, если передали тип идентификации UNDEF необходимо возвращать пустой список.
+
+5. getClientSummById заменить ID ЕКБ новыми полями идентификации 
+</description><start_date>2013-09-19T00:00:00+03:00</start_date><due_date>2013-10-14T00:00:00+03:00</due_date><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-09T11:23:31+03:00</created_on><updated_on>2013-09-09T11:23:31+03:00</updated_on></issue><issue><id>155660</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Шумский Александр (dn021190saj)" id="6498"/><fixed_version name="2.5 Доработки API" id="9422"/><parent id="147444"/><subject>Сервис получения суммы платежей клиента за календарный месяц с 1-го числа. Анонимный клиент</subject><description>ИЗ ТЗ (https://docs.google.com/a/privatbank.ua/document/d/1rT8OsrFCu5clxBH4aAO481RBIw8-PuFtuw1x3VPVXbs/edit#)
+Сервисы № 15
+
+1. Удалить существующий идентификатор клиента в ЕКБ.
+
+2. Добавить 2 новых поля "Тип идентификации клиента" и "Идентификатор клиента"на вход.
+
+</description><start_date>2013-09-19T00:00:00+03:00</start_date><due_date>2013-10-14T00:00:00+03:00</due_date><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-09T11:22:14+03:00</created_on><updated_on>2013-09-09T11:22:14+03:00</updated_on></issue><issue><id>155646</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Лысенко Владимир (DN101188LVV)" id="6918"/><fixed_version name="2.5 Доработки API" id="9422"/><parent id="147444"/><subject>Сервис сторнирования оплаченной заявки. Анонимный клиент</subject><description>ИЗ ТЗ (https://docs.google.com/a/privatbank.ua/document/d/1rT8OsrFCu5clxBH4aAO481RBIw8-PuFtuw1x3VPVXbs/edit#)
+Сервисы № 13
+
+1. Удалить существующие идентификаторы клиента ekbID/okbID
+
+2. Добавить 2 новых поля "Тип идентификации клиента" и "Идентификатор клиента"на вход.
+
+3. Необходимо доработать проверку (п.3)
+"- Если метод getPaidRequestList вернул значение типа идентификаци равное “UNDEF” - установить значение признака условий сторнирования -”5” (запрещено сторнировать заявку от неидентифицированного клиента). "
+
+4.  Если значение признака “условия сторнирования“ - “5” - возвращаем ошибку.
+	KС_Err11012 - “Сторнирование данной заявки запрещено.”
+ </description><start_date>2013-09-19T00:00:00+03:00</start_date><due_date>2013-10-14T00:00:00+03:00</due_date><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-09T11:11:00+03:00</created_on><updated_on>2013-09-09T11:11:00+03:00</updated_on></issue><issue><id>155639</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Лысенко Владимир (DN101188LVV)" id="6918"/><fixed_version name="2.5 Доработки API" id="9422"/><parent id="147444"/><subject>Сервис получения оплаченных заявок. Анонимный клиент</subject><description>ИЗ ТЗ (https://docs.google.com/a/privatbank.ua/document/d/1rT8OsrFCu5clxBH4aAO481RBIw8-PuFtuw1x3VPVXbs/edit#)
+Сервисы № 12
+
+Необходимо доработать проверку 
+"- Если метод getPaidRequestList вернул значение типа идентификаци равное  “UNDEF” - установить значение признака условий сторнирования -”5” (запрещено сторнировать заявку от неидентифицированного клиента). "</description><start_date>2013-09-19T00:00:00+03:00</start_date><due_date>2013-10-14T00:00:00+03:00</due_date><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-09T11:04:24+03:00</created_on><updated_on>2013-09-09T11:04:24+03:00</updated_on></issue><issue><id>155454</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Шумский Александр (dn021190saj)" id="6498"/><assigned_to name="Шумский Александр (dn021190saj)" id="6498"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="153665"/><subject>Не работает скоростная комиссия (доработка)</subject><description/><start_date>2013-09-06T00:00:00+03:00</start_date><due_date>2013-09-06T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-06T17:30:22+03:00</created_on><updated_on>2013-09-06T17:30:53+03:00</updated_on></issue><issue><id>155390</id><project name="API 2.x" id="2928"/><tracker name="Ошибка" id="1"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Серик Александр (dn050690saa)" id="95"/><assigned_to name="Штепа Роман (dn170684sra)" id="393"/><fixed_version name="2.4. Доработки" id="9299"/><subject>Нельзя выбрать получателя если не настроены параметры поиска для кассы старого Биплана</subject><description>Окружение:
+БД: 71,88 biplane_reliz_ua
+https://mw-bpweb-reliz-01.nc.pb.ua:8181/cashier/preparing/selectPAByT Jenkins-Build-Number 	560
+
+Описание:
+В провайдере настроены параметры поиска задолженности для точек приема: Касса WEB,BASS-терминал,Приват-24
+При запросе выбора получателя по шаблону:
+https://mw-bpweb-reliz-01.nc.pb.ua:8181/cashier/preparing/selectPAByT 
+&lt;pre&gt;
+&lt;selectPAByT xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" templateID="106655706" pointType="WP24" lang="ru"
+             bplnPointID="1614002" esaAdressID="1" esaRegionID="1" bank="PB"&gt;
+&lt;/selectPAByT&gt;
+&lt;/pre&gt;
+Ответ:
+&lt;pre&gt;
+   &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;error_resp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="KC_Err7101" rID="reliz_n1.7edecf2895bcf5"&gt;
+    &lt;message type="ErrorMessage" code="BPLN_500" type="ERROR" text="Извините, во время работы сервиса произошла ошибка. Пожалуйста, попробуйте позже!"/&gt;
+    &lt;test_message type="ErrorMessage" code="DT_000003" type="ERROR" text="com.pb.debt.exceptions.DebtException: Driver not found by parameters [ID(1234388), KIND(1), POINT TYPE(-1)"/&gt;
+    &lt;test_message type="ErrorMessage" code="KC_Err7101" type="ERROR" text="com.pb.bpln.core.exeption.SystemException: com.pb.debt.exceptions.DebtException: Driver not found by parameters [ID(1234388), KIND(1), POINT TYPE(-1)"/&gt;
+&lt;/error_resp&gt;
+&lt;/pre&gt;</description><start_date>2013-09-06T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-06T16:17:25+03:00</created_on><updated_on>2013-09-09T12:02:41+03:00</updated_on></issue><issue><id>155302</id><project name="API 2.x" id="2928"/><tracker name="Тестирование" id="7"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Козуб Алексей (dn150190kad)" id="91"/><assigned_to name="Иванов Леонид (dn100691ila)" id="10443"/><fixed_version name="2.3. Доработки" id="9298"/><subject>Создание тест-кейсов</subject><description>Нужны тест-кейсы создания шаблона: получатель со счетчиками,периодами(с днем месяца и без),платежными параметрами,с подразделенями. задолженность: параметр поиска комбобокс,с предварительными поиском
+типы получателей: бездоговорной,бюджетник,коммерческий
+Тест кейсы оформить в https://testlink.privatbank.ua
+Все номера созданных тест кейсов предоставить в комментариях.</description><start_date>2013-09-06T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-06T14:27:14+03:00</created_on><updated_on>2013-09-06T14:28:26+03:00</updated_on></issue><issue><id>155045</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Малый Игорь (dn180989mis)" id="406"/><fixed_version name="2.5 Доработки API" id="9422"/><parent id="147444"/><subject>Сервис сохранения заявки в Платежный портал. Анонимный клиент</subject><description>ИЗ ТЗ (https://docs.google.com/a/privatbank.ua/document/d/1rT8OsrFCu5clxBH4aAO481RBIw8-PuFtuw1x3VPVXbs/edit#)
+Сервис № 8
+
+1. Из метода GetDataByPack получать параметры "Тип идентификации клиента" и "Идентификатор клиента".
+
+2. Проверить если поле "Тип идентификации клиента" отсутствует выдавать сообщение об ошибке : 
+KС_Err2005 - Недостаточно информации для сохранения заявки в Платежный портал!
+
+3. Если тип идентификации равен EKB, OKB, PHONE, CARD, OKB, необходимо проверить наличие заполненного поля “Идентификатор”, в случае его отсутствия - выдавать сообщение об ошибке:
+KС_Err2005 - Недостаточно информации для сохранения заявки в Платежный портал!
+
+4. Удалить изменения, которые были сделаны согласно задаче http://10.1.99.58/predmine/issues/140555.
+
+
+</description><start_date>2013-09-19T00:00:00+03:00</start_date><due_date>2013-10-14T00:00:00+03:00</due_date><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-05T17:20:37+03:00</created_on><updated_on>2013-09-05T17:20:37+03:00</updated_on></issue><issue><id>155039</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Шумский Александр (dn021190saj)" id="6498"/><fixed_version name="2.5 Доработки API" id="9422"/><parent id="147444"/><subject>Сервисы "Добавление заявки" и "Сохранение заявки как шаблон". Анонимный клиент</subject><description>ИЗ ТЗ (https://docs.google.com/a/privatbank.ua/document/d/1rT8OsrFCu5clxBH4aAO481RBIw8-PuFtuw1x3VPVXbs/edit#)
+Сервисы № 6,7
+
+1. Удалить существующие идентификаторы клиента ekbID/okbID
+
+2. Добавить 2 новых поля "Тип идентификации клиента" и "Идентификатор клиента"на вход.
+
+3.Необходимо проверить в списке входящих параметров наличие поля “Тип идентификации” . Если отсутствует, выдавать сообщение об ошибке: 
+KС_Err0004 - Отсутствует обязательный параметр &lt;Наименование параметра&gt;!
+
+4. Реализовать проверку, если в поле “Тип идентификации” передали значение отличное от справочника (EKB, PHONE, CARD, UNDEF, OKB) выдавать сообщение об ошибке : 
+KС_Err0035 - Значение типа идентификации клиента отсутствует в справочнике возможных значений!
+
+5. Если тип идентификации равен EKB, OKB, PHONE, CARD, OKB, необходимо проверить наличие заполненного поля “Идентификатор”, в случае его отсутствия - выдавать сообщение об ошибке:
+   KС_Err0004 - Отсутствует обязательный параметр &lt;Наименование параметра&gt;!
+
+6. Так же необходимо проверить количество символов в поле “Идентификатор”, если передали больше 255 символов - необходимо выдавать сообщение об ошибке: 
+ KС_Err0037 - Параметр &lt;имя параметра&gt; превышает максимально возможное количество символов! 
+
+7. С версии 2.5. если передали значения типа идентификации EKB и идентификатор, то его следует передавать в модуль рассчета комиссии. При типах идентификации PHONE, CARD, UNDEF, OKB - значения в модуль рассчета комиссии передавать нет необходимости , считаем что клиент не идентифицирован в ЕКБ.
+
+8. С версии 2.5. вместо ID клиента в ЕКБ и ID клиента в ОКБ в базу данных будет передаваться параметры “Тип идентификации” и “Идентификатор”. При этом параметр “Тип идентификации” обязателен к заполнению, а “Идентификатор”- нет (Только для сервиса добавления заявки)
+
+9. В сервис "Сохранения заявки как шаблон" реализовать проверку, если передали тип идентификации "UNDEF" - выдавать сообщение и запрещать сохранение заявки как шаблон.</description><start_date>2013-09-19T00:00:00+03:00</start_date><due_date>2013-10-14T00:00:00+03:00</due_date><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-05T17:14:10+03:00</created_on><updated_on>2013-09-05T17:22:23+03:00</updated_on></issue><issue><id>154864</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Тимощенко Михаил (NK290875TMV)" id="383"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="150281"/><subject>Добавить поля в dbo.GetExtTemplatesByCis_Short</subject><description>БЫЛО
+- идентификатор шаблона(pkey_template)
+- Лицевой счет (ls)
+- Наименование получателя (company)
+- Телефон (phone)
+- Ид адреса в ЕКБ (addr_client_id)
+- Адрес плательщика (address)
+- вид шаблона (src)(получить по pkey_ext_template_kinds)
+СТАЛО:
+- идентификатор шаблона(pkey_template)
+- Лицевой счет (ls)
+- Наименование получателя (company)
+- Телефон (phone)
+- сумма (total_sum)
+- назначение (dest)
+- счет (account)
+- фио  (fio)
+- вид шаблона (src)(получить по pkey_ext_template_kinds)
+ИТОГО:
+ДОБАВИТЬ
+- назначение (dest)
+- счет (ls)
+- фио  (fio)
+- сумма (total_sum)
+УДАЛИТЬ
+- Ид адреса в ЕКБ (addr_client_id)
+- Адрес плательщика (address)</description><start_date>2013-09-05T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-05T12:22:04+03:00</created_on><updated_on>2013-09-05T14:43:07+03:00</updated_on></issue><issue><id>154665</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Финкель Евгения (dn020290fev)" id="7080"/><assigned_to name="Терещенко Сергей (dn250480tsa)" id="1197"/><fixed_version name="2.3. Доработки" id="9298"/><parent id="150700"/><subject>ошибки с кодами с DT_000005 по DT_000009 включительно в логе tomcat'а должны быть с типом DebtRegularException.</subject><description>Окружение:
+http://mw-bpweb-qa-01.nc.pb.ua:8085/cashier/preparing/selectPA
+база - 71.9 biplane_ua_test_auto
+Jenkins-Build-Number  555
+Запрос:
+&lt;pre&gt;
+&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;selectPA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" companyID="1422435" pointType="WKASS" lang="ru" bank="PB"&gt;
+&lt;/selectPA&gt;
+&lt;/pre&gt;
+
+Ответ:
+&lt;pre&gt;
+&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;error_resp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="KC_Err7002" rID="tomcat_auto.fe7643c24b4744"&gt;
+    &lt;message xsi:type="ErrorMessage" code="BPLN_500" type="ERROR" text="Извините, во время работы сервиса произошла ошибка. Пожалуйста, попробуйте позже!"/&gt;
+    &lt;test_message xsi:type="ErrorMessage" code="KC_Err7002" type="ERROR" text="com.pb.bpln.cashier.bridge.debt.exceptions.IllegalSearchParamsException: Debt search parameters are not specified"/&gt;
+    &lt;test_message xsi:type="ErrorMessage" code="DT_000006" type="ERROR" text="Debt search parameters are not specified"/&gt;
+&lt;/error_resp&gt;
+&lt;/pre&gt;</description><start_date>2013-09-04T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-04T18:10:11+03:00</created_on><updated_on>2013-09-05T16:02:08+03:00</updated_on></issue><issue><id>154554</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Низкий" id="3"/><author name="Лысенко Владимир (DN101188LVV)" id="6918"/><assigned_to name="Лысенко Владимир (DN101188LVV)" id="6918"/><parent id="154553"/><subject>Версия  2.4</subject><description>Все задачи рефакторинга на версию 2.4</description><start_date>2013-09-04T00:00:00+03:00</start_date><due_date>2013-09-04T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-04T15:52:07+03:00</created_on><updated_on>2013-09-04T17:13:33+03:00</updated_on></issue><issue><id>154553</id><project name="API 2.x" id="2928"/><tracker name="Разработка" id="8"/><status name="Новая/Утверждена" id="1"/><priority name="Низкий" id="3"/><author name="Лысенко Владимир (DN101188LVV)" id="6918"/><assigned_to name="Лысенко Владимир (DN101188LVV)" id="6918"/><subject>Рефакторинг поддерживаемых сервисов</subject><description>Список задач рефакторинга и оптимизации поддерживаемых сервисов и выполненных задач.</description><start_date>2013-09-04T00:00:00+03:00</start_date><due_date>2013-09-04T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-04T15:49:45+03:00</created_on><updated_on>2013-09-04T17:08:50+03:00</updated_on></issue><issue><id>154242</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="В работе" id="2"/><priority name="Нормальный" id="4"/><author name="Штепа Роман (dn170684sra)" id="393"/><assigned_to name="Малый Игорь (dn180989mis)" id="406"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="153665"/><subject>Доработка расчета комиссии при выборе клиентом опциональной комиссии</subject><description>Согласно усным договоренностям, опциональная комиссия(-и) если она выбрана клиентом, попадает в модуль расчета комиссии отдельным платежем, агрегирующим все оппциональные комиссии.
+Соответсвенно в МК необходимо учесть следующие моменты:
+-платеж содержащий опциональные комиссии не может содержать услуги получателя;
+-при расчете опциональной комиссии на услуге филиала не может быть выставлен флаг - расчитывать для каждой услуги платежа;
+-пока исключить расчет опциональных комиссий для получателей задолженности.</description><start_date>2013-09-03T00:00:00+03:00</start_date><due_date/><done_ratio>10</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-03T17:20:15+03:00</created_on><updated_on>2013-09-05T10:57:24+03:00</updated_on></issue><issue><id>154211</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Штепа Роман (dn170684sra)" id="393"/><assigned_to name="Штепа Роман (dn170684sra)" id="393"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="153665"/><subject>Исключить проверку и обновление услуги комиссии из общего порядка формирования платежа</subject><description/><start_date>2013-09-03T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-03T17:05:19+03:00</created_on><updated_on>2013-09-09T15:23:20+03:00</updated_on></issue><issue><id>154197</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="На тестировании" id="7"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Козуб Алексей (dn150190kad)" id="91"/><fixed_version name="2.4. Доработки" id="9299"/><subject>Сервис получение настроек получателя. Порядок отображения параметров поиска</subject><description>4. Все параметры полученные методом “Получение информации по получателю” необходимо отсортировать по полю “Номер по порядку” (в xml “slNo="11"”) (от меньшего к большему). Если номер по порядку не указан ни в одном параметре - отображаем как есть. Если часть параметров с номером часть без , сначала отсортировываем по номеру а дальше в произвольном порядке отображаем параметры без  номера.
+
+Сервис №1 в ТЗ https://docs.google.com/a/privatbank.ua/document/d/1rT8OsrFCu5clxBH4aAO481RBIw8-PuFtuw1x3VPVXbs/edit#</description><start_date>2013-09-03T00:00:00+03:00</start_date><due_date>2013-09-09T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-03T16:52:14+03:00</created_on><updated_on>2013-09-09T09:17:25+03:00</updated_on></issue><issue><id>154008</id><project name="API 2.x" id="2928"/><tracker name="Тестирование" id="7"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Козуб Алексей (dn150190kad)" id="91"/><assigned_to name="Козуб Алексей (dn150190kad)" id="91"/><fixed_version name="2.4. Доработки" id="9299"/><subject>Перепроверить метод create  </subject><description>Перепроверить сервис создания заявки так как там что-то меняли в процедурах</description><start_date>2013-09-03T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-03T12:12:16+03:00</created_on><updated_on>2013-09-03T12:12:16+03:00</updated_on></issue><issue><id>153984</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="Обратная связь" id="4"/><priority name="Нормальный" id="4"/><author name="Серик Александр (dn050690saa)" id="95"/><assigned_to name="Кругликова Марина (dn190491kmg)" id="10597"/><fixed_version name="2.3. Доработки" id="9298"/><subject>На selectPA не вернулись услуги</subject><description>Окружение:
+БД: 71,88 biplane_reliz_ua
+https://mw-bpweb-reliz-01.nc.pb.ua:8181/cashier/ Jenkins-Build-Number 	552
+
+Описание:
+При выборе получателя:
+
+ https://mw-bpweb-reliz-01.nc.pb.ua:8181/cashier/preparing/selectPA
+&lt;pre&gt;
+&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;selectPA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" companyID="300485" pointType="WKASS" lang="ru" bank="PB"&gt;&lt;property xsi:type="SimpleProperty" alias="BILL_MULTIPLE_CHOICE_PROPERTY" value="11062169"/&gt;&lt;/selectPA&gt;
+&lt;/pre&gt;
+
+Не вернулись услуги:
+&lt;pre&gt;
+  &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;selectPA_resp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" companyID="300485" rID="reliz_n1.1a8890de2d78a0"&gt;
+    &lt;head lang="ru" pointType="WKASS" bank="PB"&gt;
+        &lt;search&gt;
+            &lt;property value="11062169" alias="BILL_MULTIPLE_CHOICE_PROPERTY"/&gt;
+        &lt;/search&gt;
+    &lt;/head&gt;
+&lt;/selectPA_resp&gt;
+&lt;/pre&gt;
+
+Должна была вернуться услуга: "г.Черновцы"
+</description><start_date>2013-09-03T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-03T11:39:29+03:00</created_on><updated_on>2013-09-04T09:57:37+03:00</updated_on></issue><issue><id>153862</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="На тестировании" id="7"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Кругликова Марина (dn190491kmg)" id="10597"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="145991"/><subject>Тестирование! Проверить сохранение/обновление шаблона по ид заявки</subject><description/><start_date>2013-09-03T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-03T09:45:58+03:00</created_on><updated_on>2013-09-04T08:43:38+03:00</updated_on></issue><issue><id>153719</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Лысенко Александр (DN300190LAV)" id="9078"/><fixed_version name="2.3. Доработки" id="9298"/><subject>Добавление новых полей в табл. load_log (для загрузки внешних шаблонов)</subject><description>1.На базе шаблонов украины/россии/грузии,в табл.load_log добавить два новых поля.
+а) ins_row 
+б) upd_row
+
+2.Сохранять в новые поля следующую информацию в рамках одного загруженного файла
+а) количество созданных записей
+б) количество обновленных записей 
+
+</description><start_date>2013-09-02T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-02T17:34:35+03:00</created_on><updated_on>2013-09-02T17:35:16+03:00</updated_on></issue><issue><id>153665</id><project name="API 2.x" id="2928"/><tracker name="Ошибка" id="1"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Серик Александр (dn050690saa)" id="95"/><assigned_to name="Штепа Роман (dn170684sra)" id="393"/><fixed_version name="2.4. Доработки" id="9299"/><subject>NaB.Не работает скоростная комиссия</subject><description>Окружение:
+БД: 71,9 biplane_ua_test_auto
+http://mw-bpweb-qa-01.nc.pb.ua:8085/cashier/processing/create  билд 551
+
+Описание:
+На selectPA отображается что есть скоростная комиссия:
+&lt;pre&gt;
+ &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;selectPA_resp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" companyID="1425371" rID="tomcat_auto.41848eaafd8807"&gt;
+    &lt;head lang="ru" pointType="WKASS" bplnPointID="1422987" esaAdressID="1" esaRegionID="1" bank="PB"/&gt;
+    &lt;services&gt;
+        &lt;service id="1425373" name="услуга 1" required="false" checked="false" forbidden="false"&gt;
+            &lt;property xsi:type="SimpleProperty" value="СДД. С 2 комиссиями" alias="COMPANY"&gt;
+                &lt;config regEx="^.{3,160}$" name="Наименование" required="true" restriction="RO" default="СДД. С 2 комиссиями"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" alias="DEST"&gt;
+                &lt;config regEx="^.{10,160}$" name="Назначение" required="true"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SumProperty" alias="SUM"&gt;
+                &lt;config name="Сумма" required="true"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="300056" alias="MFO"&gt;
+                &lt;config regEx="^[0-9]{6}$" name="МФО" required="true" restriction="RO" default="300056"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" alias="FIO"&gt;
+                &lt;config regEx="^[а-яА-Я\w\s\.]{2,50}$" name="ФИО" required="true"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="111111111" alias="COMPANY_OKPO"&gt;
+                &lt;config regEx="^[0-9]{8,10}$" name="ЕГРПОУ" required="true" restriction="RO" default="111111111"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="ListProperty" alias="KASS_SYMB"&gt;
+                &lt;config xsi:type="ComboBoxConf" name="Вид оплаты" required="true" restriction="RO" default="02#@#Hадходження торговельнох виручки вiд продажу товарiв"&gt;
+                    &lt;view display="kass_symbol" key="kass_symbol"&gt;
+                        &lt;column name="kass_symbol" alias="kass_symbol"/&gt;
+                        &lt;column name="name" alias="name"/&gt;
+                    &lt;/view&gt;
+                    &lt;model&gt;
+                        &lt;row&gt;
+                            &lt;cell value="02"/&gt;
+                            &lt;cell value="Hадходження торговельнох виручки вiд продажу товарiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="05"/&gt;
+                            &lt;cell value="Hадходження виручки вiд усiх видiв платних послуг"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="12"/&gt;
+                            &lt;cell value="Hадходження податкiв та зборiв"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="14"/&gt;
+                            &lt;cell value="Надходження готівки в погашення кредитів"/&gt;
+                        &lt;/row&gt;
+                        &lt;row&gt;
+                            &lt;cell value="32"/&gt;
+                            &lt;cell value="Iншi надходження"/&gt;
+                        &lt;/row&gt;
+                    &lt;/model&gt;
+                &lt;/config&gt;
+                &lt;value key="02" val="Hадходження торговельнох виручки вiд продажу товарiв"/&gt;
+            &lt;/property&gt;
+            &lt;property xsi:type="SimpleProperty" value="26000000000000" alias="ACCOUNT"&gt;
+                &lt;config regEx="^[0-9]{5,14}$" name="Расчётный счёт" required="true" restriction="RO" default="26000000000000"/&gt;
+            &lt;/property&gt;
+        &lt;/service&gt;
+    &lt;/services&gt;
+    &lt;bank_services&gt;
+        &lt;service id="1423229" name="Быстрячок" required="false" checked="false" forbidden="false"/&gt;
+    &lt;/bank_services&gt;
+&lt;/selectPA_resp&gt;
+&lt;/pre&gt;
+
+На create передал основную услугу и скоростную комиссию:
+http://mw-bpweb-qa-01.nc.pb.ua:8085/cashier/processing/create
+&lt;pre&gt;
+&lt;create xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' companyID='1425371' id='123456'&gt;
+&lt;head lang='uk' pointType='WKASS' bplnPointID='1422987' esaAdressID='1' esaRegionID='1' bank='PB'&gt;&lt;/head&gt;
+&lt;point user='DN300189MIS' branch='DN65'&gt;&lt;/point&gt;&lt;client ekbID='1002555415'&gt;&lt;/client&gt;
+&lt;service id='1425373'&gt;&lt;property xsi:type='SimpleProperty' alias='DEST' value='ввввввввввввввввввввв'&gt;&lt;/property&gt;
+&lt;property xsi:type='SumProperty' alias='SUM' value='1'&gt;&lt;/property&gt;
+&lt;property xsi:type='SimpleProperty' alias='FIO' value='фыв'&gt;&lt;/property&gt;
+&lt;/service&gt;
+
+&lt;service id='1423229'&gt;&lt;/service&gt;
+
+&lt;/create&gt;
+&lt;/pre&gt;
+
+Далее получил ошибку:
+&lt;pre&gt;
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Apache Tomcat/7.0.40 - Error report&lt;/title&gt;&lt;style&gt;&lt;!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} H3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} BODY {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} B {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} P {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;}A {color : black;}A.name {color : black;}HR {color : #525D76;}--&gt;&lt;/style&gt; &lt;/head&gt;&lt;body&gt;&lt;h1&gt;HTTP Status 500 - Format specifier 's'&lt;/h1&gt;&lt;HR size="1" noshade="noshade"&gt;&lt;p&gt;&lt;b&gt;type&lt;/b&gt; Exception report&lt;/p&gt;&lt;p&gt;&lt;b&gt;message&lt;/b&gt; &lt;u&gt;Format specifier 's'&lt;/u&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;description&lt;/b&gt; &lt;u&gt;The server encountered an internal error that prevented it from fulfilling this request.&lt;/u&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;exception&lt;/b&gt; &lt;pre&gt;java.lang.RuntimeException: Format specifier 's'
+	com.pb.bpln.cashier.core.l10n.Localizator.localize(Localizator.java:33)
+	com.pb.bpln.cashier.builder.utils.BuilderUtils.generateMessage(BuilderUtils.java:53)
+	com.pb.bpln.cashier.builder.utils.BuilderUtils.buildMessages(BuilderUtils.java:30)
+	com.pb.bpln.cashier.builder.ResponseBuilderAbs.createResponse(ResponseBuilderAbs.java:70)
+	com.pb.bpln.cashier.builder.ResponseBuilderAbs.build(ResponseBuilderAbs.java:50)
+	com.pb.bpln.cashier.builder.ResponseBuilderAbs.build(ResponseBuilderAbs.java:1)
+	com.pb.bpln.servlet.action.ActionAbs.processRequest_aroundBody0(ActionAbs.java:143)
+	com.pb.bpln.servlet.action.ActionAbs$AjcClosure1.run(ActionAbs.java:1)
+	org.aspectj.runtime.reflect.JoinPointImpl.proceed(JoinPointImpl.java:149)
+	com.pb.bpln.logging.check_point.logic.CheckPointLogic.aroundPrintlnCall(CheckPointLogic.java:45)
+	com.pb.bpln.servlet.action.ActionAbs.processRequest(ActionAbs.java:136)
+	com.pb.bpln.servlet.action.ActionAbs.perform(ActionAbs.java:63)
+	com.pb.bpln.servlet.CashierServlet._process(CashierServlet.java:91)
+	com.pb.bpln.servlet.CashierServlet.processException(CashierServlet.java:82)
+	com.pb.bpln.servlet.CashierServlet.handleException(CashierServlet.java:128)
+	com.pb.bpln.servlet.CashierServlet.service_aroundBody0(CashierServlet.java:48)
+	com.pb.bpln.servlet.CashierServlet$AjcClosure1.run(CashierServlet.java:1)
+	org.aspectj.runtime.reflect.JoinPointImpl.proceed(JoinPointImpl.java:149)
+	com.pb.bpln.logging.check_point.logic.ServiceLogic.aroundServiceCall(ServiceLogic.java:45)
+	com.pb.bpln.servlet.CashierServlet.service(CashierServlet.java:41)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+&lt;/pre&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;root cause&lt;/b&gt; &lt;pre&gt;java.util.MissingFormatArgumentException: Format specifier 's'
+	java.util.Formatter.format(Formatter.java:2432)
+	java.util.Formatter.format(Formatter.java:2367)
+	java.lang.String.format(String.java:2769)
+	com.pb.bpln.cashier.core.l10n.Localizator.localize(Localizator.java:31)
+	com.pb.bpln.cashier.builder.utils.BuilderUtils.generateMessage(BuilderUtils.java:53)
+	com.pb.bpln.cashier.builder.utils.BuilderUtils.buildMessages(BuilderUtils.java:30)
+	com.pb.bpln.cashier.builder.ResponseBuilderAbs.createResponse(ResponseBuilderAbs.java:70)
+	com.pb.bpln.cashier.builder.ResponseBuilderAbs.build(ResponseBuilderAbs.java:50)
+	com.pb.bpln.cashier.builder.ResponseBuilderAbs.build(ResponseBuilderAbs.java:1)
+	com.pb.bpln.servlet.action.ActionAbs.processRequest_aroundBody0(ActionAbs.java:143)
+	com.pb.bpln.servlet.action.ActionAbs$AjcClosure1.run(ActionAbs.java:1)
+	org.aspectj.runtime.reflect.JoinPointImpl.proceed(JoinPointImpl.java:149)
+	com.pb.bpln.logging.check_point.logic.CheckPointLogic.aroundPrintlnCall(CheckPointLogic.java:45)
+	com.pb.bpln.servlet.action.ActionAbs.processRequest(ActionAbs.java:136)
+	com.pb.bpln.servlet.action.ActionAbs.perform(ActionAbs.java:63)
+	com.pb.bpln.servlet.CashierServlet._process(CashierServlet.java:91)
+	com.pb.bpln.servlet.CashierServlet.processException(CashierServlet.java:82)
+	com.pb.bpln.servlet.CashierServlet.handleException(CashierServlet.java:128)
+	com.pb.bpln.servlet.CashierServlet.service_aroundBody0(CashierServlet.java:48)
+	com.pb.bpln.servlet.CashierServlet$AjcClosure1.run(CashierServlet.java:1)
+	org.aspectj.runtime.reflect.JoinPointImpl.proceed(JoinPointImpl.java:149)
+	com.pb.bpln.logging.check_point.logic.ServiceLogic.aroundServiceCall(ServiceLogic.java:45)
+	com.pb.bpln.servlet.CashierServlet.service(CashierServlet.java:41)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+&lt;/pre&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;note&lt;/b&gt; &lt;u&gt;The full stack trace of the root cause is available in the Apache Tomcat/7.0.40 logs.&lt;/u&gt;&lt;/p&gt;&lt;HR size="1" noshade="noshade"&gt;&lt;h3&gt;Apache Tomcat/7.0.40&lt;/h3&gt;&lt;/body&gt;&lt;/html&gt;
+&lt;/pre&gt;</description><start_date>2013-09-03T00:00:00+03:00</start_date><due_date>2013-09-06T00:00:00+03:00</due_date><done_ratio>70</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-02T16:39:51+03:00</created_on><updated_on>2013-09-09T15:23:20+03:00</updated_on></issue><issue><id>153645</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Нарская Елена (Dn190585bev)" id="103"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="151358"/><subject>Мои задачи Нарская 2.4</subject><description>совещания, рабочие моменты  и другие текущие моменты</description><start_date>2013-09-02T00:00:00+03:00</start_date><due_date>2013-09-28T00:00:00+03:00</due_date><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-02T16:24:42+03:00</created_on><updated_on>2013-09-02T16:24:42+03:00</updated_on></issue><issue><id>153447</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Кондратенко Евгений (dn221290kea)" id="2657"/><assigned_to name="Кондратенко Евгений (dn221290kea)" id="2657"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="145991"/><subject>Повторный вызов сервиса создания шаблонов по заявке</subject><description>При вызове сервиса сохранения шаблона по ид заявки, необходимо учитывать поле template_done, а именно:
+1. При первом вызове сервиса сохраняется/обновляется шаблон , значение template_done в услугах становится 1.
+2. При повторном вызове сервиса с тем же идентификатором заявки - возвращается template_done=1 по этой услуге. В данном случае нужно не вызывать комплекс шаблонов, а вернуть готовые идентификаторы шаблонов</description><start_date>2013-09-02T00:00:00+03:00</start_date><due_date>2013-09-02T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours>6.0</estimated_hours><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-09-02T11:00:54+03:00</created_on><updated_on>2013-09-02T16:27:29+03:00</updated_on></issue><issue><id>153081</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Нарская Елена (Dn190585bev)" id="103"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="153032"/><subject>Удалить ошибку KС_Err0035</subject><description>Удалить ошибку KС_Err0035 Ошибка при идентификации владельца услуги!
+</description><start_date>2013-08-30T00:00:00+03:00</start_date><due_date>2013-09-09T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-30T15:15:15+03:00</created_on><updated_on>2013-09-09T15:26:53+03:00</updated_on></issue><issue><id>153079</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Нарская Елена (Dn190585bev)" id="103"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="153032"/><subject>Переименовать ошибку KС_Err0034 и поменять тип</subject><description>*Было* 
+Бизнесовая KС_Err0034 - У предприятия задолженности настроены реальные и виртуальные услуги!
+
+*Стало* 
+Локализировааня ошибка в ответ 
+KС_Err0034 -
+рус- Для клиента не предоставлены услуги для оплаты ! 
+укр- Для клієнта не надано послуг для оплати!
+гео - იყიდება კლიენტს არ გააჩნია ობიექტების გადაიხადოს!
+</description><start_date>2013-08-30T00:00:00+03:00</start_date><due_date>2013-09-09T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-30T15:12:58+03:00</created_on><updated_on>2013-09-09T15:23:46+03:00</updated_on></issue><issue><id>153036</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Донцова Наталья (dn100890dnv)" id="3118"/><assigned_to name="Донцова Наталья (dn100890dnv)" id="3118"/><fixed_version name="2.3. Доработки" id="9298"/><parent id="128536"/><subject>Тестирование.Задолженность.Добавление обработки ситуаций при нарушении порядка выполнения операций в API</subject><description>1. Составить чек-листы, тест-кейсы 2. Протестировать данный функционал</description><start_date>2013-08-30T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-30T14:24:23+03:00</created_on><updated_on>2013-08-30T14:24:23+03:00</updated_on></issue><issue><id>153032</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="На тестировании" id="7"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Козуб Алексей (dn150190kad)" id="91"/><fixed_version name="2.4. Доработки" id="9299"/><subject>Сопоставление задолженности (переделать механизм)</subject><description>*Сервисы*
+- получение реквизитов получателя;
+- получение реквизитов по шаблону;
+- добавление заявки;
+- сохранение заявки как шаблон.
+
+*Сопоставление услуг задолженности (переделать):* 
+Для сопоставлении услуг в получателе задолженность необходимо учесть следующие требования : 
+1. В предприятии задолженности нет настроенных подразделений и подчиненных получателей необходимо сопоставление услуг производить ТОЛЬКО по кодификатору услуги. Дополнительно реализовать проверки : 
+- Если в ПК Биплан заведено услуга без кодификатора;
+- Если внешняя система возвращает услуги без кодификатора;
+- Кодификаторы услуг ПК Биплан и внешней системы не совпадают -  
+выдавать сообщение об ошибке: 
+KС_Err0034 - Для клиента не предоставлены услуги для оплаты ! 
+Ошибка KС_Err0034 должна быть с определенным типом,  для вывода в ответ с типом ErrorMessage.
+(Пример:
+&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;error_resp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="KC_Err1002" rID="a85e0261bb5689"&gt;
+    &lt;message xsi:type="ErrorMessage" code="BPLN_500" type="ERROR" text="Для клиента не предоставлены услуги для оплаты!"/&gt;               
+&lt;/error_resp&gt; )
+2. В предприятии задолженности есть настроенные или подразделения или подчиненные получатели необходимо сопоставление производить в паре : КОД услуги - КОД подразделения/подчиненного получателя (при этом услуга должна быть либо привязана к подразделению либо заведена под подчиненным). Дополнительно реализовать проверки : 
+- Если кодификаторы подразделений/подчиненных получателей не заведены в ПК Биплан ; 
+- Или не предоставлены кодификаторы подразделений/подчиненных получателей  из внешней системы 
+- Кодификаторы подразделений/подчиненных получателей  в ПК Биплан и внешней системе не совпадают - 
+выводить сообщение обошибке : 
+KС_Err0034 - Для клиента не предоставлены услуги для оплаты ! 
+</description><start_date>2013-08-30T00:00:00+03:00</start_date><due_date>2013-09-09T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-30T14:20:41+03:00</created_on><updated_on>2013-09-09T12:35:42+03:00</updated_on></issue><issue><id>152925</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Кондратенко Евгений (dn221290kea)" id="2657"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="152544"/><subject>Доработка DAO. Метод loadRequest</subject><description>В результат отработки метода loadRequest добавить еще один параметр "Референс". В Него передавать уникальный идентификатор платежа. </description><start_date/><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-30T11:48:11+03:00</created_on><updated_on>2013-09-02T16:12:22+03:00</updated_on></issue><issue><id>152802</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Крикунова Ксения (dn070390kkg)" id="4218"/><assigned_to name="Серик Александр (dn050690saa)" id="95"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="152544"/><subject>Добавить поле референс в квитанцию</subject><description>Необходимо в тело квитанции добавить поле референс (в JReport). 
+После добавления скомпелировать представление и загрузить данные на релизовую базу КО.
+Протестировать получение квитанции с новым полем.</description><start_date>2013-08-30T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-30T09:32:26+03:00</created_on><updated_on>2013-08-30T09:32:26+03:00</updated_on></issue><issue><id>152544</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="На тестировании" id="7"/><priority name="Нормальный" id="4"/><author name="Половинка Антон (nk230576pav)" id="21"/><assigned_to name="Козуб Алексей (dn150190kad)" id="91"/><fixed_version name="2.4. Доработки" id="9299"/><subject>6891448-Добавление поля "Референс"</subject><description>https://doc.privatbank.ua/PrivatDoc/Scr/Par0.jsp?P2=6891448&amp;Year=2013
+1. На квитанции в API 2.x необходимо вывести дополнительное поле "Референс" для каждого платежа в пакете.&amp;#160; В референс необходимо подставлять значение уникального идентификатора платежа.</description><start_date>2013-08-30T00:00:00+03:00</start_date><due_date>2013-08-30T00:00:00+03:00</due_date><done_ratio>67</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value>Насикан Елена Петровна (DN020976NEP)</value></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-29T12:23:25+03:00</created_on><updated_on>2013-09-09T09:24:50+03:00</updated_on></issue><issue><id>152517</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="На тестировании" id="7"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Козуб Алексей (dn150190kad)" id="91"/><fixed_version name="2.4. Доработки" id="9299"/><subject>Макрос PERIOD  в назначении платежа</subject><description>*Было* 
+$PERIOD$ 
+Начало периода оплаты в формате &lt;месяц&gt; YYYY (пример "январь 2012")
+Окончание периода оплаты в формате &lt;месяц&gt; YYYY (пример "январь 2012")
+
+*Стало* 
+Если значения поля "Период" передали одинаковые значения начала и конца периода, необходимо в макросе $PERIOD$ выдавать только один месяц (конечный) в формате &lt;месяц&gt; YYYY (пример "январь 2012").
+На пример, пользователь ввел 07.03-07.03 - сейчас выдаем "июль 2013 - июль 2013", а должно "июль 2013". Если значения не совпадают - работать как раньше.</description><start_date>2013-08-29T00:00:00+03:00</start_date><due_date>2013-09-09T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-29T11:46:15+03:00</created_on><updated_on>2013-09-09T09:25:53+03:00</updated_on></issue><issue><id>152506</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Зайцев Алексей (dn280479zan)" id="1996"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="149502"/><subject>Добавить проверки в процедуру dbo.CreateTemplByIDForWebCashier</subject><description>Было:
+При вызове сервиса клонирования
+а) Проверка, что переданный шаблон с типом pkey_template_type=1,иначе ошибка:"Клонировать шаблон с типом pkey_template_type&lt;&gt;1 запрещено!"
+
+Стало:
+При вызове сервиса клонирования
+а) Проверка, что переданный шаблон с типом pkey_template_type=1,
+иначе  pkey_template_type=0 И pkey_clon_templ is NULL,тогда ошибка:"Клонировать шаблон с типом pkey_template_type&lt;&gt;1 запрещено!"
+
+б) Проверка, что переданный шаблон с типом pkey_template_type=0 И pkey_clon_templ NOT NULL, вернуть ответ этот же пикей шаблона.</description><start_date>2013-08-29T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-29T11:33:04+03:00</created_on><updated_on>2013-09-09T13:53:17+03:00</updated_on></issue><issue><id>152424</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Белый Дмитрий (nk310182bdn)" id="382"/><assigned_to name="Лаушкина Марина (dn220989lms)" id="395"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="149502"/><subject>Обновить спецификацию ПК Шаблонов по методу клонирования.</subject><description/><start_date>2013-09-03T00:00:00+03:00</start_date><due_date>2013-09-03T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours>3.0</estimated_hours><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-29T10:07:32+03:00</created_on><updated_on>2013-09-03T14:07:29+03:00</updated_on></issue><issue><id>151468</id><project name="API 2.x" id="2928"/><tracker name="Ошибка" id="1"/><status name="Обратная связь" id="4"/><priority name="Нормальный" id="4"/><author name="Серик Александр (dn050690saa)" id="95"/><assigned_to name="Бондаренко Александр (dn130591bav)" id="8458"/><fixed_version name="2.3. Доработки" id="9298"/><subject>NullPointerException при запуске таски балковой загрузки</subject><description>Окружение:
+Шедулер: http://10.13.71.144 tasks-sos-2.3-distrib.zip
+БД: 10.13.71.88 biplane_reliz_ua
+
+Описание:
+При запуске таски балковой загрузки получаю ошибку NullPointerException
+</description><start_date>2013-08-27T00:00:00+03:00</start_date><due_date>2013-08-28T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-27T11:36:38+03:00</created_on><updated_on>2013-09-04T15:11:33+03:00</updated_on></issue><issue><id>151439</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Септа Наталья (dn180881snv)" id="426"/><assigned_to name="Малый Игорь (dn180989mis)" id="406"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="150128"/><subject>Модуль расчета комиссий.Для второй версии ПК Комиссия</subject><description>Дополнить набор параметров и их значений, получаемых от WEB API следующими параметрами:
+- training_transaction количество обучающих транзакций клиента-плательщика (целое число).
+- settlment_population количество жителей в населенном пункте, в котором осуществляется набор платежа (целое число).
+Передавать значения данных параметров и base_commiss_amount (сумма комиссии ПК Биплан, рассчитанная по соответствующему платежу) ПК Комиссия , согласно приложенному алгоритму (стр №1 diagr_all.pdf).
+Если значения параметров training_transaction и settlment_population не были получены, то передавать их ПК Комиссия не нужно.</description><start_date>2013-08-27T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-27T11:02:10+03:00</created_on><updated_on>2013-08-30T13:32:05+03:00</updated_on></issue><issue><id>151428</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Малый Игорь (dn180989mis)" id="406"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="150128"/><subject>Сервис добавления заявки добавить на вход новый блок (API 2.x)</subject><description>Из СЗ 
+"Дополнить набор входящих значений в сервис добавления заявки блоком произвольных параметров, где возможно указывать дополнительную информацию для расчета комиссии при приеме платежей. Параметры указывать в виде связки ключ - значение.
+Организовать передачу значений в механизм расчета комиссий."
+
+Из ТЗ 
+1. На вход добавить новый блок:
+ "Дополнительная информация для расчета комиссий: 
+	- Список параметров"
+2. С версии 2.4. дополнительно модулю расчета комиссий передавать все поля из блока “Дополнительная информация для расчета комиссий”. Не производить в ядре кассира проверки правильности переданной информации. Если блок пустой или отсутствует в модуль расчета комиссий его не передавать. 
+</description><start_date>2013-08-27T00:00:00+03:00</start_date><due_date>2013-09-09T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-27T10:45:02+03:00</created_on><updated_on>2013-09-02T11:46:13+03:00</updated_on></issue><issue><id>151390</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Тимощенко Михаил (NK290875TMV)" id="383"/><assigned_to name="Зайцев Алексей (dn280479zan)" id="1996"/><fixed_version name="2.6 Доработки API" id="9423"/><parent id="121718"/><subject>Разработка в БД</subject><description/><start_date>2013-08-27T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-27T09:46:48+03:00</created_on><updated_on>2013-08-27T09:46:48+03:00</updated_on></issue><issue><id>151387</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Тимощенко Михаил (NK290875TMV)" id="383"/><assigned_to name="Клишевский Михаил (DN240591KMV)" id="2197"/><fixed_version name="2.6 Доработки API" id="9423"/><parent id="121718"/><subject>Разработка в ДАО</subject><description/><start_date>2013-08-27T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-27T09:46:25+03:00</created_on><updated_on>2013-08-27T09:46:25+03:00</updated_on></issue><issue><id>151385</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Тимощенко Михаил (NK290875TMV)" id="383"/><assigned_to name="Зайцев Алексей (dn280479zan)" id="1996"/><fixed_version name="2.6 Доработки API" id="9423"/><parent id="121840"/><subject>Разработка в БД</subject><description/><start_date>2013-08-27T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-27T09:45:37+03:00</created_on><updated_on>2013-08-27T09:45:37+03:00</updated_on></issue><issue><id>151384</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Тимощенко Михаил (NK290875TMV)" id="383"/><assigned_to name="Клишевский Михаил (DN240591KMV)" id="2197"/><fixed_version name="2.6 Доработки API" id="9423"/><parent id="121840"/><subject>Разработка в ДАО</subject><description/><start_date>2013-08-27T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-27T09:45:15+03:00</created_on><updated_on>2013-08-27T09:45:15+03:00</updated_on></issue><issue><id>151383</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Тимощенко Михаил (NK290875TMV)" id="383"/><assigned_to name="Зайцев Алексей (dn280479zan)" id="1996"/><fixed_version name="2.6 Доработки API" id="9423"/><parent id="121720"/><subject>Разработка в БД</subject><description/><start_date>2013-08-27T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-27T09:44:48+03:00</created_on><updated_on>2013-08-27T09:48:20+03:00</updated_on></issue><issue><id>151379</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Тимощенко Михаил (NK290875TMV)" id="383"/><assigned_to name="Клишевский Михаил (DN240591KMV)" id="2197"/><fixed_version name="2.6 Доработки API" id="9423"/><parent id="121720"/><subject>Разработка в ДАО</subject><description/><start_date>2013-08-27T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-27T09:44:24+03:00</created_on><updated_on>2013-08-27T09:47:40+03:00</updated_on></issue><issue><id>151360</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Нарская Елена (Dn190585bev)" id="103"/><category name="Аналитика" id="1825"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="151358"/><subject>Оформление принципов работы в Редмайн</subject><description/><start_date>2013-08-23T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-27T09:28:59+03:00</created_on><updated_on>2013-08-27T09:28:59+03:00</updated_on></issue><issue><id>151358</id><project name="API 2.x" id="2928"/><tracker name="Проектирование" id="6"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Нарская Елена (Dn190585bev)" id="103"/><category name="Аналитика" id="1825"/><fixed_version name="2.4. Доработки" id="9299"/><subject>Доработки требований версия 2.4</subject><description>Задачи бизнес - аналитиков версии 2.4</description><start_date>2013-08-23T00:00:00+03:00</start_date><due_date>2013-09-28T00:00:00+03:00</due_date><done_ratio>57</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-27T09:28:13+03:00</created_on><updated_on>2013-09-09T15:27:24+03:00</updated_on></issue><issue><id>151121</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Зайцев Алексей (dn280479zan)" id="1996"/><fixed_version name="2.3. Доработки" id="9298"/><parent id="151117"/><subject>Выборка получателей</subject><description>Необходимо для списка компаний выбрать:
+1.Ид получателя
+2.Наличие предварительного поиска
+3. Состояние получателя
+4. Настройки задолженности для точки приема WP24,иначе для WKASS (api=2)
+5. Настройки предварительного описка  </description><start_date>2013-08-23T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-23T13:50:33+03:00</created_on><updated_on>2013-08-23T15:27:46+03:00</updated_on></issue><issue><id>151118</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="В работе" id="2"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Дашкевич Светлана (dn050286dse)" id="105"/><fixed_version name="2.3. Доработки" id="9298"/><parent id="151117"/><subject>Анализ получателей. Составление инструкции по работе с ними. </subject><description/><start_date>2013-08-23T00:00:00+03:00</start_date><due_date/><done_ratio>40</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-23T13:47:39+03:00</created_on><updated_on>2013-08-30T16:25:18+03:00</updated_on></issue><issue><id>151117</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Дашкевич Светлана (dn050286dse)" id="105"/><fixed_version name="2.3. Доработки" id="9298"/><subject>Перевод шаблонов ПР24 в БД шаблонов</subject><description>https://docs.google.com/a/privatbank.ua/spreadsheet/ccc?key=0AhEx_B21k7OOdFZWbHNPN0ExeWtfUm5DS2pNaGVmUGc#gid=0</description><start_date>2013-08-23T00:00:00+03:00</start_date><due_date/><done_ratio>70</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-23T13:46:16+03:00</created_on><updated_on>2013-08-30T16:25:19+03:00</updated_on></issue><issue><id>151015</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Кондратенко Евгений (dn221290kea)" id="2657"/><assigned_to name="Кондратенко Евгений (dn221290kea)" id="2657"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="148266"/><subject>переделать методы смены состояния</subject><description>переделать методы смены состояния : избавится от временных таблиц путем вызова нескольких процедур</description><start_date>2013-08-23T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-23T10:39:53+03:00</created_on><updated_on>2013-08-23T10:40:35+03:00</updated_on></issue><issue><id>150946</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Зайцев Алексей (dn280479zan)" id="1996"/><assigned_to name="Лысенко Александр (DN300190LAV)" id="9078"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="149506"/><subject>Создать скрипт выявления дубликатов шаблонов по новой идеологии</subject><description/><start_date>2013-08-23T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-23T09:04:29+03:00</created_on><updated_on>2013-08-29T10:07:35+03:00</updated_on></issue><issue><id>150824</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="На тестировании" id="7"/><priority name="Нормальный" id="4"/><author name="Крикунова Ксения (dn070390kkg)" id="4218"/><assigned_to name="Гладий Мария (dn010190gma)" id="3102"/><fixed_version name="2.3. Доработки" id="9298"/><subject>Изменение обработки ошибок в модуле шаблонов </subject><description>Необходимо в модуле шаблонов ошибки полученные от АПИ шаблонов оборачивать в ошибки модуля. Согласно описанию https://docs.google.com/a/privatbank.ua/document/d/1lTeX1Rp0jf7E8zY9RO9qmlNtxp32-KmJDZUGXPfV548/edit#</description><start_date>2013-08-22T00:00:00+03:00</start_date><due_date>2013-08-23T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-22T16:45:44+03:00</created_on><updated_on>2013-08-28T10:05:26+03:00</updated_on></issue><issue><id>150821</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Финкель Евгения (dn020290fev)" id="7080"/><assigned_to name="Чумак Владимир (nk061183cvj)" id="389"/><category name="Администратор" id="3045"/><fixed_version name="2.3. Доработки" id="9298"/><subject>расширить ограничение на количество вводимых символов в поле &lt;sql-запрос&gt;</subject><description>В Администраторе в разделе "Провайдеры" для парметров поиска задолженности типа ComboBox Storage расширить ограничение на количество вводимых символов в поле &lt;sql-запрос&gt;</description><start_date>2013-08-22T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-22T16:37:25+03:00</created_on><updated_on>2013-08-22T16:39:00+03:00</updated_on></issue><issue><id>150806</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Кондратенко Евгений (dn221290kea)" id="2657"/><assigned_to name="Кондратенко Евгений (dn221290kea)" id="2657"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="148266"/><subject>Переделка метода получения отчетов по услугам</subject><description>Переделка метода получения отчетов по услугам: необходимо убрать временные таблицы (одна заполняется с кода, вторая - в самой процедуре) и уменьшить время выполнения метода</description><start_date>2013-08-22T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-22T16:18:27+03:00</created_on><updated_on>2013-08-22T16:30:43+03:00</updated_on></issue><issue><id>150700</id><project name="API 2.x" id="2928"/><tracker name="Ошибка" id="1"/><status name="В работе" id="2"/><priority name="Немедленный" id="7"/><author name="Финкель Евгения (dn020290fev)" id="7080"/><assigned_to name="Великоцкий Вячеслав (DN120187VVA)" id="425"/><fixed_version name="2.3. Доработки" id="9298"/><subject>Некорректные коды ошибок задолженности</subject><description>1) Вместо кода ошибки DT_000006 пришла  ошибка с кодом DT_000003
+Окружение:
+http://mw-bpweb-qa-01.nc.pb.ua:8085/cashier/preparing/selectPA
+база - 71.9 biplane_ua_test_auto
+В Запросе указала неверное значение параметра поиска задолженности "ACCOUNT":
+&lt;pre&gt;
+&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;selectPA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" companyID="1422435" pointType="WKASS" lang="ru" bank="PB"&gt;
+&lt;property xsi:type="SimpleProperty" alias="ACCOUNT" value="1122334"/&gt;
+&lt;/selectPA&gt;
+&lt;/pre&gt;
+
+Ответ:
+&lt;pre&gt;
+&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;error_resp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="KC_Err7001" rID="tomcat_auto.90417ed05d8d2f"&gt;
+    &lt;message xsi:type="ErrorMessage" code="BPLN_500" type="ERROR" text="Извините, во время работы сервиса произошла ошибка. Пожалуйста, попробуйте позже!"/&gt;
+    &lt;test_message xsi:type="ErrorMessage" code="KC_Err7001" type="ERROR" text="com.pb.bpln.core.exeption.SystemException: com.pb.debt.exceptions.DebtException: Query returned NO records Запрос не вернул записей"/&gt;
+    &lt;test_message xsi:type="ErrorMessage" code="DT_000003" type="ERROR" text="com.pb.debt.exceptions.DebtException: Query returned NO records Запрос не вернул записей"/&gt;
+&lt;/error_resp&gt;
+&lt;/pre&gt;
+
+2) Вместо кода ошибки DT_0000010 пришла ошибка с кодом CODE_6
+Окружение:
+http://mw-bpweb-qa-01.nc.pb.ua:8085/cashier/preparing/selectPA
+база - 71.9 biplane_ua_test_auto
+На эмуляторе записана xml (без услуг):
+&lt;pre&gt;
+&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;Transfer xmlns="http://debt.privatbank.ua/Transfer" interface="Debt"&gt;
+    &lt;Head xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="StandartRecipient" id="1427701" code="1" pointType="1"/&gt;
+    &lt;Data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="DebtPack" billPeriod="201206" periodAutofill="true"&gt;
+        &lt;Message&gt;Данные о задолженности можно получить в Кассе!&lt;/Message&gt;
+        &lt;PayerInfo&gt;
+            &lt;Fio&gt;Иванов Иван Иванович&lt;/Fio&gt;
+            &lt;Phone&gt;+321234214&lt;/Phone&gt;
+            &lt;Address&gt;пр.Ленина 10 кв 5&lt;/Address&gt;
+        &lt;/PayerInfo&gt;
+        &lt;/Data&gt;
+&lt;/Transfer&gt;
+&lt;/pre&gt;
+Запрос:
+&lt;pre&gt;
+&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;selectPA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" companyID="1427701" pointType="WKASS" lang="ru" bank="PB"&gt;
+&lt;property xsi:type="SimpleProperty" alias="BILL_MULTIPLE_CHOICE_PROPERTY" value="10010"/&gt;
+&lt;/selectPA&gt;
+&lt;/pre&gt;
+
+Ответ:
+&lt;pre&gt;
+&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;error_resp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="KC_Err7002" rID="tomcat_auto.fe7643c24b4744"&gt;
+    &lt;message xsi:type="ErrorMessage" code="BPLN_500" type="ERROR" text="Извините, во время работы сервиса произошла ошибка. Пожалуйста, попробуйте позже!"/&gt;
+    &lt;test_message xsi:type="ErrorMessage" code="KC_Err7002" type="ERROR" text="com.pb.bpln.cashier.bridge.debt.exceptions.IllegalSearchParamsException: Debt search parameters are not specified"/&gt;
+    &lt;test_message xsi:type="ErrorMessage" code="CODE_6" type="ERROR" text="Debt search parameters are not specified"/&gt;
+&lt;/error_resp&gt;
+&lt;/pre&gt;
+
+3) Вместо ошибки с кодом DT_000009 запрос выполняется успешно
+Окружение:
+https://mw-bpweb-reliz-01.nc.pb.ua:8181/cashier/preparing/selectPA
+база - 71.88 biplane_reliz_ua
+К драйверу поиска задолженности подключаю несуществующий макрос
+Запрос:
+&lt;pre&gt;
+&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;selectPA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" companyID="1430515" pointType="WKASS" lang="ru" bank="PB"&gt;
+&lt;property xsi:type="SimpleProperty" alias="BILL_MULTIPLE_CHOICE_PROPERTY" value="10010"/&gt;
+&lt;/selectPA&gt;
+&lt;/pre&gt;
+
+Ответ - ОК
+
+
+
+
+
+
+</description><start_date>2013-08-22T00:00:00+03:00</start_date><due_date>2013-09-04T00:00:00+03:00</due_date><done_ratio>80</done_ratio><estimated_hours>10.0</estimated_hours><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-22T14:22:14+03:00</created_on><updated_on>2013-09-05T11:16:34+03:00</updated_on></issue><issue><id>150547</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Дашкевич Светлана (dn050286dse)" id="105"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="150281"/><subject>Тестирование! Получение данных с бд кеша и подписчика шаблонов</subject><description/><start_date>2013-08-22T00:00:00+03:00</start_date><due_date>2013-09-06T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours>3.0</estimated_hours><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-22T10:01:51+03:00</created_on><updated_on>2013-09-06T12:01:13+03:00</updated_on></issue><issue><id>150545</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Карбовский Олег (nk250669kov)" id="391"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="150281"/><subject>Поднятие подписчика шаблонов</subject><description>часть III, п.3 ТЗ https://docs.google.com/a/privatbank.ua/document/d/1zMOx8H_NuWBHlPqXOQqNElLLGZ9-_1RE7MYBmpLEhRU/edit#</description><start_date>2013-08-22T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-22T10:00:30+03:00</created_on><updated_on>2013-09-06T12:01:48+03:00</updated_on></issue><issue><id>150544</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Тимощенко Михаил (NK290875TMV)" id="383"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="150281"/><subject>Разработка процедуры</subject><description>часть III, п.2 ТЗ https://docs.google.com/a/privatbank.ua/document/d/1zMOx8H_NuWBHlPqXOQqNElLLGZ9-_1RE7MYBmpLEhRU/edit#</description><start_date>2013-08-22T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-22T09:59:00+03:00</created_on><updated_on>2013-09-03T09:24:32+03:00</updated_on></issue><issue><id>150542</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Дашкевич Светлана (dn050286dse)" id="105"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="150281"/><subject>ТЗ</subject><description/><start_date>2013-08-21T00:00:00+03:00</start_date><due_date>2013-08-22T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours>2.5</estimated_hours><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-22T09:57:41+03:00</created_on><updated_on>2013-09-06T11:59:52+03:00</updated_on></issue><issue><id>150537</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Горбенко Александр (dn030681gae)" id="396"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="150281"/><subject>Доработка метода getTemplatesByCisCache</subject><description>часть III, п.1 ТЗ https://docs.google.com/a/privatbank.ua/document/d/1zMOx8H_NuWBHlPqXOQqNElLLGZ9-_1RE7MYBmpLEhRU/edit#</description><start_date>2013-08-21T00:00:00+03:00</start_date><due_date>2013-09-05T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value>4 - хорошо</value></custom_field></custom_fields><created_on>2013-08-22T09:51:43+03:00</created_on><updated_on>2013-09-06T09:32:52+03:00</updated_on></issue><issue><id>150527</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Кондратенко Евгений (dn221290kea)" id="2657"/><assigned_to name="Кондратенко Евгений (dn221290kea)" id="2657"/><fixed_version name="2.3. Доработки" id="9298"/><parent id="148266"/><subject>оптимизация работы с БД</subject><description>оптимизация работы с БД
+просмотр текущих вызовов процедур, удаление ненужных, уход от временных таблиц, переделка медленных вызовов</description><start_date>2013-08-09T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-22T09:36:33+03:00</created_on><updated_on>2013-08-23T15:14:32+03:00</updated_on></issue><issue><id>150507</id><project name="API 2.x" id="2928"/><tracker name="Проектирование" id="6"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Крикунова Ксения (dn070390kkg)" id="4218"/><assigned_to name="Крикунова Ксения (dn070390kkg)" id="4218"/><fixed_version name="2.3. Доработки" id="9298"/><subject>Документация по модулю шаблонов </subject><description>Дописать взаимодействие нового АПИ и комплекса шаблонов в сервисах: "Получение информации по шаблону", "Сохранение шаблона по ид заявки".</description><start_date>2013-08-29T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-22T09:14:57+03:00</created_on><updated_on>2013-08-29T11:22:31+03:00</updated_on></issue><issue><id>150423</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="В работе" id="2"/><priority name="Нормальный" id="4"/><author name="Гасанова Мария (dn140690kma)" id="4217"/><assigned_to name="Гасанова Мария (dn140690kma)" id="4217"/><fixed_version name="2.4. Доработки" id="9299"/><subject>Самообучение</subject><description/><start_date>2013-08-20T00:00:00+03:00</start_date><due_date/><done_ratio>10</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-21T17:22:49+03:00</created_on><updated_on>2013-08-22T17:31:16+03:00</updated_on></issue><issue><id>150281</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Дашкевич Светлана (dn050286dse)" id="105"/><fixed_version name="2.4. Доработки" id="9299"/><subject>Отображение внешних шаблонов посредством упрощенного получения шаблонов по ид клиента</subject><description/><start_date>2013-08-21T00:00:00+03:00</start_date><due_date>2013-09-06T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours>5.5</estimated_hours><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-21T13:49:14+03:00</created_on><updated_on>2013-09-06T12:01:48+03:00</updated_on></issue><issue><id>150195</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Гладий Мария (dn010190gma)" id="3102"/><assigned_to name="Донцова Наталья (dn100890dnv)" id="3118"/><fixed_version name="2.3. Доработки" id="9298"/><parent id="144859"/><subject>Тестирвоание.Задолженность.Вывод текста ошибки задолженности клиенту.</subject><description>1. Составить чек-листы, тест-кейсы
+2. Протестировать данный функционал</description><start_date>2013-08-21T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-21T11:26:39+03:00</created_on><updated_on>2013-08-21T11:26:39+03:00</updated_on></issue><issue><id>150148</id><project name="API 2.x" id="2928"/><tracker name="Тестирование" id="7"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Крикунова Ксения (dn070390kkg)" id="4218"/><assigned_to name="Серик Александр (dn050690saa)" id="95"/><fixed_version name="2.4. Доработки" id="9299"/><subject>Изменение кодов ошибок в сервисе "Получение информации по шаблону"</subject><description>Необходимо протестировать изменения внесенные задачей http://10.1.99.58/predmine/issues/145862 в сервисе "Получение информации по шаблону"</description><start_date>2013-08-21T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-21T10:15:13+03:00</created_on><updated_on>2013-08-21T10:15:13+03:00</updated_on></issue><issue><id>150128</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="На тестировании" id="7"/><priority name="Нормальный" id="4"/><author name="Половинка Антон (nk230576pav)" id="21"/><assigned_to name="Козуб Алексей (dn150190kad)" id="91"/><fixed_version name="2.4. Доработки" id="9299"/><subject>6879657-Дополнить набор параметров (WEB API и Модуль комиссий)</subject><description>https://doc.privatbank.ua/PrivatDoc/Scr/Par0.jsp?P2=6879657&amp;Year=2013
+&lt;b&gt;2.1. WEB API&lt;/b&gt;&lt;br/&gt;Дополнить набор входящих значений в сервис добавления заявки блоком произвольных параметров, где возможно указывать дополнительную информацию для расчета комиссии при приеме платежей. Параметры указывать в виде связки ключ - значение.&lt;br/&gt;Организовать передачу значений в механизм расчета комиссий.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;2.2. Модуль расчета комиссий&lt;/b&gt;&lt;br/&gt;Дополнить&amp;#160; набор параметров и их значений, получаемых от WEB API следующими параметрами:&lt;br/&gt;- training_transaction количество обучающих транзакций клиента-плательщика (целое число).&lt;br/&gt;- settlment_population количество жителей в населенном пункте, в котором осуществляется набор платежа (целое число).&lt;br/&gt;Передавать значения данных параметров и base_commiss_amount (сумма комиссии ПК Биплан, рассчитанная по соответствующему платежу) ПК Комиссия , согласно&amp;#160; приложенному алгоритму.&lt;br/&gt;Если значения параметров&amp;#160; training_transaction и settlment_population не были получены, то передавать их ПК Комиссия не нужно.</description><start_date>2013-08-27T00:00:00+03:00</start_date><due_date>2013-09-09T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value>Сизинцев Дмитрий Алексеевич (DN250184SDA)</value></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-21T09:57:45+03:00</created_on><updated_on>2013-09-09T09:19:11+03:00</updated_on></issue><issue><id>149748</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Кругликова Марина (dn190491kmg)" id="10597"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="149499"/><subject>Тестирование! Сохранение и клонирование шаблонов.</subject><description>Необходимо протестировать:
+1.Сервис клонирования шаблона.
+1.
+а) на вход передать идентификатор шаблона с pkey_template_type=1 и источник создания, наприме p48, на выходе получить 
+- Идентификатор созданного неудаляемого шаблона (pkey_template)
+- ОКПО получателя ( okpo)
+- наименование получателя (company)
+- наименование услуги (service name )
+- мфо (mfo)
+- счет (account)
+- константа isNew="true"
+
+б) проверить, чтобы в БД сохраненный шаблон был полностью аналогичен переданному, НО имел тип pkey_template_type=0,другой идентификатор шаблона и источник создания  pkey_source=4 (p48)
+
+2.на вход передать идентификатор шаблона с pkey_template_type=0(проверить в БД, чтоб поле pkey_clon_templ было NULL), на выходе получить ошибку:"Клонировать шаблон с типом pkey_template_type&lt;&gt;1 запрещено!"
+
+3.вызвать метод клонирования по уже клонированному шаблону(pkey_template_type=0 И pkey_clon_templ NOT NULL), получить в ответ тот же идентификатор шаблона.   
+
+
+2. Сохранение шаблона
+
+Методы saveAsT и createTemplates?req_id должны сохранять шаблоны с типом авто (pkey_template_type=1)
+ </description><start_date>2013-08-20T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-20T12:05:26+03:00</created_on><updated_on>2013-09-09T14:48:22+03:00</updated_on></issue><issue><id>149732</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Зайцев Алексей (dn280479zan)" id="1996"/><category name="Шаблоны" id="3046"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="149499"/><subject>Изменение критериев апдейта</subject><description>п.7 ТЗ 
+https://docs.google.com/a/privatbank.ua/document/d/1CQB6aeqoBKyF8CzccHXvUqXyhlONTjb1lpJxWGOgkfo/edit#</description><start_date>2013-08-20T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-20T11:41:47+03:00</created_on><updated_on>2013-08-29T10:07:35+03:00</updated_on></issue><issue><id>149730</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Лаушкина Марина (dn220989lms)" id="395"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="149502"/><subject>Доработки АПИ шаблонов. Сервис клонирования</subject><description/><start_date>2013-08-20T00:00:00+03:00</start_date><due_date>2013-09-04T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-20T11:36:30+03:00</created_on><updated_on>2013-09-04T11:54:15+03:00</updated_on></issue><issue><id>149728</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Зайцев Алексей (dn280479zan)" id="1996"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="149502"/><subject>Доработки процедуры . Сервис клонирования шаблона.</subject><description/><start_date>2013-08-20T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-20T11:35:32+03:00</created_on><updated_on>2013-08-29T10:07:34+03:00</updated_on></issue><issue><id>149677</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Зайцев Алексей (dn280479zan)" id="1996"/><category name="Шаблоны" id="3046"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="149499"/><subject>Удаление из БД "лишних" шаблонов</subject><description>Провести удаление неактуальных шаблонов согласно критериев:
+1.    Удалить шаблоны, у которых идентификатор клиента в ЕКБ=1
+2.    Удалить шаблоны, у которых company_id=1129307 и company_ks_id= 1129312 и pkey_source  &lt;&gt; 4 (p48)
+
+
+https://doc.privatbank.ua/PrivatDoc/Scr/Par0.jsp?P2=6885093&amp;Year=2013</description><start_date>2013-08-20T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-20T10:28:04+03:00</created_on><updated_on>2013-08-29T10:07:33+03:00</updated_on></issue><issue><id>149674</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Зайцев Алексей (dn280479zan)" id="1996"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="149499"/><subject>План действий по изменению механизма сохранения шаблонов</subject><description>1. Удалить все шаблоны с ид клиента=1
+2. Удалить шаблоны, у которых company_id=1129307 и company_ks_id= 1129312 и pkey_source  &lt;&gt; 4 (p48)
+3. Изменить процедуру апдейта (новый и старый механизмы. Суть : ручные апдейтятся, автоматические нет).
+4. Пометить дубликаты. Не учитывать 
+          а) шаблоны регулярки
+          б) шаблоны домохозяйств
+5. Скрыть помеченые дубликаты для отображения (для списания оставить).
+6. Отдать файл с дубликатами Муравьеву, чтобы он проверил нет ли среди них его регулярки.Для себя отмечаем,старые (ласт=1) это или новые дубликаты. 
+7. Если регулярка есть, ее убираем из дубликатов, остальные скрываем полностью - как для списания, так и для отображения.
+8. Регулярку отмечаем ручной, все остальные шаблоны - автоматическими.  </description><start_date>2013-08-19T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-20T10:23:04+03:00</created_on><updated_on>2013-08-29T10:07:33+03:00</updated_on></issue><issue><id>149508</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Зайцев Алексей (dn280479zan)" id="1996"/><category name="База данных/DAO" id="3085"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="149499"/><subject>Изменение жестких полей в шаблонах</subject><description>Изменения в ключе:
+1. Из всех ключей, кроме категории Телекоммуникации (pkey=6) удаляем поле “Телефон”.
+2. Добавить в Телекоммуникации (pkey=6) добавть поле bill_identifier в ключ.
+
+ТЗ https://docs.google.com/a/privatbank.ua/document/d/1CQB6aeqoBKyF8CzccHXvUqXyhlONTjb1lpJxWGOgkfo/edit</description><start_date>2013-08-19T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-19T17:33:50+03:00</created_on><updated_on>2013-08-29T10:07:35+03:00</updated_on></issue><issue><id>149506</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Зайцев Алексей (dn280479zan)" id="1996"/><category name="База данных/DAO" id="3085"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="149499"/><subject>Определение дубликатов</subject><description>п.5 ТЗ https://docs.google.com/a/privatbank.ua/document/d/1CQB6aeqoBKyF8CzccHXvUqXyhlONTjb1lpJxWGOgkfo/edit#</description><start_date>2013-08-23T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours>0.0</estimated_hours><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-19T17:32:15+03:00</created_on><updated_on>2013-08-29T10:07:35+03:00</updated_on></issue><issue><id>149502</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Шумский Александр (dn021190saj)" id="6498"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="149499"/><subject>Доработка АПИ шаблонов. </subject><description>1.Создание удаляемого (автоматического шаблона).
+Обеспечить создание методами saveAsT и createTemplates?req_id   шаблонов с типом auto (pkey_template_type=1)
+
+2.Создание сервиса клонирования. 
+Реализовать метод клонирования:
+На входе:
+- ИД шаблона  (pkey)
+- Пкей источника (pkey_source)
+На выходе: 
+- Идентификатор созданного неудаляемого шаблона (pkey_template)  
+- ОКПО получателя ( okpo)
+- наименование получателя (company)
+- наименование услуги (service name )
+- мфо (mfo)
+- счет (account)
+- константа isNew="true"
+
+Требования к методу:
+1. При вызове метода должны выполняться следующие действия:
+а) Проверка, что переданный шаблон с типом pkey_template_type=1,иначе ошибка:"Клонировать шаблон с типом pkey_template_type&lt;&gt;1 запрещено!"
+б) Создание полной копии переданного шаблона с новым идентификатором шаблона.
+в) Выставление типа созданному шаблону в pkey_template_type=0
+г) Сохранение переданного на входе источника.
+д) Сохранение pkey клонируемого шаблона в поле pkey_clon_templ для клонированого шаблона (делает процедура).
+     
+Проверки:
+1. Клонировать можно только автоматический шаблон (pkey_template_type=1).
+2. Если был вызван метод клонирования по уже клонированному шаблону(источник шаблона в БД будет pkey_template_type=0),вернуть его в ответ.
+</description><start_date>2013-08-20T00:00:00+03:00</start_date><due_date>2013-09-04T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours>3.0</estimated_hours><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-19T17:30:19+03:00</created_on><updated_on>2013-09-09T13:52:40+03:00</updated_on></issue><issue><id>149500</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Дашкевич Светлана (dn050286dse)" id="105"/><category name="Аналитика" id="1825"/><fixed_version name="2.4. Доработки" id="9299"/><parent id="149499"/><subject>ТЗ</subject><description>https://docs.google.com/a/privatbank.ua/document/d/1CQB6aeqoBKyF8CzccHXvUqXyhlONTjb1lpJxWGOgkfo/edit#</description><start_date>2013-08-19T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-19T17:29:06+03:00</created_on><updated_on>2013-08-29T10:07:34+03:00</updated_on></issue><issue><id>149499</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Дашкевич Светлана (dn050286dse)" id="105"/><assigned_to name="Тимощенко Михаил (NK290875TMV)" id="383"/><fixed_version name="2.4. Доработки" id="9299"/><subject>Шаблоны (сз 6885093 )</subject><description>https://doc.privatbank.ua/PrivatDoc/Scr/Par0.jsp?P2=6885093&amp;Year=2013
+Общие изменения
+1. Определить дубликаты шаблонов
+2. Изменить параметры апдейта
+3. Изменения в АПИ шаблонов:
+   а) методы АПИ сохранения шаблонов saveAsT и createTemplates?req_id  должны сохранять шаблон с типом auto
+   б) реализовать механизм клонирования шаблона для шаблонов АПИ 2х </description><start_date>2013-08-19T00:00:00+03:00</start_date><due_date>2013-09-04T00:00:00+03:00</due_date><done_ratio>58</done_ratio><estimated_hours>3.0</estimated_hours><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-19T17:28:13+03:00</created_on><updated_on>2013-09-09T14:42:45+03:00</updated_on></issue><issue><id>149160</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Крикунова Ксения (dn070390kkg)" id="4218"/><assigned_to name="Серик Александр (dn050690saa)" id="95"/><fixed_version name="2.5 Доработки API" id="9422"/><parent id="148795"/><subject>Проверка бизнесовых ошибок </subject><description>Прошу при тестировании обратить внимание на соответствие бизенесовых ошибок без подтипа http статусу 460 (согласно документу https://docs.google.com/a/privatbank.ua/document/d/1sJZxpdOOJidBuj5LZOTi1zPyOdzNZ0aEooGYRrRK7cw/edit?pli=1#).</description><start_date>2013-08-19T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-19T10:02:16+03:00</created_on><updated_on>2013-08-19T10:02:16+03:00</updated_on></issue><issue><id>149159</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Крикунова Ксения (dn070390kkg)" id="4218"/><assigned_to name="Серик Александр (dn050690saa)" id="95"/><fixed_version name="2.5 Доработки API" id="9422"/><parent id="148795"/><subject>Проверка бизнесовых ошибок с подтипом "ошибка вызова сервиса"</subject><description>Прошу проверить соответствие ошибок с подтипом "ошибка вызова сервиса" (согласно документу https://docs.google.com/a/privatbank.ua/document/d/1sJZxpdOOJidBuj5LZOTi1zPyOdzNZ0aEooGYRrRK7cw/edit?pli=1#) http статусу 400.</description><start_date>2013-08-19T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-19T09:59:18+03:00</created_on><updated_on>2013-08-19T09:59:18+03:00</updated_on></issue><issue><id>148983</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Крикунова Ксения (dn070390kkg)" id="4218"/><assigned_to name="Малый Игорь (dn180989mis)" id="406"/><fixed_version name="2.5 Доработки API" id="9422"/><parent id="148795"/><subject>Ошибки внешних систем (ЕКБ, ОКБ, Приват48)</subject><description>1. Необходимо ошибки ЕКБ, ОКБ, Приват 48 сделать бизнессовыми.
+2. Выполнить обработку ответа с 500 кодом статуса:
+Для ЕКБ - Если в ответе указан статус 500, то выдавать сообщение об ошибке: KС_Err6001 - Ошибка при получении данных от ЕКБ!
+Для ОДБ - Если в ответе получена ошибка (с кодом 500) - выдаем сообщение об ошибке KС_Err6608 - Сбой получения запрашиваемых данных. Повторите, пожалуйста, запрос.
+Приват 48 - Если получен ответ с 500 кодом статуса - выдаем сообщение об ошибке KС_Err6802 -  Ошибка при получении данных о счетах из Приват 48!</description><start_date>2013-08-16T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-16T16:25:45+03:00</created_on><updated_on>2013-08-16T16:25:45+03:00</updated_on></issue><issue><id>148797</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Крикунова Ксения (dn070390kkg)" id="4218"/><assigned_to name="Малый Игорь (dn180989mis)" id="406"/><fixed_version name="2.5 Доработки API" id="9422"/><parent id="148795"/><subject>Обработка ответа от платежного портала  со статусом 500</subject><description>В сервисе "Сохранения заявки в платежный портал"
+Если при работе сервиса возникла бизнесовая ошибка или если от платежного портала был получен ответ со статусом 500, то необходимо “оборачивать” ошибку в ошибку ядра с кодом KС_Err2002 (“Ошибка при сохранении заявки в Платежный портал!”)  и выдать сообщение. </description><start_date>2013-08-16T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-16T11:21:14+03:00</created_on><updated_on>2013-08-16T11:21:14+03:00</updated_on></issue><issue><id>148795</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Крикунова Ксения (dn070390kkg)" id="4218"/><assigned_to name="Белый Дмитрий (nk310182bdn)" id="382"/><fixed_version name="2.5 Доработки API" id="9422"/><subject>Ввод дополнительных статусов ошибок</subject><description>Согласно распоряжением  N  Э.17.0.0.0/1-6837308 будет производиться учет кодов ответа со стороны серверов приложений при расчете показателей доступности по предоставляемым сервисам. В связи с этим необходимо пересмотреть ошибки и внести соответствующие изменения согласно https://docs.google.com/a/privatbank.ua/document/d/1sJZxpdOOJidBuj5LZOTi1zPyOdzNZ0aEooGYRrRK7cw/edit?pli=1#</description><start_date>2013-08-09T00:00:00+03:00</start_date><due_date>2013-08-16T00:00:00+03:00</due_date><done_ratio>20</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-16T11:19:03+03:00</created_on><updated_on>2013-08-19T10:02:18+03:00</updated_on></issue><issue><id>148298</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Кондратенко Евгений (dn221290kea)" id="2657"/><assigned_to name="Клишевский Михаил (DN240591KMV)" id="2197"/><fixed_version name="2.3. Доработки" id="9298"/><parent id="148266"/><subject>Переделать метод getAccount</subject><description>Переделать метод getAccount:
+   - метод должен принимать список парметров
+   - вызывать процедуры для списка в одном батче
+   - возвращать связку переданных параметров с результатами из БД</description><start_date>2013-08-15T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-15T10:02:01+03:00</created_on><updated_on>2013-08-16T13:40:11+03:00</updated_on></issue><issue><id>148294</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Крикунова Ксения (dn070390kkg)" id="4218"/><assigned_to name="Белый Дмитрий (nk310182bdn)" id="382"/><fixed_version name="2.5 Доработки API" id="9422"/><subject>Вывод подразделения на квитанцию</subject><description>Если платеж принят в адрес подразделения, то необходимо вместо наименования получателя указывать наименование подразделения</description><start_date>2013-08-15T00:00:00+03:00</start_date><due_date/><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-15T10:00:01+03:00</created_on><updated_on>2013-08-15T10:00:01+03:00</updated_on></issue><issue><id>148283</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="В работе" id="2"/><priority name="Нормальный" id="4"/><author name="Кондратенко Евгений (dn221290kea)" id="2657"/><assigned_to name="Касьяненко Виталий (dn250790kva)" id="3738"/><fixed_version name="2.3. Доработки" id="9298"/><parent id="148266"/><subject>Переделать вызов метода getConsolidationData в справочниках</subject><description>Переделать вызов метода getConsolidationData в справочниках: на данный момент метод дергается для каждого платежа. Нужно переделать вызов - вызывать метод со списком параметров (для всех платежей + убрать дублирующееся записи)</description><start_date>2013-08-15T00:00:00+03:00</start_date><due_date/><done_ratio>20</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-15T09:57:49+03:00</created_on><updated_on>2013-09-04T16:00:41+03:00</updated_on></issue><issue><id>148279</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Кондратенко Евгений (dn221290kea)" id="2657"/><assigned_to name="Клишевский Михаил (DN240591KMV)" id="2197"/><fixed_version name="2.3. Доработки" id="9298"/><parent id="148266"/><subject>Переделать метод getConsolidationData</subject><description>Переделать метод getConsolidationData:
+   - в метод принимать не 2 параметра Long payeeID, Long pointPkey, а список (точнее множество данных параметров)
+   - весь список дергать в обном батче 
+   - возвращать связку переданных параметров с результатами выполнения</description><start_date>2013-08-15T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-15T09:51:44+03:00</created_on><updated_on>2013-08-15T14:48:55+03:00</updated_on></issue><issue><id>148266</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Кондратенко Евгений (dn221290kea)" id="2657"/><assigned_to name="Кондратенко Евгений (dn221290kea)" id="2657"/><fixed_version name="2.4. Доработки" id="9299"/><subject>Рефакторинг с целью оптимизации времени ответа сервисов</subject><description/><start_date>2013-08-09T00:00:00+03:00</start_date><due_date>2013-09-05T00:00:00+03:00</due_date><done_ratio>89</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-15T09:40:21+03:00</created_on><updated_on>2013-09-09T10:35:11+03:00</updated_on></issue><issue><id>148180</id><project name="API 2.x" id="2928"/><tracker name="Ошибка" id="1"/><status name="Обратная связь" id="4"/><priority name="Нормальный" id="4"/><author name="Серик Александр (dn050690saa)" id="95"/><assigned_to name="Лущан Владислав (dn041189lvs)" id="380"/><fixed_version name="2.5 Доработки API" id="9422"/><subject>Ошибка при получении информации по шаблону(Сумма задана неверно!)</subject><description>Окружение:
+https://mw-bpweb-reliz-01.nc.pb.ua:8181/cashier/
+БД: 71,88 biplane_reliz_ua
+
+Описание:
+При выполнении запроса получения информации по шаблону:
+&lt;pre&gt;
+https://mw-bpweb-reliz-01.nc.pb.ua:8181/cashier/manipulation/searchDByT?template_id=106556590 
+&lt;/pre&gt;
+Получаю ошибку: Сумма задана неверно (с лога)</description><start_date>2013-08-14T00:00:00+03:00</start_date><due_date/><done_ratio>10</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-14T17:37:54+03:00</created_on><updated_on>2013-09-09T09:32:04+03:00</updated_on></issue><issue><id>147948</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="На тестировании" id="7"/><priority name="Нормальный" id="4"/><author name="Морозов Александр (dn070189mad)" id="468"/><assigned_to name="Козуб Алексей (dn150190kad)" id="91"/><fixed_version name="2.4. Доработки" id="9299"/><subject>Ввод новых кодов в эксплуатацию и отключение старых</subject><description/><start_date>2013-08-14T00:00:00+03:00</start_date><due_date>2013-09-02T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-14T12:15:15+03:00</created_on><updated_on>2013-09-09T12:34:35+03:00</updated_on></issue><issue><id>147934</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Лобанов Юрий (dn080673ljv)" id="385"/><fixed_version name="2.4. Доработки" id="9299"/><subject>Реализация таймингов с отправкой Департаменту аналитических систем</subject><description>Доработать сервис таймингов. Добавить возможность отправлять информацию в Департамент аналитических систем.</description><start_date>2013-08-14T00:00:00+03:00</start_date><due_date>2013-09-02T00:00:00+03:00</due_date><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-14T11:46:19+03:00</created_on><updated_on>2013-08-14T11:46:19+03:00</updated_on></issue><issue><id>147864</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Зайцев Алексей (dn280479zan)" id="1996"/><assigned_to name="Зайцев Алексей (dn280479zan)" id="1996"/><fixed_version name="2.3. Доработки" id="9298"/><parent id="147526"/><subject>Учесть изменения в ИК </subject><description/><start_date>2013-08-14T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-14T10:22:07+03:00</created_on><updated_on>2013-08-14T12:18:38+03:00</updated_on></issue><issue><id>147757</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Зайцев Алексей (dn280479zan)" id="1996"/><assigned_to name="Зайцев Алексей (dn280479zan)" id="1996"/><fixed_version name="2.3. Доработки" id="9298"/><parent id="147526"/><subject>Учесть изменения</subject><description/><start_date>2013-08-14T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-14T09:01:07+03:00</created_on><updated_on>2013-08-14T10:50:17+03:00</updated_on></issue><issue><id>147526</id><project name="API 2.x" id="2928"/><tracker name="Scrum" id="5"/><status name="Решена" id="3"/><priority name="Нормальный" id="4"/><author name="Нарская Елена (Dn190585bev)" id="103"/><assigned_to name="Зайцев Алексей (dn280479zan)" id="1996"/><fixed_version name="2.3. Доработки" id="9298"/><parent id="147445"/><subject>БД_Расширить поле okbID</subject><description>Расширить поле okbID до 255 символов/</description><start_date>2013-08-14T00:00:00+03:00</start_date><due_date/><done_ratio>100</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value/></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-13T14:24:49+03:00</created_on><updated_on>2013-08-14T12:20:25+03:00</updated_on></issue><issue><id>147445</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="На тестировании" id="7"/><priority name="Нормальный" id="4"/><author name="Половинка Антон (nk230576pav)" id="21"/><assigned_to name="Серик Александр (dn050690saa)" id="95"/><fixed_version name="2.3. Доработки" id="9298"/><subject>6867949-доработка поля okbID</subject><description>https://doc.privatbank.ua/PrivatDoc/Scr/Par0.jsp?P2=6867949&amp;Year=2013
+&amp;#160;1. Расширить поле okbID до 255 символов&lt;br/&gt;&amp;#160;2. Принимать и обрабатывать в поле okbID идентификатор сессии рабочего стола операциониста&lt;br/&gt;&amp;#160;3. Сохранять заявки в Платежный портал необходимо с типом идентификации UNDEF при приёме заявки с ОКБ , до реализации п.2</description><start_date>2013-08-12T00:00:00+03:00</start_date><due_date>2013-08-22T00:00:00+03:00</due_date><done_ratio>100</done_ratio><estimated_hours>2.0</estimated_hours><custom_fields type="array"><custom_field name="Заказчик" id="3"><value>Сердюк Валентин Виталиевич (DN210988SVV)</value></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-13T11:40:54+03:00</created_on><updated_on>2013-08-22T12:10:41+03:00</updated_on></issue><issue><id>147444</id><project name="API 2.x" id="2928"/><tracker name="Улучшение" id="2"/><status name="Новая/Утверждена" id="1"/><priority name="Нормальный" id="4"/><author name="Половинка Антон (nk230576pav)" id="21"/><assigned_to name="Белый Дмитрий (nk310182bdn)" id="382"/><fixed_version name="2.5 Доработки API" id="9422"/><subject>6867949-доработка комплекса для работы с анонимным клиентом</subject><description>https://doc.privatbank.ua/PrivatDoc/Scr/Par0.jsp?P2=6867949&amp;Year=2013
+&lt;p style="PADDING:0px;MARGIN:0px"&gt;Доработка API 2.x для работы с анонимным клиентом при приеме заявок от физ. лица:&amp;#160;&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;1. В сервисе "Добавление заявки" необходимо :&amp;#160;&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;1.1. Удалить существующие идентификаторы клиента ekbID/okbID&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;1.2. Добавить 2 новых поля "Тип идентификации клиента" и "Идентификатор клиента".&amp;#160;&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;1.3. Если передан тип идентификации "UNDEF" необходимо рассчитывать комиссию как с неидентифицированного клиента согласно Комплекса комиссий.&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;1.4. Сохранять в базу данных тип идентификации клиента и идентификатор на всю заявку.&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;2. В сервисе "Сохранение заявки как шаблон" необходимо : &amp;#160;&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;2.1. Удалить существующие идентификаторы клиента ekbID/okbID&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;2.2. Добавить 2 новых поля "Тип идентификации клиента" и "Идентификатор клиента".&amp;#160;&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;2.3. Реализовать проверку, если передали тип идентификации "UNDEF" - выдавать сообщение и запрещать сохранение заявки как шаблон.&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;3. В сервисе "Регистрация заявки в Платежный Портал (Корзину)" необходимо при передаче в Платежный портал указывать тип идентификации клиента и &amp;#160;идентификатор, который был сохнанен при добавлении заявки.&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;4. &amp;#160;При вызове сервиса "Сохранение шаблонов по id заявки", если в заявке сохранены данные по неидентифицированному клиенту - запрещать сохранение шаблона.&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;5. &amp;#160;В сервисе "Получение списка оплаченных заявок" необходимо :&amp;#160;&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;5.1. Удалить существующие идентификаторы клиента ekbID/okbID&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;5.2. Добавить 2 новых поля "Тип идентификации клиента" и "Идентификатор клиента". &amp;#160;&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;5.3. &amp;#160;Реализовать проверку, если передали тип идентификации "UNDEF" - возвращать пустой список.&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;6. &amp;#160;В сервисе "Сторнирование оплаченной заявки" необходимо :&amp;#160;&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;6.1. Удалить существующие идентификаторы клиента ekbID/okbID&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;6.2. Добавить 2 новых поля "Тип идентификации клиента" и "Идентификатор клиента". &amp;#160;&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;6.3. &amp;#160;Реализовать проверку, если передали тип идентификации "UNDEF" - выдавать сообщение и запрещать сторнирование.&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;Требования к полям "Тип идентификации клиента" и "Идентификатор клиента":&amp;#160;&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;1. В поле "Тип идентификации" возможно внести значения : EKB, PHONE, CARD, UNDEF, OKB. Значения в справочнике должны соответствовать значениям передаваемых в Платежный портал согласно их спецификации.&amp;#160;&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;2. Поле "Идентификатор" - строковое поле, максимальное количество символов 255.&amp;#160;&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;3. Если в поле "Тип идентификации" ввели значение, которое не соответствует справочнику, выдаем сообщение об ошибке и блокируем добавление заявки.&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;4. При отсутствии обоих параметров необходимо выдавать сообщение об ошибке и блокировать работу сервиса.&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;&amp;#160;5. Обязательно передавать при типе идентификации EKB, OKB, PHONE, CARD, OKB заполненное поле "Идентификатор", в случае его отсутствия- выдавать сообщение об ошибке и блокировать работу сервиса.&lt;/p&gt; &lt;p style="PADDING:0px;MARGIN:0px"&gt;6. Поле "Тип идентификации" обязательно к заполнению, если не ввели - &amp;#160;выдаем сообщение об ошибке и блокируем добавление заявки.&lt;/p&gt; 7. При добавлении нового типа идентификации необходимо сначала согласовать &amp;#160;изменения в Департаменте исследований и новых технологий (Платежный портал), а после в API ПК Биплан.</description><start_date>2013-09-19T00:00:00+03:00</start_date><due_date>2013-10-14T00:00:00+03:00</due_date><done_ratio>0</done_ratio><estimated_hours/><custom_fields type="array"><custom_field name="Заказчик" id="3"><value>Сердюк Валентин Виталиевич (DN210988SVV)</value></custom_field><custom_field name="Сложность задачи" id="66"><value/></custom_field><custom_field name="Качество подготовки задачи" id="67"><value/></custom_field></custom_fields><created_on>2013-08-13T11:40:53+03:00</created_on><updated_on>2013-09-09T11:27:43+03:00</updated_on></issue></issues>
