@@ -3,7 +3,6 @@ package com;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -43,9 +42,9 @@ public class start {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             factory.setValidating(true);
             factory.setNamespaceAware(false);
-            SAXParser saxparser = factory.newSAXParser();
+            javax.xml.parsers.SAXParser saxparser = factory.newSAXParser();
 
-            Parser    xmlIssues = new Parser();
+            SaxParser xmlIssues = new SaxParser();
             saxparser.parse(new File("issues.xml"), xmlIssues);
 
             Map<Integer, Issue> map = new HashMap<>();
@@ -64,7 +63,7 @@ public class start {
                 for (Map.Entry entry : map.entrySet()){
                     Issue issue = (Issue) entry.getValue();
                     String sql = "INSERT INTO issue (id, parent_id, project_id, project_name, tracker_id, tracker_name, fixed_version_id, fixed_version_name, status_id, status_name, subject, start_date, due_date)VALUES (" + issue.getId() + "," + issue.getParentId() + "," + issue.getProjectId() + ",'" + issue.getProjectName() + "'," + issue.getTrackerId() + ",'" + issue.getTrackerName() + "'," + issue.getStatusId() + ",'" + issue.getStatusName() + "'," + issue.getFixedVersionId() + ",'" + issue.getFixedVersionName() + "','" + issue.getSubject().replace("'", "") + "','" + issue.getStartDate() + "','" + issue.getDueDate() + "');";
-                    db.insert( sql );
+                    db.insert(sql);
                 }
             } catch (SQLException e) { System.err.println(e.getMessage());
             } catch (Exception e) { System.err.println(e.getMessage()); }

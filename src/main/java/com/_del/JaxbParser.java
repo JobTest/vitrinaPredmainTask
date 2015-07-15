@@ -1,4 +1,6 @@
-package com;
+package com._del;
+
+import com._del.Customer;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author dn200978lak
  */
-public class Parser extends DefaultHandler {
+public class SaxParser extends DefaultHandler {
 
     private boolean bIssueID    = false;
     private boolean bSubject    = false;
@@ -109,27 +109,6 @@ public class Parser extends DefaultHandler {
 
     @Override
     public void endDocument() throws SAXException {
-//        Iterator<Issue> iissues = issues.iterator();
-//        Issue iissue;
-//        while (iissues.hasNext()){
-//            iissue = iissues.next();
-//            System.out.println("ID: " + iissue.getId());
-//            System.out.println("ID (Parent): " + iissue.getParentId());
-//            System.out.println("Project-ID: " + iissue.getProjectId());
-//            System.out.println("Project-NAME: " + iissue.getProjectName());
-//            System.out.println("Tracker-ID: " + iissue.getTrackerId());
-//            System.out.println("Tracker-NAME: " + iissue.getTrackerName());
-//            System.out.println("Status-ID: " + iissue.getStatusId());
-//            System.out.println("Status-NAME: " + iissue.getStatusName());
-//            System.out.println("Fixed-Version-ID: " + iissue.getFixedVersionId());
-//            System.out.println("Fixed-Version-NAME: " + iissue.getFixedVersionName());
-//            System.out.println("Subject: " + iissue.getSubject());
-//            System.out.println("Start-Date: " + iissue.getStartDate());
-//            System.out.println("Due-Date: " + iissue.getDueDate());
-//
-//            System.out.println();
-//        }
-
         super.endDocument();
     }
 

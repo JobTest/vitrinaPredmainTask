@@ -1,4 +1,4 @@
-package com;
+package com._del;
 
 /**
  * Created by alexandr on 15.07.15.
