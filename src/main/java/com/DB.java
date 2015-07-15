@@ -1,8 +1,8 @@
 package com;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -22,7 +22,8 @@ public class DB {
     private String URL      = "jdbc:mysql://localhost:3306/issues";
 
 
-    public void select() throws Exception {
+    public Map<Integer, Issue> select(String sql) throws Exception {
+        Map<Integer, Issue> select = null;
         try {
             /* This will load the MySQL driver, each DB has its own driver */
             Class.forName("com.mysql.jdbc.Driver");
@@ -36,19 +37,18 @@ public class DB {
             connect = DriverManager.getConnection(URL, properties);
 
             /* Statements allow to issue SQL queries to the database */
-            preparedStatement = connect.prepareStatement("SELECT * from issue");
-
-            for (Issue issue : convert(preparedStatement.executeQuery()))
-                System.out.println(issue);
+            preparedStatement = connect.prepareStatement(sql);
+            select = convert(preparedStatement.executeQuery());
         } catch (Exception e) {
             throw e;
         } finally {
             close();
         }
+        return select;
     }
 
-    private List<Issue> convert(ResultSet resultSet) throws SQLException {
-        List<Issue> issues = new ArrayList<>();
+    private Map<Integer, Issue> convert(ResultSet resultSet) throws SQLException {
+        Map<Integer, Issue> issues = new HashMap<>();
         while (resultSet.next()) {
             Issue issue = new Issue();
 
@@ -66,7 +66,7 @@ public class DB {
             issue.setStartDate( resultSet.getString("start_date") );
             issue.setDueDate( resultSet.getString("due_date") );
 
-            issues.add(issue);
+            issues.put(issue.getId(), issue);
         }
 
         return issues;
