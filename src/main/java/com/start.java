@@ -8,9 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 /**
@@ -37,9 +35,53 @@ public class start {
         System.out.println("mapSAX = " + mapSAX.size());
         System.out.println("mapDB = " + mapDB.size());
         System.out.println("map = " + map.size());
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+//        Map<Integer, Issue> mapSAX = toMap(new File("issues.xml"));
+//
+        /* #1 */
+////        Set setSAX = mapSAX.entrySet();
+////        Iterator iterator = setSAX.iterator();
+////        while (iterator.hasNext()) {
+////            Entry entry = (Entry)iterator.next();
+////            System.out.println(entry);
+////        }
+//        for( Entry<Integer, Issue> entry : mapSAX.entrySet() )
+//            System.out.println(entry.getKey() + "=" + entry.getValue());
 
-//        List l = null;
-//        l.retainAll()
+        /* #2 */
+//        for (Integer key : mapSAX.keySet()) {
+//            System.out.println( mapSAX.get(key) );
+//        }
+////        Iterator iterator = mapSAX.keySet().iterator();
+////        while(iterator.hasNext()){
+////            System.out.println(mapSAX.get(iterator.next()));
+////        }
+////        for(Iterator<Integer> iterator = mapSAX.keySet().iterator(); iterator.hasNext();){
+////            Integer key = iterator.next();
+////            if(mapSAX.containsKey(key))
+////                System.out.println(mapSAX.get(key));
+////        }
+
+        /* #3 */
+////        for( Entry<Integer, Issue> entry : mapSAX.entrySet() ){
+////            System.out.println(entry.getKey() + "=" + entry.getValue());
+////        }
+//        Iterator<Entry<Integer, Issue>> iterator = mapSAX.entrySet().iterator();
+//        while (iterator.hasNext())
+//            System.out.println(iterator.next());
+//        for (Iterator<Entry<Integer, Issue>> iterator = mapSAX.entrySet().iterator(); iterator.hasNext(); ){
+//            iterator.next();
+//            iterator.remove();
+//        }
+//        for(Iterator<Entry<Integer, Issue>> iterator = mapSAX.entrySet().iterator(); iterator.hasNext();)
+//            System.out.println(iterator.next());
+
+        /* #4 */
+////        Collection<Issue> issues = mapSAX.values();
+////        for (Issue issue : issues)
+////            System.out.println(issue);
+
+
 
 
 

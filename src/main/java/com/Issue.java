@@ -121,4 +121,37 @@ public class Issue {
                 ", '" + DueDate + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+//        if (this == o) return true;
+        if (!(o instanceof Issue))
+            return false;
+
+        Issue issue = (Issue) o;
+        if (Id != issue.Id)
+            return false;
+        if (ParentId != issue.ParentId)
+            return false;
+        if (ProjectId != issue.ProjectId)
+            return false;
+        if (TrackerId != issue.TrackerId)
+            return false;
+        if (DueDate != null ? !DueDate.equals(issue.DueDate) : issue.DueDate != null)
+            return false;
+        if (ProjectName != null ? !ProjectName.equals(issue.ProjectName) : issue.ProjectName != null)
+            return false;
+        if (StartDate != null ? !StartDate.equals(issue.StartDate) : issue.StartDate != null)
+            return false;
+        if (TrackerName != null ? !TrackerName.equals(issue.TrackerName) : issue.TrackerName != null)
+            return false;
+//        if (FixedVersionId != issue.FixedVersionId) return false;
+//        if (StatusId != issue.StatusId) return false;
+//        if (FixedVersionName != null ? !FixedVersionName.equals(issue.FixedVersionName) : issue.FixedVersionName != null) return false;
+//        if (StatusName != null ? !StatusName.equals(issue.StatusName) : issue.StatusName != null) return false;
+//        if (Subject != null ? !Subject.equals(issue.Subject) : issue.Subject != null) return false;
+
+        return true;
+    }
+
 }
