@@ -1,9 +1,13 @@
 package com;
 
 /**
- *
  * @author dn200978lak
  * @version 1.0
+ * {@link http://www.skipy.ru/technics/objCompTh.html}
+ * {@link http://2rrr.ru/?Operaciya_sozdaniya_obtzekta:Operator_instanceof}
+ * **************************
+ * Сравнение объектов: теория
+ * Оператор instanceof
  */
 
 public class Issue {
@@ -122,6 +126,11 @@ public class Issue {
                 '}';
     }
 
+    /**
+     *      'правило симметрии' - (если А==В, то В==А) для любых x!=null и y!=null вызов x.equals(y) должен вернуть true тогда и только тогда, когда вызов y.equals(x) возвращает true
+     * 'правило транзитивности' - (если А==В и В==С, то А==С) для любых x, y и z, не равных null, таких, что x.equals(y)==true и y.equals(z)==true, выполняется также и x.equals(z)==true
+     * 'правило рефлексивности' - (объект всегда равен самому себе) для любого x!=null вызов x.equals(x) должен вернуть true
+     */
     @Override
     public boolean equals(Object o) {
 //        if (this == o) return true;
