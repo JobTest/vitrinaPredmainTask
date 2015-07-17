@@ -1,7 +1,7 @@
 package com.vitrina.dao;
 
 import com.vitrina.domain.Issue;
-import com.vitrina.utils.DB;
+import com.vitrina.util.DB;
 
 import java.sql.*;
 import java.util.LinkedList;

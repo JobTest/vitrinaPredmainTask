@@ -1,4 +1,4 @@
-package com.vitrina.utils;
+package com.vitrina.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
