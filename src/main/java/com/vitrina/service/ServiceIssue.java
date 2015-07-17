@@ -1,6 +1,7 @@
 package com.vitrina.service;
 
 import com.vitrina.dao.IssueDao;
+import com.vitrina.dao.IssueDao2;
 import com.vitrina.domain.Issue;
 import org.xml.sax.SAXException;
 
@@ -19,6 +20,12 @@ import java.util.function.Predicate;
 public class ServiceIssue {
 
     public Map<String, List<Issue>> map = Collections.synchronizedMap(new HashMap<>());
+
+    public List<Issue> toList(){
+        IssueDao2 dao2 = new IssueDao2();
+        
+        return dao2.getIssues();
+    }
 
     public List<Issue> toList(String sql){
         List<Issue> issues = null;

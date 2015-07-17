@@ -1,7 +1,7 @@
 package com.vitrina.dao;
 
 import com.vitrina.domain.Issue;
-import com.vitrina.util.DB;
+import com.vitrina.util.DataFactory;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -27,7 +27,7 @@ public class IssueDao {
     public List<Issue> select(String sql) throws Exception {
         List<Issue> select = new LinkedList<>();
         try {
-            preparedStatement = DB.getInstance().prepareStatement(sql);
+            preparedStatement = DataFactory.getInstance().prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Issue issue = new Issue();
@@ -56,7 +56,7 @@ public class IssueDao {
 
     public void insert(String sql) throws Exception {
         try {
-            preparedStatement = DB.getInstance().prepareStatement(sql);
+            preparedStatement = DataFactory.getInstance().prepareStatement(sql);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -81,7 +81,7 @@ public class IssueDao {
     public void remove(int id) throws Exception {
         try {
             /* Statements allow to issue SQL queries to the database */
-            preparedStatement = DB.getInstance().prepareStatement("DELETE FROM issues WHERE id=" + id);
+            preparedStatement = DataFactory.getInstance().prepareStatement("DELETE FROM issues WHERE id=" + id);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             throw e;

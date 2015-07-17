@@ -8,13 +8,13 @@ import java.util.Properties;
 /**
  * Created by alexandr on 17.07.15.
  */
-public class DB {
+public class DataFactory {
 
     private static Connection connect = null;
 
-    private DB(){}
+    private DataFactory(){}
 
-    public static Connection getInstance() throws Exception {
+    public static Connection getInstance() throws ExceptionInInitializerError {
         if( connect == null ){
             try{
                 Class.forName("com.mysql.jdbc.Driver");
