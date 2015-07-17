@@ -1,4 +1,4 @@
-package com;
+package com.domain;
 
 /**
  * @author dn200978lak

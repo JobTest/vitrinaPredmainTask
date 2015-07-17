@@ -7,7 +7,7 @@
     <persistence-unit name="VITRINA" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-        <class>com.Issue</class>
+        <class>com.domain.Issue</class>
 
         <properties>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>

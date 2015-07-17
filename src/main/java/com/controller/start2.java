@@ -1,5 +1,8 @@
-package com;
+package com.controller;
 
+import com.dao.DB;
+import com.domain.Issue;
+import com.service.SaxParser;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;

@@ -1,4 +1,6 @@
-package com;
+package com.dao;
+
+import com.domain.Issue;
 
 import java.sql.*;
 import java.util.*;

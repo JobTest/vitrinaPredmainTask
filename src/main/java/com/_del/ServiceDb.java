@@ -3,7 +3,7 @@
 ///**
 // * Created by alexandr on 15.07.15.
 // */
-//import com.Issue;
+//import com.domain.Issue;
 //
 //import javax.persistence.EntityManager;
 //import javax.persistence.Persistence;
