@@ -1,9 +1,12 @@
 package com.vitrina.dao;
 
 import com.vitrina.domain.Issue;
+import com.vitrina.utils.DB;
 
 import java.sql.*;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Properties;
 
 /**
  *
@@ -23,23 +26,8 @@ public class IssueDao {
 
     public List<Issue> select(String sql) throws Exception {
         List<Issue> select = new LinkedList<>();
-
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch(ClassNotFoundException e){
-            System.err.print("Driver not found");
-            System.exit(0);
-        }
-
         try {
-            properties = new Properties();
-            properties.setProperty("user", "root");
-            properties.setProperty("password", "1111");
-            properties.setProperty("useUnicode", "true");
-            properties.setProperty("CharacterEncoding", "UTF-8");
-            connect    = DriverManager.getConnection("jdbc:mysql://localhost:3306/vitrina", properties);
-
-            preparedStatement = connect.prepareStatement(sql);
+            preparedStatement = DB.getInstance().prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Issue issue = new Issue();
@@ -68,15 +56,7 @@ public class IssueDao {
 
     public void insert(String sql) throws Exception {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            properties = new Properties();
-            properties.setProperty("user", "root");
-            properties.setProperty("password", "1111");
-            properties.setProperty("useUnicode","true");
-            properties.setProperty("characterEncoding","UTF-8");
-            connect = DriverManager.getConnection(URL, properties);
-
-            preparedStatement = connect.prepareStatement(sql);
+            preparedStatement = DB.getInstance().prepareStatement(sql);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -100,13 +80,8 @@ public class IssueDao {
 
     public void remove(int id) throws Exception {
         try {
-            /* This will load the MySQL driver, each DB has its own driver */
-            Class.forName("com.mysql.jdbc.Driver");
-            /*  Setup the connection with the DB */
-            connect = DriverManager.getConnection(URL + "?" + "user=" + USER + "&password=" + PASSWORD);
-
             /* Statements allow to issue SQL queries to the database */
-            preparedStatement = connect.prepareStatement("DELETE FROM issues WHERE id="+id);
+            preparedStatement = DB.getInstance().prepareStatement("DELETE FROM issues WHERE id=" + id);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             throw e;
