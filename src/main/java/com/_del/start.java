@@ -1,7 +1,8 @@
-package com.service;
+package com._del;
 
-import com.dao.DB;
-import com.domain.Issue;
+import com.vitrina.dao.IssueDao;
+import com.vitrina.domain.Issue;
+import com.vitrina.service.SaxParserService;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -24,10 +25,9 @@ public class start {
 //        print(mapSAX);
 
         System.out.println("\n********************************[ INSERT ]*********************************");
-//        toDB(mapSAX);
 
         System.out.println("\n********************************[ SELECT ]*********************************");
-        Map<Integer, Issue> mapDB = toMap("SELECT * FROM issue");
+//        Map<Integer, Issue> mapDB = toMap("SELECT * FROM issue");
 //        print(mapDB);
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,7 +35,6 @@ public class start {
         Map<Issue, Integer> map = new HashMap<>();
 
         System.out.println("mapSAX = " + mapSAX.size());
-        System.out.println("mapDB = " + mapDB.size());
         System.out.println("map = " + map.size());
         //////////////////////////////////////////////////////////////////////////////////////////////////////
 //        Map<Integer, Issue> mapSAX = toMap(new File("issues.xml"));
@@ -109,7 +108,7 @@ public class start {
             factory.setNamespaceAware(false);
             javax.xml.parsers.SAXParser saxparser = factory.newSAXParser();
 
-            SaxParser xmlIssues = new SaxParser();
+            SaxParserService xmlIssues = new SaxParserService();
             saxparser.parse(f, xmlIssues);
 
             List<Issue> issues = xmlIssues.getIssues();
@@ -127,19 +126,9 @@ public class start {
         return map;
     }
 
-    private static Map<Integer, Issue> toMap(String sql){
-        Map<Integer, Issue> map = null;
-        try {
-            DB db = new DB();
-            map = db.select(sql);
-        } catch (SQLException e) { System.err.println(e.getMessage());
-        } catch (Exception e) { System.err.println(e.getMessage()); }
-        return map;
-    }
-
     private static void toDB(Map<Integer, Issue> map){
         try {
-            DB db = new DB();
+            IssueDao db = new IssueDao();
             for (Entry entry : map.entrySet()){
                 Issue issue = (Issue) entry.getValue();
                 String sql = "INSERT INTO issue (id, parent_id, project_id, project_name, tracker_id, tracker_name, fixed_version_id, fixed_version_name, status_id, status_name, subject, start_date, due_date)VALUES (" + issue.getId() + "," + issue.getParentId() + "," + issue.getProjectId() + ",'" + issue.getProjectName() + "'," + issue.getTrackerId() + ",'" + issue.getTrackerName() + "'," + issue.getStatusId() + ",'" + issue.getStatusName() + "'," + issue.getFixedVersionId() + ",'" + issue.getFixedVersionName() + "','" + issue.getSubject().replace("'", "") + "','" + issue.getStartDate() + "','" + issue.getDueDate() + "');";

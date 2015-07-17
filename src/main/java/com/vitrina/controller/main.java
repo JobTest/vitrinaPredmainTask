@@ -1,4 +1,4 @@
-package com.controller;
+package com.vitrina.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 /**
  * Created by alexandr on 17.07.15.
  ** {@link http://www.ibm.com/developerworks/ru/library/j-java8lambdas/}
- * {@link http://www.quizful.net/post/functors-and-adapters-in-STL}
+ *  {@link http://www.quizful.net/post/functors-and-adapters-in-STL}
  */
 public class main {
 

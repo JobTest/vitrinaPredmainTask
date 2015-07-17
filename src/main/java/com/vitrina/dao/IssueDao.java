@@ -1,6 +1,6 @@
-package com.dao;
+package com.vitrina.dao;
 
-import com.domain.Issue;
+import com.vitrina.domain.Issue;
 
 import java.sql.*;
 import java.util.*;
@@ -9,7 +9,7 @@ import java.util.*;
  *
  * @author dn200978lak
  */
-public class DB {
+public class IssueDao {
 
     private Connection        connect           = null;
     private Statement         statement         = null;
@@ -19,80 +19,9 @@ public class DB {
 
     private String USER     = "root";
     private String PASSWORD = "1111";
-    private String URL      = "jdbc:mysql://localhost:3306/issues";
+    private String URL      = "jdbc:mysql://localhost:3306/vitrina";
 
-
-    public Map<Integer, Issue> select(String sql) throws Exception {
-        Map<Integer, Issue> select = null;
-
-//        try {
-//            /* This will load the MySQL driver, each DB has its own driver */
-//            Class.forName("com.mysql.jdbc.Driver");
-//            properties = new Properties();
-//            properties.setProperty("user", "root");
-//            properties.setProperty("password", "1111");
-//            /* настройки указывающие о необходимости конвертировать данные из Unicode в UTF-8, который используется в нашей таблице для хранения данных */
-//            properties.setProperty("useUnicode","true");
-//            properties.setProperty("characterEncoding","UTF-8"); //properties.setProperty("characterEncoding","CP-1251"); //properties.setProperty("characterEncoding","windows-1251"); //properties.setProperty("characterEncoding","latin-1");
-//            connect = DriverManager.getConnection(URL, properties);
-//
-//            /* Statements allow to issue SQL queries to the database */
-//            preparedStatement = connect.prepareStatement(sql);
-//            select = convert(preparedStatement.executeQuery());
-//        } catch (Exception e) { throw e;
-//        } finally { close(); }
-
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch(ClassNotFoundException e){
-            System.err.print("Driver not found");
-            System.exit(0);
-        }
-
-        try {
-            properties = new Properties();
-            properties.setProperty("user", "root");
-            properties.setProperty("password", "1111");
-            properties.setProperty("useUnicode", "true");
-            properties.setProperty("CharacterEncoding", "UTF-8");
-            connect    = DriverManager.getConnection("jdbc:mysql://localhost:3306/issues", properties);
-
-            preparedStatement = connect.prepareStatement(sql);
-            select = convert(preparedStatement.executeQuery());
-        } catch(SQLException e){ System.err.print("-SQLException-");
-        } finally { close(); }
-
-        return select;
-    }
-
-    private Map<Integer, Issue> convert(ResultSet resultSet) throws SQLException {
-        Map<Integer, Issue> issues = new HashMap<>();
-        while (resultSet.next()) {
-            Issue issue = new Issue();
-
-            issue.setId( resultSet.getInt("id") );
-            issue.setParentId( resultSet.getInt("parent_id") );
-            issue.setProjectId( resultSet.getInt("project_id") );
-            issue.setProjectName( resultSet.getString("project_name") );
-            issue.setTrackerId( resultSet.getInt("tracker_id") );
-            issue.setTrackerName( resultSet.getString("tracker_name") );
-            issue.setStatusId( resultSet.getInt("status_id") );
-            issue.setFixedVersionId( resultSet.getInt("fixed_version_id") );
-            issue.setStatusName( resultSet.getString("status_name") );
-            issue.setFixedVersionName( resultSet.getString("fixed_version_name") );
-            issue.setSubject( resultSet.getString("subject") );
-            issue.setStartDate( resultSet.getString("start_date") );
-            issue.setDueDate( resultSet.getString("due_date") );
-
-            issues.put(issue.getId(), issue);
-        }
-
-        return issues;
-    }
-
-
-
-    public List<Issue> select2(String sql) throws Exception {
+    public List<Issue> select(String sql) throws Exception {
         List<Issue> select = new LinkedList<>();
 
         try{
@@ -108,7 +37,7 @@ public class DB {
             properties.setProperty("password", "1111");
             properties.setProperty("useUnicode", "true");
             properties.setProperty("CharacterEncoding", "UTF-8");
-            connect    = DriverManager.getConnection("jdbc:mysql://localhost:3306/issues", properties);
+            connect    = DriverManager.getConnection("jdbc:mysql://localhost:3306/vitrina", properties);
 
             preparedStatement = connect.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();

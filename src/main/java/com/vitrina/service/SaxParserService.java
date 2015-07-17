@@ -1,6 +1,6 @@
-package com.service;
+package com.vitrina.service;
 
-import com.domain.Issue;
+import com.vitrina.domain.Issue;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author dn200978lak
  */
-public class SaxParser extends DefaultHandler {
+public class SaxParserService extends DefaultHandler {
 
     private boolean bIssueID    = false;
     private boolean bSubject    = false;

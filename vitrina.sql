@@ -4,11 +4,11 @@
 -- User: root@localhost
 -- Password: 1111
 
-DROP DATABASE IF EXISTS issues;
-CREATE DATABASE issues CHARACTER SET utf8 COLLATE utf8_general_ci;
+DROP DATABASE IF EXISTS vitrina;
+CREATE DATABASE vitrina CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 --
--- DataBase: `issues`
+-- DataBase: `vitrina`
 --
 
 -- --------------------------------------------------------

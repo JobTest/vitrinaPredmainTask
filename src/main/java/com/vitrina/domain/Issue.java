@@ -1,4 +1,4 @@
-package com.domain;
+package com.vitrina.domain;
 
 /**
  * @author dn200978lak
