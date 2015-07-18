@@ -22,12 +22,12 @@ public class IssueDao2 {
 
     public EntityManagerFactory factory;
     public EntityManager em;
+//    public EntityManager em = Persistence.createEntityManagerFactory("VITRINA").createEntityManager();
 
     public IssueDao2(){
         factory = Persistence.createEntityManagerFactory("VITRINA");
         em = factory.createEntityManager();
     }
-//    public EntityManager em = Persistence.createEntityManagerFactory("VITRINA").createEntityManager();
 
     public Issue add(Issue issue){
         em.getTransaction().begin();
