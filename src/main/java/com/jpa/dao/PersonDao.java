@@ -1,6 +1,6 @@
 package com.jpa.dao;
 
-import com.jpa.domain.Artist;
+import com.jpa.domain.Person;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -24,41 +24,41 @@ import java.util.List;
  * *******************************************************************************
  * use Persistence API
  */
-public class ArtistDao {
+public class PersonDao {
 
     EntityManager em;
 
-    public ArtistDao(){}
-    public ArtistDao(EntityManager em){
+    public PersonDao(){}
+    public PersonDao(EntityManager em){
         this.em = em;
     }
 
-    public void add(Artist artist){
+    public void add(Person artist){
         em.persist(artist);
     }
-    public void add(Artist[] artists){
+    public void add(Person[] artists){
         em.getTransaction().begin();
-        for (Artist artist:artists)
+        for (Person artist:artists)
             em.persist(artist);
         em.getTransaction().commit();
     }
 
-    public List<Artist> getAll(){
-        TypedQuery typedQuery = em.createQuery("SELECT artist FROM Artist artist", Artist.class);
+    public List<Person> getAll(){
+        TypedQuery typedQuery = em.createQuery("SELECT artist FROM Person artist", Person.class);
         return typedQuery.getResultList();
     }
 
-    public Artist find(int id){
-        return em.find(Artist.class, id);
+    public Person find(int id){
+        return em.find(Person.class, id);
     }
 
-    public void update(Artist artist){
+    public void update(Person artist){
         em.getTransaction().begin();
         em.merge(artist);
         em.getTransaction().commit();
     }
 
-    public void delete(Artist artist){
+    public void delete(Person artist){
         em.getTransaction().begin();
         em.remove(artist);
         em.getTransaction().commit();

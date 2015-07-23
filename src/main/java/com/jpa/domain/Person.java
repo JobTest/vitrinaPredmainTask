@@ -7,15 +7,15 @@ import javax.persistence.Id;
  * Created by alexandr on 23.07.15.
  */
 @Entity
-public class Artist {
+public class Person {
 
     @Id
     private int id;
     private String name;
     private String genre;
 
-    public Artist(){}
-    public Artist(int id, String name, String genre){
+    public Person(){}
+    public Person(int id, String name, String genre){
         this.id = id;
         this.name = name;
         this.genre = genre;
@@ -42,7 +42,7 @@ public class Artist {
 
     @Override
     public String toString() {
-        return "Artist2{" +
+        return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", genre='" + genre + '\'' +

@@ -7,13 +7,13 @@ import javax.persistence.*;
 */
 
 @Entity
-@Table(name = "artist2")
+@Table(name = "person2")
 @NamedQueries({
-        @NamedQuery(name = "Artist2.findAll", query = "SELECT artist FROM Artist2 artist"),
-        @NamedQuery(name = "Artist2.findByName", query = "SELECT artist FROM Artist2 artist WHERE artist.name = :name"),
-        @NamedQuery(name = "Artist2.findBySurname", query = "SELECT artist FROM Artist2 artist WHERE artist.genre = :surname")
+        @NamedQuery(name = "Person2.findAll", query = "SELECT person FROM Person2 person"),
+        @NamedQuery(name = "Person2.findByName", query = "SELECT person FROM Person2 person WHERE person.name = :name"),
+        @NamedQuery(name = "Person2.findBySurname", query = "SELECT person FROM Person2 person WHERE person.genre = :surname")
 })
-public class Artist2 {
+public class Person2 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,8 +26,8 @@ public class Artist2 {
     @Column(name = "surname", length = 20)
     private String genre;
 
-    public Artist2(){}
-    public Artist2(String name, String genre){
+    public Person2(){}
+    public Person2(String name, String genre){
         this.name = name;
         this.genre = genre;
     }
@@ -53,7 +53,7 @@ public class Artist2 {
 
     @Override
     public String toString() {
-        return "Artist2{" +
+        return "Person2{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", genre='" + genre + '\'' +

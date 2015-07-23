@@ -1,6 +1,6 @@
 package com.jpa.dao;
 
-import com.jpa.domain.Artist2;
+import com.jpa.domain.Person2;
 import org.hibernate.Session;
 import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Order;
@@ -21,16 +21,16 @@ import java.util.List;
  * *****************
  * use Hibernate
  */
-public class Artist2Dao2 {
+public class Person2Dao2 {
 
     private Session session;
 
-    public Artist2Dao2(){}
-    public Artist2Dao2(Session session){
+    public Person2Dao2(){}
+    public Person2Dao2(Session session){
         this.session = session;
     }
 
-    public void add(Artist2 artist){
+    public void add(Person2 artist){
         try {
             session.getTransaction().begin();
             session.save(artist);
@@ -39,10 +39,10 @@ public class Artist2Dao2 {
             System.err.println(e.getMessage());
         }
     }
-    public void add(Artist2[] artists){
+    public void add(Person2[] artists){
         try {
             session.getTransaction().begin();
-            for (Artist2 artist:artists)
+            for (Person2 artist:artists)
                 session.save(artist);
             session.getTransaction().commit();
         } catch(ExceptionInInitializerError e) {
@@ -50,30 +50,30 @@ public class Artist2Dao2 {
         }
     }
 
-    public List<Artist2> getAll(){
-        return session.createCriteria(Artist2.class).list();
+    public List<Person2> getAll(){
+        return session.createCriteria(Person2.class).list();
     }
-    public List<Artist2> getAll(int limit) {
-        return session.createCriteria(Artist2.class).setMaxResults(limit).list();
+    public List<Person2> getAll(int limit) {
+        return session.createCriteria(Person2.class).setMaxResults(limit).list();
     }
-    public List<Artist2> getAll(String sort){
-        return session.createCriteria(Artist2.class).addOrder(Order.asc(sort)).list();
+    public List<Person2> getAll(String sort){
+        return session.createCriteria(Person2.class).addOrder(Order.asc(sort)).list();
     }
-    public List<Artist2> getAll(int limit, String sort) {
-        return session.createCriteria(Artist2.class).setMaxResults(limit).addOrder(Order.asc(sort)).list();
-    }
-
-    public Artist2 find(int id){
-        return (Artist2)session.get(Artist2.class, id);
-    }
-    public List<Artist2> find(int minId, int maxId){
-        return session.createCriteria(Artist2.class).add(Expression.between("id", minId, maxId)).list();
-    }
-    public List<Artist2> findBySurname(String like){
-        return session.createCriteria(Artist2.class).add(Expression.like("genre", like + "%")).list();
+    public List<Person2> getAll(int limit, String sort) {
+        return session.createCriteria(Person2.class).setMaxResults(limit).addOrder(Order.asc(sort)).list();
     }
 
-    public void update(Artist2 artist){
+    public Person2 find(int id){
+        return (Person2)session.get(Person2.class, id);
+    }
+    public List<Person2> find(int minId, int maxId){
+        return session.createCriteria(Person2.class).add(Expression.between("id", minId, maxId)).list();
+    }
+    public List<Person2> findBySurname(String like){
+        return session.createCriteria(Person2.class).add(Expression.like("genre", like + "%")).list();
+    }
+
+    public void update(Person2 artist){
         try{
             session.getTransaction().begin();
             session.update(artist);
@@ -83,7 +83,7 @@ public class Artist2Dao2 {
         }
     }
 
-    public void delete(Artist2 artist){
+    public void delete(Person2 artist){
         try{
             session.getTransaction().begin();
             session.delete(artist);

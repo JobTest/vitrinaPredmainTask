@@ -1,6 +1,6 @@
 package com.jpa.dao;
 
-import com.jpa.domain.Artist2;
+import com.jpa.domain.Person2;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -24,51 +24,51 @@ import java.util.List;
  * use Persistence API
  * @NamedQueries({ @NamedQuery(...), @NamedQuery(...) })
  */
-public class Artist2Dao {
+public class Person2Dao {
 
     private EntityManager em;
 
-    public Artist2Dao(){}
-    public Artist2Dao(EntityManager em){
+    public Person2Dao(){}
+    public Person2Dao(EntityManager em){
         this.em = em;
     }
 
-    public void add(Artist2 artist){
+    public void add(Person2 artist){
         em.getTransaction().begin();
         em.persist(artist);
         em.getTransaction().commit();
     }
-    public void add(Artist2[] artists){
+    public void add(Person2[] artists){
         em.getTransaction().begin();
-        for (Artist2 artist:artists)
+        for (Person2 artist:artists)
             em.persist(artist);
         em.getTransaction().commit();
     }
 
-    public List<Artist2> getAll(){
-        TypedQuery typedQuery = em.createNamedQuery("Artist2.findAll", Artist2.class);
+    public List<Person2> getAll(){
+        TypedQuery typedQuery = em.createNamedQuery("Person2.findAll", Person2.class);
         return typedQuery.getResultList();
     }
 
-    public Artist2 find(int id){
-        return em.find(Artist2.class, id);
+    public Person2 find(int id){
+        return em.find(Person2.class, id);
     }
-    public Artist2 findByName(String name){
-        TypedQuery typedQuery = em.createNamedQuery("Artist2.findByName", Artist2.class).setParameter("name", name);
-        return (Artist2)typedQuery.getSingleResult();
+    public Person2 findByName(String name){
+        TypedQuery typedQuery = em.createNamedQuery("Person2.findByName", Person2.class).setParameter("name", name);
+        return (Person2)typedQuery.getSingleResult();
     }
-    public List<Artist2> findBySurname(String surname){
-        TypedQuery typedQuery = em.createNamedQuery("Artist2.findBySurname", Artist2.class).setParameter("surname", surname);
+    public List<Person2> findBySurname(String surname){
+        TypedQuery typedQuery = em.createNamedQuery("Person2.findBySurname", Person2.class).setParameter("surname", surname);
         return typedQuery.getResultList();
     }
 
-    public void update(Artist2 artist){
+    public void update(Person2 artist){
         em.getTransaction().begin();
         em.merge(artist);
         em.getTransaction().commit();
     }
 
-    public void delete(Artist2 artist){
+    public void delete(Person2 artist){
         em.getTransaction().begin();
         em.remove(artist);
         em.getTransaction().commit();

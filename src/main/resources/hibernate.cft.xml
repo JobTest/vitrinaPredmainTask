@@ -16,6 +16,6 @@
         <property name="hibername.connection.autocommit">false</property>
         <property name="current_session_context_class">thread</property>
 
-        <mapping class="com.jpa.domain.Artist2" />
+        <mapping class="com.jpa.domain.Person2" />
     </session-factory>
 </hibernate-configuration>

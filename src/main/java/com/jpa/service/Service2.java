@@ -1,7 +1,7 @@
 package com.jpa.service;
 
-import com.jpa.dao.Artist2Dao;
-import com.jpa.domain.Artist2;
+import com.jpa.dao.Person2Dao;
+import com.jpa.domain.Person2;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,23 +13,23 @@ import javax.persistence.Persistence;
 public class Service2 {
 
     public static void main(String[] args) {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Artist2");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Person2");
         EntityManager             em = factory.createEntityManager();
 
-        service(new Artist2Dao( em ));
+        service(new Person2Dao( em ));
 
         em.clear();
         em.close();
         factory.close();
     }
 
-    public static void service(Artist2Dao service){
+    public static void service(Person2Dao service){
         System.out.println("-------------------------------------------------------------------------------------------[ ADD ]");
-        Artist2[] artists = {new Artist2("Sasha","Lazarchuk"), new Artist2("Yana","Barusina"), new Artist2("Jenya","Barusina"), new Artist2("Alesya","Lazarchuk")};
+        Person2[] artists = {new Person2("Sasha","Lazarchuk"), new Person2("Yana","Barusina"), new Person2("Jenya","Barusina"), new Person2("Alesya","Lazarchuk")};
         service.add(artists);
 
         System.out.println("-------------------------------------------------------------------------------------------[ PRINT ]");
-        for (Artist2 artist:service.getAll())
+        for (Person2 artist:service.getAll())
             System.out.println(artist);
 
         System.out.println("-------------------------------------------------------------------------------------------[ FIND ]");
@@ -39,19 +39,19 @@ public class Service2 {
         System.out.println( service.findByName("Sasha") );
 
         System.out.println("-------------------------------------------------------------------------------------------[ FIND-BY-SURNAME ]");
-        for (Artist2 artist:service.findBySurname("Barusina"))
+        for (Person2 artist:service.findBySurname("Barusina"))
             System.out.println( artist );
 
         System.out.println("-------------------------------------------------------------------------------------------[ UPDATE ]");
-        Artist2 artist2 = service.find(2);
+        Person2 artist2 = service.find(2);
         artist2.setGenre("Lazarchuk");
         service.update( artist2 );
-        for (Artist2 artist:service.getAll())
+        for (Person2 artist:service.getAll())
             System.out.println( artist );
 
         System.out.println("-------------------------------------------------------------------------------------------[ DELETE ]");
         service.delete( service.findByName("Jenya") );
-        for (Artist2 artist:service.getAll())
+        for (Person2 artist:service.getAll())
             System.out.println( artist );
     }
 }
