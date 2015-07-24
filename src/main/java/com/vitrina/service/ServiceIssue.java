@@ -108,7 +108,7 @@ public class ServiceIssue {
     }
 
     public void print(List<Issue> issues){
-        for (Issue issue : issues)
+        for (Issue issue:issues)
             System.out.println(issue);
     }
 
