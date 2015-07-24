@@ -96,7 +96,7 @@ public class ServiceIssue {
         System.out.println("db-delete:  >> (-" + (map.get("db-select").size()-map.get("db-delete").size()) + " ) " + map.get("db-delete").size());
         System.out.println("db-update:  >> (=" + map.get("db-update").size() + " ) " + map.get("db-delete").size());
         System.out.println("db-insert:  >> (+" + map.get("db-insert").size() + ") " + (map.get("db-delete").size()+map.get("db-insert").size()));
-//        int insert = insert(map.get("db-select"), map.get("sax-upload"));
+        int insert = insert(map.get("db-select"), map.get("sax-upload"));
 //        System.out.println("insert << " + insert);
     }
 

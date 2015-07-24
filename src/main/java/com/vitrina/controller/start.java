@@ -13,7 +13,7 @@ public class start {
         service = new ServiceIssue();
 
         System.out.println("\n********************************[ DB SELECT ]*********************************");
-        service.map.put("db-select", service.toList()); //service.map.put("db-select", service.toList("SELECT * FROM issue"));
+        service.map.put("db-select", service.toList("SELECT * FROM issue")); //service.map.put("db-select", service.toList());
 //        print(service.map.get("db-select"));
 
         System.out.println("\n********************************[ SAXParser ]*********************************");

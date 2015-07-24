@@ -14,7 +14,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "issue")
-@NamedQuery(name = "Issue.getAll", query = "SELECT c from Issue c")
+@NamedQuery(name = "Issue.getAll", query = "SELECT issue FROM Issue issue")
 public class Issue {
 
     @Id

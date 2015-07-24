@@ -3,10 +3,12 @@ package com.vitrina.dao;
 import com.vitrina.domain.Issue;
 import com.vitrina.util.DataFactory;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Properties;
 
 /**
  *
@@ -14,15 +16,9 @@ import java.util.Properties;
  */
 public class IssueDao {
 
-    private Connection        connect           = null;
     private Statement         statement         = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet         resultSet         = null;
-    private Properties        properties        = null;
-
-    private String USER     = "root";
-    private String PASSWORD = "1111";
-    private String URL      = "jdbc:mysql://localhost:3306/vitrina";
 
     public List<Issue> select(String sql) throws Exception {
         List<Issue> select = new LinkedList<>();
@@ -99,8 +95,7 @@ public class IssueDao {
             if (statement != null)
                 statement.close();
 
-            if (connect != null)
-                connect.close();
+//            DataFactory.getInstance().close(); //if (connect != null) connect.close();
         } catch (Exception e) {}
     }
 

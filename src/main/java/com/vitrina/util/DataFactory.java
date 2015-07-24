@@ -11,6 +11,9 @@ import java.util.Properties;
 public class DataFactory {
 
     private static Connection connect = null;
+    private static String        USER = "root";
+    private static String    PASSWORD = "1111";
+    private static String         URL = "jdbc:mysql://localhost:3306/vitrina";
 
     private DataFactory(){}
 
@@ -25,11 +28,11 @@ public class DataFactory {
 
             try {
                 Properties properties = new Properties();
-                properties.setProperty("user", "root");
-                properties.setProperty("password", "1111");
+                properties.setProperty("user", USER);
+                properties.setProperty("password", PASSWORD);
                 properties.setProperty("useUnicode", "true");
-                properties.setProperty("CharacterEncoding", "UTF-8");
-                connect    = DriverManager.getConnection("jdbc:mysql://localhost:3306/vitrina", properties);
+                properties.setProperty("characterEncoding", "UTF-8");
+                connect = DriverManager.getConnection(URL, properties);
             } catch(SQLException e){
                 System.err.print("-SQLException-");
             }
