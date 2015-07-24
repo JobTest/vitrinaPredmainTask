@@ -1,7 +1,6 @@
 package com.vitrina.service;
 
 import com.vitrina.dao.IssueDao;
-import com.vitrina.dao.IssueDao2;
 import com.vitrina.domain.Issue;
 import org.xml.sax.SAXException;
 
@@ -20,18 +19,12 @@ import java.util.function.Predicate;
 public class ServiceIssue {
 
     public Map<String, List<Issue>> map = Collections.synchronizedMap(new HashMap<>());
+    private IssueDao dao = new IssueDao();
 
-    public List<Issue> toList(){
-        IssueDao2 dao2 = new IssueDao2();
-        
-        return dao2.getIssues();
-    }
-
-    public List<Issue> toList(String sql){
+    public List<Issue> toList(List<Issue> select){
         List<Issue> issues = null;
         try {
-            IssueDao db = new IssueDao();
-            issues = db.select(sql);
+            issues = this.dao.getAll(select);
         } catch (SQLException e) { System.err.println(e.getMessage());
         } catch (Exception e) { System.err.println(e.getMessage()); }
         return issues;
@@ -84,20 +77,20 @@ public class ServiceIssue {
             Predicate<Issue> id = issue -> Integer.valueOf(DB.getId()).equals(issue.getId());
             insertDB.removeIf(id);
         }
-        map.put("db-insert",insertDB);
+        map.put("db-add",insertDB);
 
         /* Обновляю поля в базе для существующих записей */
         updateDB.removeAll(insertDB);
         map.put("db-update",updateDB);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
-        System.out.println("db-select:  << (== ) " + map.get("db-select").size());
+        System.out.println("db-getAll:  << (== ) " + map.get("db-getAll").size());
         System.out.println("sax-upload: << (== ) " + map.get("sax-upload").size());
-        System.out.println("db-delete:  >> (-" + (map.get("db-select").size()-map.get("db-delete").size()) + " ) " + map.get("db-delete").size());
+        System.out.println("db-delete:  >> (-" + (map.get("db-getAll").size()-map.get("db-delete").size()) + " ) " + map.get("db-delete").size());
         System.out.println("db-update:  >> (=" + map.get("db-update").size() + " ) " + map.get("db-delete").size());
-        System.out.println("db-insert:  >> (+" + map.get("db-insert").size() + ") " + (map.get("db-delete").size()+map.get("db-insert").size()));
-        int insert = insert(map.get("db-select"), map.get("sax-upload"));
-//        System.out.println("insert << " + insert);
+        System.out.println("db-add:  >> (+" + map.get("db-add").size() + ") " + (map.get("db-delete").size()+map.get("db-add").size()));
+        int add = insert(map.get("db-getAll"), map.get("sax-upload"));
+//        System.out.println("add << " + add);
     }
 
     public int insert(List<Issue> db, List<Issue> sax){
@@ -105,14 +98,9 @@ public class ServiceIssue {
         map.put("sax", sax);
         map.put("db", db);
 
-        map.get("sax").removeAll(map.get("db")); //map.get("sax").retainAll(map.get("db"));
+        map.get("sax").removeAll(map.get("db"));
         try {
-            IssueDao dao = new IssueDao();
-            for (Iterator iterator = map.get("sax").iterator(); iterator.hasNext();){
-                Issue issue = (Issue)iterator.next();
-                String sql = "INSERT INTO issue (id, parent_id, project_id, project_name, tracker_id, tracker_name, fixed_version_id, fixed_version_name, status_id, status_name, subject, start_date, due_date)VALUES (" + issue.getId() + "," + issue.getParentId() + "," + issue.getProjectId() + ",'" + issue.getProjectName() + "'," + issue.getTrackerId() + ",'" + issue.getTrackerName() + "'," + issue.getStatusId() + ",'" + issue.getStatusName() + "'," + issue.getFixedVersionId() + ",'" + issue.getFixedVersionName() + "','" + issue.getSubject().replace("'", "") + "','" + issue.getStartDate() + "','" + issue.getDueDate() + "');";
-                dao.insert(sql);
-            }
+            this.dao.add(map.get("sax"));
         } catch (SQLException e) { System.err.println(e.getMessage());
         } catch (Exception e) { System.err.println(e.getMessage()); }
 

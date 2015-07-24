@@ -1,105 +1,66 @@
 package com.vitrina.dao;
 
 import com.vitrina.domain.Issue;
-import com.vitrina.util.DataFactory;
+import com.vitrina.util.FactoryDriver;
+import com.vitrina.util.Drivers;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
- * @author dn200978lak
+ * Created by alexandr on 24.07.15.
  */
 public class IssueDao {
 
-    private Statement         statement         = null;
     private PreparedStatement preparedStatement = null;
-    private ResultSet         resultSet         = null;
+    private ResultSet                 resultSet = null;
 
-    public List<Issue> select(String sql) throws Exception {
-        List<Issue> select = new LinkedList<>();
+    public List<Issue> getAll(List<Issue> select) throws Exception {
         try {
-            preparedStatement = DataFactory.getInstance().prepareStatement(sql);
+            preparedStatement = FactoryDriver.getInstance(Drivers.POOL).prepareStatement("SELECT * FROM issue");
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                Issue issue = new Issue();
-                issue.setId( resultSet.getInt("id") );
-                issue.setParentId( resultSet.getInt("parent_id") );
-                issue.setProjectId( resultSet.getInt("project_id") );
-                issue.setProjectName( resultSet.getString("project_name") );
-                issue.setTrackerId( resultSet.getInt("tracker_id") );
-                issue.setTrackerName( resultSet.getString("tracker_name") );
-                issue.setStatusId( resultSet.getInt("status_id") );
-                issue.setFixedVersionId( resultSet.getInt("fixed_version_id") );
-                issue.setStatusName( resultSet.getString("status_name") );
-                issue.setFixedVersionName( resultSet.getString("fixed_version_name") );
-                issue.setSubject( resultSet.getString("subject") );
-                issue.setStartDate( resultSet.getString("start_date") );
-                issue.setDueDate( resultSet.getString("due_date") );
-                select.add(issue);
-            }
+            while (resultSet.next())
+                select.add( new Issue(resultSet.getInt("id"),resultSet.getInt("parent_id"),resultSet.getInt("project_id"),resultSet.getString("project_name"),resultSet.getInt("tracker_id"),resultSet.getString("tracker_name"),resultSet.getInt("status_id"),resultSet.getString("status_name"),resultSet.getInt("fixed_version_id"),resultSet.getString("fixed_version_name"),resultSet.getString("subject"),resultSet.getString("start_date"),resultSet.getString("due_date")) );
         } catch(SQLException e){ System.err.print("-SQLException-");
-        } finally { close(); }
+        } finally { if (preparedStatement != null) preparedStatement.close(); if (resultSet != null) resultSet.close(); }
 
         return select;
     }
 
-
-
-    public void insert(String sql) throws Exception {
-        String insertSQL = "INSERT INTO issue"
-                + "(id, parent_id, project_id, project_name, tracker_id, tracker_name, fixed_version_id, fixed_version_name, status_id, status_name, subject, start_date, due_date) VALUES"
-                + "(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    public void add(List<Issue> insert) throws Exception {
         try {
-            preparedStatement = DataFactory.getInstance().prepareStatement(sql);
+            preparedStatement = FactoryDriver.getInstance(Drivers.POOL).prepareStatement("INSERT INTO issue (id,parent_id,project_id,project_name,tracker_id,tracker_name,fixed_version_id,fixed_version_name,status_id,status_name,subject,start_date,due_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            FactoryDriver.getInstance(Drivers.POOL).setAutoCommit(false);
+            for (Issue issue:insert) {
+                preparedStatement.setInt(1, issue.getId());
+                preparedStatement.setInt(2, issue.getParentId());
+                preparedStatement.setInt(3, issue.getProjectId());
+                preparedStatement.setString(4, issue.getProjectName());
+                preparedStatement.setInt(5, issue.getTrackerId());
+                preparedStatement.setString(6, issue.getTrackerName());
+                preparedStatement.setInt(7, issue.getFixedVersionId());
+                preparedStatement.setString(8, issue.getFixedVersionName());
+                preparedStatement.setInt(9, issue.getStatusId());
+                preparedStatement.setString(10, issue.getStatusName());
+                preparedStatement.setString(11, issue.getSubject());
+                preparedStatement.setString(12, issue.getStartDate());
+                preparedStatement.setString(13, issue.getDueDate());
+                preparedStatement.addBatch();
+            }
+            preparedStatement.executeBatch();
+            FactoryDriver.getInstance(Drivers.POOL).commit();
+        } catch (SQLException e) { System.err.println(e.getMessage());
+        } finally { if (preparedStatement != null) preparedStatement.close(); }
+    }
+
+    public void delete(int id) throws Exception {
+        try {
+            preparedStatement = FactoryDriver.getInstance(Drivers.POOL).prepareStatement("DELETE FROM issues WHERE id=?");
+            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-            throw e;
-        } finally {
-            close();
-        }
-//        //Example Using UpdateMany
-//        Customer firstCustomer = new Customer("Customer3","Costa Rica","Main Street","Arenal", "La Fortuna","90291","506-375-0273",null);
-//        Customer secondCustomer = new Customer("Customer4","Puerto Rico","Church Street", "Puerto Nuevo","San Juan","38364","293-484-8244",null);
-//
-//        List<Customer> customers = new ArrayList<>();
-//        customers.add (firstCustomer);
-//        customers.add (secondCustomer);
-//
-//        sqlInsert = "INSERT INTO PDQ_SC.customer (Name,Country,Street,City,Province,Zip,Phone) VALUES (:name,:country,:street,:city,:province,:zip,:phone)";
-//        int[] countUpdate = data.updateMany(sql, customers);
-//        if (countUpdate != null)
-//            System.out.println ("Rows Inserted:" + countUpdate.length);
+        } catch (SQLException e) { System.err.println(e.getMessage());
+        } finally { if (preparedStatement != null) preparedStatement.close(); }
     }
-
-    public void remove(int id) throws Exception {
-        try {
-            /* Statements allow to issue SQL queries to the database */
-            preparedStatement = DataFactory.getInstance().prepareStatement("DELETE FROM issues WHERE id=" + id);
-            preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            throw e;
-        } finally {
-            close();
-        }
-    }
-
-    private void close() {
-        /* You need to close the resultSet */
-        try {
-            if (resultSet != null)
-                resultSet.close();
-
-            if (statement != null)
-                statement.close();
-
-//            DataFactory.getInstance().close(); //if (connect != null) connect.close();
-        } catch (Exception e) {}
-    }
-
 }

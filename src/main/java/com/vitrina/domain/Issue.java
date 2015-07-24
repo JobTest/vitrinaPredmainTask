@@ -1,62 +1,47 @@
 package com.vitrina.domain;
 
-import javax.persistence.*;
-
 /**
- * @author dn200978lak
- * @version 1.0
- * {@link http://www.skipy.ru/technics/objCompTh.html}
- * {@link http://2rrr.ru/?Operaciya_sozdaniya_obtzekta:Operator_instanceof}
- * **************************
- * Сравнение объектов: теория
- * Оператор instanceof
- */
+* @author dn200978lak
+* @version 1.0
+* {@link http://www.skipy.ru/technics/objCompTh.html}
+* {@link http://2rrr.ru/?Operaciya_sozdaniya_obtzekta:Operator_instanceof}
+* **************************
+* Сравнение объектов: теория
+* Оператор instanceof
+*/
 
-@Entity
-@Table(name = "issue")
-@NamedQuery(name = "Issue.getAll", query = "SELECT issue FROM Issue issue")
 public class Issue {
 
-    @Id
-    @Column(name = "id")
     private Integer Id;
-
-    @Column(name = "parent_id")
     private int ParentId;
-
-    @Column(name = "project_id")
     private int ProjectId;
-
-    @Column(name = "project_name")
     private String ProjectName;
-
-    @Column(name = "tracker_id")
     private int TrackerId;
-
-    @Column(name = "tracker_name")
     private String TrackerName;
-
-    @Column(name = "status_id")
     private int StatusId;
-
-    @Column(name = "status_name")
     private String StatusName;
-
-    @Column(name = "fixed_version_id")
     private int FixedVersionId;
-
-    @Column(name = "fixed_version_name")
     private String FixedVersionName;
-
-    @Column(name = "subject")
     private String Subject;
-
-    @Column(name = "start_date")
     private String StartDate;
-
-    @Column(name = "due_date")
     private String DueDate;
 
+    public Issue(){}
+    public Issue(Integer Id, int ParentId, int ProjectId, String ProjectName, int TrackerId, String TrackerName, int StatusId, String StatusName, int FixedVersionId, String FixedVersionName, String Subject, String StartDate, String DueDate){
+        this.Id = Id;
+        this.ParentId = ParentId;
+        this.ProjectId = ProjectId;
+        this.ProjectName = ProjectName;
+        this.TrackerId = TrackerId;
+        this.TrackerName = TrackerName;
+        this.StatusId = StatusId;
+        this.StatusName = StatusName;
+        this.FixedVersionId = FixedVersionId;
+        this.FixedVersionName = FixedVersionName;
+        this.Subject = Subject;
+        this.StartDate = StartDate;
+        this.DueDate = DueDate;
+    }
 
     public int getId(){
         return Id;
