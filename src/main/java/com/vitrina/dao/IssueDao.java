@@ -51,6 +51,9 @@ public class IssueDao {
 
 
     public void insert(String sql) throws Exception {
+        String insertSQL = "INSERT INTO issue"
+                + "(id, parent_id, project_id, project_name, tracker_id, tracker_name, fixed_version_id, fixed_version_name, status_id, status_name, subject, start_date, due_date) VALUES"
+                + "(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             preparedStatement = DataFactory.getInstance().prepareStatement(sql);
             preparedStatement.executeUpdate();
