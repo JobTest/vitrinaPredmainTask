@@ -89,11 +89,11 @@ public class ServiceIssue {
         System.out.println("db-delete:  >> (-" + (map.get("db-getAll").size()-map.get("db-delete").size()) + " ) " + map.get("db-delete").size());
         System.out.println("db-update:  >> (=" + map.get("db-update").size() + " ) " + map.get("db-delete").size());
         System.out.println("db-add:  >> (+" + map.get("db-add").size() + ") " + (map.get("db-delete").size()+map.get("db-add").size()));
-        int add = insert(map.get("db-getAll"), map.get("sax-upload"));
+        int add = addDB(map.get("db-getAll"), map.get("sax-upload"));
 //        System.out.println("add << " + add);
     }
 
-    public int insert(List<Issue> db, List<Issue> sax){
+    public int addDB(List<Issue> db, List<Issue> sax){
         Map<String, List<Issue>> map = Collections.synchronizedMap(new HashMap<>());
         map.put("sax", sax);
         map.put("db", db);
