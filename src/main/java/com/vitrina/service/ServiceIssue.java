@@ -1,6 +1,7 @@
 package com.vitrina.service;
 
-import com.vitrina.dao.Issue1Dao;
+import com.vitrina.dao.DAO;
+import com.vitrina.dao.FactoryDao;
 import com.vitrina.dao.IssueDao;
 import com.vitrina.domain.Issue;
 import org.xml.sax.SAXException;
@@ -24,9 +25,7 @@ public class ServiceIssue {
 
     public ServiceIssue(){
         map = Collections.synchronizedMap(new HashMap<>());
-        dao = new Issue1Dao();                                 /* Issue1Dao */
-//        dao = new Issue2Dao(FactoryDriver.getEntityManager()); /* Issue2Dao */
-//        dao = new Issue3Dao(FactoryDriver.getSession());       /* Issue3Dao */
+        dao = FactoryDao.getInstance(DAO.POOL);
     }
 
     public List<Issue> toList(List<Issue> select){

@@ -1,5 +1,6 @@
-package com.vitrina.dao;
+package com.vitrina.dao.issue;
 
+import com.vitrina.dao.IssueDao;
 import com.vitrina.domain.Issue;
 import org.hibernate.Session;
 import org.hibernate.criterion.Expression;

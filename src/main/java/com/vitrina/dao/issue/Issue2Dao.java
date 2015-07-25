@@ -1,5 +1,6 @@
-package com.vitrina.dao;
+package com.vitrina.dao.issue;
 
+import com.vitrina.dao.IssueDao;
 import com.vitrina.domain.Issue;
 import com.vitrina.domain.Issue2;
 
