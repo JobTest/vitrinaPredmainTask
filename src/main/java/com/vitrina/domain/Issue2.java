@@ -13,7 +13,7 @@ import javax.persistence.*;
 */
 
 @Entity
-public class Issue2 {
+public class Issue2 implements Issue {
 
     @Id
     private Integer Id;
@@ -46,7 +46,6 @@ public class Issue2 {
         this.StartDate = StartDate;
         this.DueDate = DueDate;
     }
-
 
     public int getId(){
         return Id;
@@ -155,25 +154,25 @@ public class Issue2 {
     @Override
     public boolean equals(Object o) {
 //        if (this == o) return true;
-        if (!(o instanceof Issue2))
+        if (!(o instanceof Issue))
             return false;
 
-        Issue2 issue = (Issue2) o;
-        if (Id != issue.Id)
+        Issue issue = (Issue) o;
+        if (Id != issue.getId())
             return false;
-        if (ParentId != issue.ParentId)
+        if (ParentId != issue.getParentId())
             return false;
-        if (ProjectId != issue.ProjectId)
+        if (ProjectId != issue.getProjectId())
             return false;
-        if (TrackerId != issue.TrackerId)
+        if (TrackerId != issue.getTrackerId())
             return false;
-        if (DueDate != null ? !DueDate.equals(issue.DueDate) : issue.DueDate != null)
+        if (DueDate != null ? !DueDate.equals(issue.getDueDate()) : issue.getDueDate() != null)
             return false;
-        if (ProjectName != null ? !ProjectName.equals(issue.ProjectName) : issue.ProjectName != null)
+        if (ProjectName != null ? !ProjectName.equals(issue.getProjectName()) : issue.getProjectName() != null)
             return false;
-        if (StartDate != null ? !StartDate.equals(issue.StartDate) : issue.StartDate != null)
+        if (StartDate != null ? !StartDate.equals(issue.getStartDate()) : issue.getStartDate() != null)
             return false;
-        if (TrackerName != null ? !TrackerName.equals(issue.TrackerName) : issue.TrackerName != null)
+        if (TrackerName != null ? !TrackerName.equals(issue.getTrackerName()) : issue.getTrackerName() != null)
             return false;
 //        if (FixedVersionId != issue.FixedVersionId) return false;
 //        if (StatusId != issue.StatusId) return false;

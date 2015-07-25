@@ -1,7 +1,5 @@
 package com.vitrina.domain;
 
-import javax.persistence.*;
-
 /**
 * @author dn200978lak
 * @version 1.0
@@ -12,57 +10,24 @@ import javax.persistence.*;
 * Оператор instanceof
 */
 
-@Entity
-@Table(name = "issue")
-@NamedQueries({
-        @NamedQuery(name = "Issue.findAll", query = "SELECT issue FROM Issue3 issue"),
-        @NamedQuery(name = "Issue.findByProject", query = "SELECT issue FROM Issue3 issue WHERE issue.ProjectName = :ProjectName"),
-        @NamedQuery(name = "Issue.findByTracker", query = "SELECT issue FROM Issue3 issue WHERE issue.TrackerName = :TrackerName")
-})
-public class Issue3 implements Issue {
+public class Issue1 implements Issue {
 
-    @Id
-    @Column(name = "id")
     private Integer Id;
-
-    @Column(name = "parent_id")
     private int ParentId;
-
-    @Column(name = "project_id")
     private int ProjectId;
-
-    @Column(name = "project_name")
     private String ProjectName;
-
-    @Column(name = "tracker_id")
     private int TrackerId;
-
-    @Column(name = "tracker_name")
     private String TrackerName;
-
-    @Column(name = "status_id")
     private int StatusId;
-
-    @Column(name = "status_name")
     private String StatusName;
-
-    @Column(name = "fixed_version_id")
     private int FixedVersionId;
-
-    @Column(name = "fixed_version_name")
     private String FixedVersionName;
-
-    @Column(name = "subject")
     private String Subject;
-
-    @Column(name = "start_date")
     private String StartDate;
-
-    @Column(name = "due_date")
     private String DueDate;
 
-    public Issue3(){}
-    public Issue3(Integer Id, int ParentId, int ProjectId, String ProjectName, int TrackerId, String TrackerName, int StatusId, String StatusName, int FixedVersionId, String FixedVersionName, String Subject, String StartDate, String DueDate){
+    public Issue1(){}
+    public Issue1(Integer Id, int ParentId, int ProjectId, String ProjectName, int TrackerId, String TrackerName, int StatusId, String StatusName, int FixedVersionId, String FixedVersionName, String Subject, String StartDate, String DueDate){
         this.Id = Id;
         this.ParentId = ParentId;
         this.ProjectId = ProjectId;

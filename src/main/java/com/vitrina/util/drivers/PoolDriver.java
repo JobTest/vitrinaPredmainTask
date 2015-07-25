@@ -9,8 +9,8 @@ import java.util.Properties;
 import java.util.Vector;
 
 /**
- * Created by alexandr on 17.06.15.
- */
+* Created by alexandr on 17.06.15.
+*/
 public class PoolDriver implements Driver {
     private Vector<Connection> availableConns = new Vector<Connection>(); /* Первый будет содержать список доступных для использования соединений */
     private Vector<Connection> usedConns = new Vector<Connection>(); /* Второй список используемых в любой момент времени */

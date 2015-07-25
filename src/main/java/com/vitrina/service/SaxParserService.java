@@ -1,6 +1,6 @@
 package com.vitrina.service;
 
-import com.vitrina.domain.Issue;
+import com.vitrina.domain.Issue1;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -18,8 +18,8 @@ public class SaxParserService extends DefaultHandler {
     private boolean bSubject    = false;
     private boolean bStart_date = false;
     private boolean bDue_date   = false;
-    private Issue issue;
-    private List<Issue> issues;
+    private Issue1 issue;
+    private List<Issue1> issues;
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
@@ -39,7 +39,7 @@ public class SaxParserService extends DefaultHandler {
         /* Tag 'Issue-ID' */
         if (qName.equalsIgnoreCase("id")) {
             bIssueID = true;
-            issue = new Issue();
+            issue = new Issue1();
         }
         /* Tag 'Project' */
         if (qName.equals("project")) {
@@ -114,7 +114,7 @@ public class SaxParserService extends DefaultHandler {
     }
 
 
-    public List<Issue> getIssues(){
+    public List<Issue1> getIssues(){
         return issues;
     }
 }
