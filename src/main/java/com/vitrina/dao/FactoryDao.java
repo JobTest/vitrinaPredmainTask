@@ -1,8 +1,8 @@
 package com.vitrina.dao;
 
-import com.vitrina.dao.issue.Issue1Dao;
-import com.vitrina.dao.issue.Issue2Dao;
-import com.vitrina.dao.issue.Issue3Dao;
+import com.vitrina.dao.issue.IssueJDBCDao;
+import com.vitrina.dao.issue.IssueJPADao;
+import com.vitrina.dao.issue.IssueHibernateDao;
 import com.vitrina.util.FactoryDriver;
 
 /**
@@ -14,16 +14,16 @@ public class FactoryDao {
 
     private FactoryDao(){}
 
-    public static IssueDao getInstance(DAO type){
+    public static IssueDao getIssue(DAO type){
         switch (type){
-            case POOL:
-                issueDao = new Issue1Dao();                                 /* Issue1Dao */
+            case JDBC:
+                issueDao = new IssueJDBCDao();                                /* Issue1Dao */
                 break;
             case PERSISTENCE:
-                issueDao = new Issue2Dao(FactoryDriver.getEntityManager()); /* Issue2Dao */
+                issueDao = new IssueJPADao(FactoryDriver.getEntityManager()); /* Issue2Dao */
                 break;
             case HIBERNATE:
-                issueDao = new Issue3Dao(FactoryDriver.getSession());       /* Issue3Dao */
+                issueDao = new IssueHibernateDao(FactoryDriver.getSession()); /* Issue3Dao */
                 break;
         }
         return issueDao;

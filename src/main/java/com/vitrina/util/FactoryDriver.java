@@ -1,6 +1,6 @@
 package com.vitrina.util;
 
-import com.vitrina.util.drivers.PoolDriver;
+import com.vitrina.util.drivers.JDBCDriver;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
@@ -29,7 +29,7 @@ public class FactoryDriver {
             properties.setProperty("useUnicode", "true");
             properties.setProperty("characterEncoding", "UTF-8");
             try {
-                driverManager = PoolDriver.getInstance(URL, "com.mysql.jdbc.Driver", 10, properties);
+                driverManager = JDBCDriver.getInstance(URL, "com.mysql.jdbc.Driver", 10, properties);
                 connect = driverManager.getConnection(); //connect = DriverManager.getConnection(URL, properties);
             } catch (SQLException e) { System.err.print("-SQLException-"); }
         }

@@ -25,7 +25,7 @@ public class ServiceIssue {
 
     public ServiceIssue(){
         map = Collections.synchronizedMap(new HashMap<>());
-        dao = FactoryDao.getInstance(DAO.POOL);
+        dao = FactoryDao.getIssue(DAO.JDBC);
     }
 
     public List<Issue> toList(List<Issue> select){

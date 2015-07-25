@@ -11,12 +11,12 @@ import java.util.List;
 /**
 * Created by alexandr on 24.07.15.
 */
-public class Issue3Dao implements IssueDao {
+public class IssueHibernateDao implements IssueDao {
 
     private Session session;
 
-    public Issue3Dao(){}
-    public Issue3Dao(Session session){
+    public IssueHibernateDao(){}
+    public IssueHibernateDao(Session session){
         this.session = session;
     }
 

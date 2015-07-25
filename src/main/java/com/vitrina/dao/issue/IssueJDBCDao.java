@@ -1,7 +1,7 @@
 package com.vitrina.dao.issue;
 
 import com.vitrina.dao.IssueDao;
-import com.vitrina.domain.Issue1;
+import com.vitrina.domain.IssueJDBC;
 import com.vitrina.domain.Issue;
 import com.vitrina.util.FactoryDriver;
 
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by alexandr on 24.07.15.
  */
-public class Issue1Dao implements IssueDao {
+public class IssueJDBCDao implements IssueDao {
 
     private PreparedStatement preparedStatement = null;
     private ResultSet                 resultSet = null;
@@ -23,7 +23,7 @@ public class Issue1Dao implements IssueDao {
             preparedStatement = FactoryDriver.getConnection().prepareStatement("SELECT * FROM issue");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
-                select.add( new Issue1(resultSet.getInt("id"),resultSet.getInt("parent_id"),resultSet.getInt("project_id"),resultSet.getString("project_name"),resultSet.getInt("tracker_id"),resultSet.getString("tracker_name"),resultSet.getInt("status_id"),resultSet.getString("status_name"),resultSet.getInt("fixed_version_id"),resultSet.getString("fixed_version_name"),resultSet.getString("subject"),resultSet.getString("start_date"),resultSet.getString("due_date")) );
+                select.add( new IssueJDBC(resultSet.getInt("id"),resultSet.getInt("parent_id"),resultSet.getInt("project_id"),resultSet.getString("project_name"),resultSet.getInt("tracker_id"),resultSet.getString("tracker_name"),resultSet.getInt("status_id"),resultSet.getString("status_name"),resultSet.getInt("fixed_version_id"),resultSet.getString("fixed_version_name"),resultSet.getString("subject"),resultSet.getString("start_date"),resultSet.getString("due_date")) );
         } catch(SQLException e){ System.err.print("-SQLException-");
         } finally { if (preparedStatement != null) preparedStatement.close(); if (resultSet != null) resultSet.close(); }
 

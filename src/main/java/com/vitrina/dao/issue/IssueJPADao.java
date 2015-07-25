@@ -2,7 +2,7 @@ package com.vitrina.dao.issue;
 
 import com.vitrina.dao.IssueDao;
 import com.vitrina.domain.Issue;
-import com.vitrina.domain.Issue2;
+import com.vitrina.domain.IssueJPA;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -11,12 +11,12 @@ import java.util.List;
 /**
 * Created by alexandr on 24.07.15.
 */
-public class Issue2Dao implements IssueDao {
+public class IssueJPADao implements IssueDao {
 
     EntityManager em;
 
-    public Issue2Dao(){}
-    public Issue2Dao(EntityManager em){
+    public IssueJPADao(){}
+    public IssueJPADao(EntityManager em){
         this.em = em;
     }
 
@@ -31,12 +31,12 @@ public class Issue2Dao implements IssueDao {
     }
 
     public List<Issue> getAll(List<Issue> select){
-        TypedQuery typedQuery = em.createQuery("SELECT issue FROM Issue2 issue", Issue2.class);
+        TypedQuery typedQuery = em.createQuery("SELECT issue FROM IssueJPA issue", IssueJPA.class);
         return select = typedQuery.getResultList();
     }
 
-    public Issue2 find(int id){
-        return em.find(Issue2.class, id);
+    public IssueJPA find(int id){
+        return em.find(IssueJPA.class, id);
     }
 
     public void update(Issue issue){
@@ -52,7 +52,7 @@ public class Issue2Dao implements IssueDao {
     }
     public void delete(int id){
         em.getTransaction().begin();
-        em.remove( em.find(Issue2.class,id) );
+        em.remove( em.find(IssueJPA.class,id) );
         em.getTransaction().commit();
     }
 

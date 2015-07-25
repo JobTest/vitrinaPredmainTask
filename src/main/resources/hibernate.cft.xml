@@ -16,6 +16,6 @@
         <property name="hibername.connection.autocommit">false</property>
         <property name="current_session_context_class">thread</property>
 
-        <mapping class="com.vitrina.domain.Issue3" />
+        <mapping class="com.vitrina.domain.IssueHibernate" />
     </session-factory>
 </hibernate-configuration>

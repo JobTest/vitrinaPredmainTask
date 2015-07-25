@@ -11,7 +11,7 @@ import java.util.Vector;
 /**
 * Created by alexandr on 17.06.15.
 */
-public class PoolDriver implements Driver {
+public class JDBCDriver implements Driver {
     private Vector<Connection> availableConns = new Vector<Connection>(); /* Первый будет содержать список доступных для использования соединений */
     private Vector<Connection> usedConns = new Vector<Connection>(); /* Второй список используемых в любой момент времени */
     /* Кроме этого определяется переменная url, которая будет хранить строку подключения к бд: */
@@ -19,11 +19,11 @@ public class PoolDriver implements Driver {
     private String user;
     private String passwd;
     private Properties properties;
-    private static PoolDriver connectionPool = null;
+    private static JDBCDriver connectionPool = null;
 
     /* В конструкторе используется функция getConnection, которая просто создает новое подключение: */
-    public PoolDriver(){}
-    public PoolDriver(String url, String driver, int initConnCnt, String user, String passwd) {
+    public JDBCDriver(){}
+    public JDBCDriver(String url, String driver, int initConnCnt, String user, String passwd) {
         try {
             Class.forName(driver);
         } catch (Exception e) { e.printStackTrace(); }
@@ -33,7 +33,7 @@ public class PoolDriver implements Driver {
         for (int i=0; i<initConnCnt; i++)
             availableConns.addElement(createConnection());
     }
-    public PoolDriver(String url, String driver, int initConnCnt, Properties properties) {
+    public JDBCDriver(String url, String driver, int initConnCnt, Properties properties) {
         try {
             Class.forName(driver);
         } catch (Exception e) { e.printStackTrace(); }
@@ -43,11 +43,11 @@ public class PoolDriver implements Driver {
             availableConns.addElement(createConnection());
     }
 
-    public static PoolDriver getInstance(String url, String driver, int initConnCnt, String user, String passwd){
-        return connectionPool == null ? connectionPool = new PoolDriver(url,driver,initConnCnt,user,passwd) : connectionPool;
+    public static JDBCDriver getInstance(String url, String driver, int initConnCnt, String user, String passwd){
+        return connectionPool == null ? connectionPool = new JDBCDriver(url,driver,initConnCnt,user,passwd) : connectionPool;
     }
-    public static PoolDriver getInstance(String url, String driver, int initConnCnt, Properties properties){
-        return connectionPool == null ? connectionPool = new PoolDriver(url,driver,initConnCnt,properties) : connectionPool;
+    public static JDBCDriver getInstance(String url, String driver, int initConnCnt, Properties properties){
+        return connectionPool == null ? connectionPool = new JDBCDriver(url,driver,initConnCnt,properties) : connectionPool;
     }
 
     private Connection createConnection() {

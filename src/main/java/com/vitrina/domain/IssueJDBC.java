@@ -10,7 +10,7 @@ package com.vitrina.domain;
 * Оператор instanceof
 */
 
-public class Issue1 implements Issue {
+public class IssueJDBC implements Issue {
 
     private Integer Id;
     private int ParentId;
@@ -26,8 +26,8 @@ public class Issue1 implements Issue {
     private String StartDate;
     private String DueDate;
 
-    public Issue1(){}
-    public Issue1(Integer Id, int ParentId, int ProjectId, String ProjectName, int TrackerId, String TrackerName, int StatusId, String StatusName, int FixedVersionId, String FixedVersionName, String Subject, String StartDate, String DueDate){
+    public IssueJDBC(){}
+    public IssueJDBC(Integer Id, int ParentId, int ProjectId, String ProjectName, int TrackerId, String TrackerName, int StatusId, String StatusName, int FixedVersionId, String FixedVersionName, String Subject, String StartDate, String DueDate){
         this.Id = Id;
         this.ParentId = ParentId;
         this.ProjectId = ProjectId;
