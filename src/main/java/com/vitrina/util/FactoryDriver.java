@@ -22,14 +22,13 @@ public class FactoryDriver {
 
     public static Connection getConnection() throws ExceptionInInitializerError, IOException {
         if( connect == null ) {
-            JDBCProperties jdbcProperties = new JDBCProperties("jdbc.properties");
-
             Driver driverManager = null;
             Properties properties = new Properties();
+            JDBCProperties jdbcProperties = new JDBCProperties("jdbc.properties");
             properties.setProperty("user", jdbcProperties.property.getProperty("jdbc.username"));
             properties.setProperty("password", jdbcProperties.property.getProperty("jdbc.password"));
-            properties.setProperty("useUnicode", "true");
-            properties.setProperty("characterEncoding", "UTF-8");
+            properties.setProperty("useUnicode", jdbcProperties.property.getProperty("jdbc.useUnicode"));
+            properties.setProperty("characterEncoding", jdbcProperties.property.getProperty("jdbc.characterEncoding"));
             try {
                 driverManager = JDBCDriver.getInstance(jdbcProperties.property.getProperty("jdbc.url"), jdbcProperties.property.getProperty("jdbc.driver"), 10, properties);
                 connect = driverManager.getConnection(); //connect = DriverManager.getConnection(URL, properties);
@@ -38,15 +37,21 @@ public class FactoryDriver {
         return connect;
     }
     public static EntityManager getEntityManager() {
-        return em == null ? em = Persistence.createEntityManagerFactory("Issue2").createEntityManager() : em;
+        return em == null ? em = Persistence.createEntityManagerFactory("IssueJPA").createEntityManager() : em;
     }
     public static Session getSession() { //public static SessionFactory getSessionFactory() {
         return session == null ? session = new Configuration().configure("hibernate.cft.xml").buildSessionFactory().openSession() : session;
+//        if (sessionFactory == null){
+//            sessionFactory = new Configuration().configure("hibernate.cft.xml").buildSessionFactory();
+//            session = sessionFactory.openSession();
+//        }
+//        return session;
     }
 
     private static Connection connect = null;
     private static EntityManager   em = null;
     private static Session    session = null;
+//    private static SessionFactory sessionFactory = null;
 }
 
 class JDBCProperties {

@@ -10,9 +10,11 @@
         <property name="connection.username">root</property>
         <property name="connection.password">1978</property>
         <property name="connection.pool_size">1</property>
+        <property name="connection.useUnicode">true</property>
+        <property name="connection.characterEncoding">UTF-8</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">false</property>
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property> <!--<property name="hbm2ddl.auto">create</property>-->
         <property name="hibername.connection.autocommit">false</property>
         <property name="current_session_context_class">thread</property>
 

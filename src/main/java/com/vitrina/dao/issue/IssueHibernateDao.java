@@ -2,10 +2,12 @@ package com.vitrina.dao.issue;
 
 import com.vitrina.dao.IssueDao;
 import com.vitrina.domain.Issue;
+import com.vitrina.domain.IssueHibernate;
 import org.hibernate.Session;
 import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Order;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -30,9 +32,13 @@ public class IssueHibernateDao implements IssueDao {
         }
     }
     public void add(List<Issue> issues){
+        List<IssueHibernate> issuesHibernate = new LinkedList<>();
+        for (Issue issue:issues)
+            issuesHibernate.add( new IssueHibernate(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate()) );
+
         try {
             session.getTransaction().begin();
-            for (Issue issue:issues)
+            for (IssueHibernate issue:issuesHibernate)
                 session.save(issue);
             session.getTransaction().commit();
         } catch(ExceptionInInitializerError e) {
@@ -64,9 +70,11 @@ public class IssueHibernateDao implements IssueDao {
     }
 
     public void update(Issue issue){
+        IssueHibernate issuesHibernate = new IssueHibernate(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate());
+
         try{
             session.getTransaction().begin();
-            session.update(issue);
+            session.update(issuesHibernate);
             session.getTransaction().commit();
         } catch (ExceptionInInitializerError e){
             System.err.println(e.getMessage());
@@ -74,16 +82,21 @@ public class IssueHibernateDao implements IssueDao {
     }
 
     public void delete(Issue issue){
+        IssueHibernate issuesHibernate = new IssueHibernate(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate());
+
         try{
             session.getTransaction().begin();
-            session.delete(issue);
+            session.delete(issuesHibernate);
             session.getTransaction().commit();
         } catch(ExceptionInInitializerError e){ System.out.println(e.getMessage()); }
     }
     public void delete(int id){
         try{
+            Issue issue = find(id);
+            IssueHibernate issuesHibernate = new IssueHibernate(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate());
+
             session.getTransaction().begin();
-            session.delete( find(id) );
+            session.delete( issuesHibernate ); //session.delete( find(id) );
             session.getTransaction().commit();
         } catch(ExceptionInInitializerError e){ System.out.println(e.getMessage()); }
     }

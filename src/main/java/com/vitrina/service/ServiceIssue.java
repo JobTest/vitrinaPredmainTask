@@ -25,13 +25,14 @@ public class ServiceIssue {
 
     public ServiceIssue(){
         map = Collections.synchronizedMap(new HashMap<>());
-        dao = FactoryDao.getIssue(DAO.JDBC);
+//        dao = FactoryDao.getIssue(DAO.JDBC);
+        dao = FactoryDao.getIssue(DAO.HIBERNATE);
     }
 
     public List<Issue> toList(List<Issue> select){
         List<Issue> issues = null;
         try {
-            issues = this.dao.getAll(select);
+            issues = dao.getAll(select);
         } catch (SQLException e) { System.err.println(e.getMessage());
         } catch (Exception e) { System.err.println(e.getMessage()); }
         return issues;
@@ -107,7 +108,7 @@ public class ServiceIssue {
 
         map.get("sax").removeAll(map.get("db"));
         try {
-            this.dao.add(map.get("sax"));
+            dao.add( map.get("sax") );
         } catch (SQLException e) { System.err.println(e.getMessage());
         } catch (Exception e) { System.err.println(e.getMessage()); }
 
