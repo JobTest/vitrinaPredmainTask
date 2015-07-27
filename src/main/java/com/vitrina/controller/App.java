@@ -11,11 +11,6 @@ public class App {
 
     private static ServiceIssue service;
 
-    public static void main(String[] args) {
-        App app = new App();
-        app.start();
-    }
-
     public void start() {
         service = new ServiceIssue();
 
