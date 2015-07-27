@@ -11,7 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * ***********************************************************************
  * Spring - Hello World Example
  */
-public class SpringApp {
+public class MainApp {
 
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");

@@ -4,5 +4,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="App" class="com.vitrina.controller.App"></bean>
+    <bean id="App" class="com.vitrina.controller.App">
+        <property name="service" ref="Service"></property>
+    </bean>
+    <bean id="Service" class="com.vitrina.service.ServiceIssue">
+        <property name="dao" ref="dao"></property>
+    </bean>
+
+    <bean id="dao" factory-method="getIssueHibernateDao" class="com.vitrina.dao.FactoryDao"></bean> <!--<bean id="dao" factory-bean="hibernateDao"></bean>-->
+    <!--<bean id="hibernateDao" class="com.vitrina.dao.issue.IssueHibernateDao"></bean>-->
+    <!--<bean id="jpaDao" class="com.vitrina.dao.issue.IssueJPADao"></bean>-->
+    <!--<bean id="dbcDao" class="com.vitrina.dao.issue.IssueJDBCDao"></bean>-->
 </beans>

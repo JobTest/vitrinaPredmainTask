@@ -28,4 +28,16 @@ public class FactoryDao {
         }
         return issueDao;
     }
+
+    ////////////////////////////////////////////////////////
+    public static IssueDao getIssueJDBCDao(){
+        return new IssueJDBCDao();
+    }
+    public static IssueDao getIssueJPADao(){
+        return new IssueJPADao(FactoryDriver.getEntityManager());
+    }
+    public static IssueDao getIssueHibernateDao(){
+        return new IssueHibernateDao(FactoryDriver.getSession());
+    }
+    ////////////////////////////////////////////////////////
 }

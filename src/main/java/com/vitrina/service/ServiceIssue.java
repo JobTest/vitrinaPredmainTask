@@ -21,7 +21,7 @@ import java.util.function.Predicate;
 public class ServiceIssue {
 
     public Map<String, List<Issue>> map;
-    private IssueDao                dao;
+    public IssueDao                dao;
 
     public ServiceIssue(){
         map = Collections.synchronizedMap(new HashMap<>());
@@ -119,4 +119,16 @@ public class ServiceIssue {
             System.out.println(issue);
     }
 
+    public Map<String, List<Issue>> getMap() {
+        return map;
+    }
+    public IssueDao getDao() {
+        return dao;
+    }
+    public void setMap(Map<String, List<Issue>> map) {
+        this.map = map;
+    }
+    public void setDao(IssueDao dao) {
+        this.dao = dao;
+    }
 }

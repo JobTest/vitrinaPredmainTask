@@ -9,11 +9,9 @@ import java.util.LinkedList;
  */
 public class App {
 
-    private static ServiceIssue service;
+    private ServiceIssue service;
 
     public void start() {
-        service = new ServiceIssue();
-
         System.out.println("\n********************************[ DB-getAll ]*********************************");
         service.map.put("db-getAll", service.toList(new LinkedList<>()));
         service.print(service.map.get("db-getAll"));
@@ -28,4 +26,10 @@ public class App {
 //        service.insert(service.map.get("db-getAll"), service.map.get("sax-upload"), dueDates);
     }
 
+    public ServiceIssue getService() {
+        return service;
+    }
+    public void setService(ServiceIssue service) {
+        this.service = service;
+    }
 }
