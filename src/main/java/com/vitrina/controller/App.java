@@ -7,11 +7,16 @@ import java.util.LinkedList;
 /**
  * Created by alexandr on 15.07.15.
  */
-public class start {
+public class App {
 
     private static ServiceIssue service;
 
     public static void main(String[] args) {
+        App app = new App();
+        app.start();
+    }
+
+    public void start() {
         service = new ServiceIssue();
 
         System.out.println("\n********************************[ DB-getAll ]*********************************");
@@ -27,4 +32,5 @@ public class start {
         String[] dueDates = {"0","10","100"};
 //        service.insert(service.map.get("db-getAll"), service.map.get("sax-upload"), dueDates);
     }
+
 }
