@@ -10,6 +10,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  ** {@link http://www.mkyong.com/spring/quick-start-maven-spring-example/}
  * ***********************************************************************
  * Spring - Hello World Example
+ *
+ * {@link http://spring-projects.ru/guides/relational-data-access/}
+ * {@link http://javatalks.ru/topics/25965}
  */
 public class MainApp {
 
