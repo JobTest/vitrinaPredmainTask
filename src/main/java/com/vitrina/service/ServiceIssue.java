@@ -15,6 +15,10 @@ import java.util.function.Predicate;
 
 /**
  * Created by alexandr on 17.07.15.
+ ** {@link http://www.javacodegeeks.com/2012/05/functional-style-in-java-with.html}
+ * {@link http://stackoverflow.com/questions/18163328/jpa-utf-8-characters-not-persisted}
+ * ****************************************
+ * Functional style in Java with predicates
  */
 public class ServiceIssue {
 

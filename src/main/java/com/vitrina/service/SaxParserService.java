@@ -23,18 +23,10 @@ public class SaxParserService extends DefaultHandler {
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        /* Tag 'Parent' */
-        if (qName.equals("parent"))
-            issue.setParentId(Integer.parseInt(attributes.getValue("id")));
-        /* Tag 'Subject' */
-        if (qName.equalsIgnoreCase("subject"))
-            bSubject = true;
-        /* Tag 'Start-Date' */
-        if (qName.equalsIgnoreCase("start_date"))
-            bStart_date = true;
-        /* Tag 'Due-Date' */
-        if (qName.equalsIgnoreCase("due_date"))
-            bDue_date = true;
+        if (qName.equals("parent")) issue.setParentId(Integer.parseInt(attributes.getValue("id"))); /* Tag 'Parent' */
+        if (qName.equalsIgnoreCase("subject")) bSubject = true;                                     /* Tag 'Subject' */
+        if (qName.equalsIgnoreCase("start_date")) bStart_date = true;                               /* Tag 'Start-Date' */
+        if (qName.equalsIgnoreCase("due_date")) bDue_date = true;                                   /* Tag 'Due-Date' */
 
         /* Tag 'Issue-ID' */
         if (qName.equalsIgnoreCase("id")) {
@@ -93,18 +85,13 @@ public class SaxParserService extends DefaultHandler {
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        /* Tag 'Issue' */
-        if (qName.equalsIgnoreCase("issue")) {
-            issues.add(issue);
-        }
-
+        if (qName.equalsIgnoreCase("issue")) issues.add(issue); /* Tag 'Issue' */
         super.endElement(uri,localName, qName);
     }
 
     @Override
     public void startDocument() throws SAXException {
         issues = new LinkedList<>();
-
         super.startDocument();
     }
 
@@ -112,7 +99,6 @@ public class SaxParserService extends DefaultHandler {
     public void endDocument() throws SAXException {
         super.endDocument();
     }
-
 
     public List<IssueJDBC> getIssues(){
         return issues;
