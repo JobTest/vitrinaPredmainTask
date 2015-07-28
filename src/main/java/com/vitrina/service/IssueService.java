@@ -95,12 +95,13 @@ public class IssueService {
         map.put("db-update",updateDB);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
-        System.out.println("db-getAll:  << (== ) " + map.get("db-getAll").size());
-        System.out.println("sax-upload: << (== ) " + map.get("sax-upload").size());
-        System.out.println("db-delete:  >> (-" + (map.get("db-getAll").size()-map.get("db-delete").size()) + " ) " + map.get("db-delete").size());
-        System.out.println("db-update:  >> (=" + map.get("db-update").size() + " ) " + map.get("db-delete").size());
-        System.out.println("db-add:  >> (+" + map.get("db-add").size() + ") " + (map.get("db-delete").size()+map.get("db-add").size()));
-        int add = addDB(map.get("db-getAll"), map.get("sax-upload"));
+        System.out.println("     db-getAll: |<< ( == ) " + map.get("db-getAll").size());
+        System.out.println("   jaxb-upload: |<< ( == ) " + map.get("jaxb-upload").size());
+        System.out.println("   ---------------------------");
+        System.out.println("     db-delete: |>> (-" + (map.get("db-getAll").size()-map.get("db-delete").size()) + " ) " + map.get("db-delete").size());
+        System.out.println("     db-update: |>> (=" + map.get("db-update").size() + " ) " + map.get("db-delete").size());
+        System.out.println("        db-add: |>> (+" + map.get("db-add").size() + " ) " + (map.get("db-delete").size()+map.get("db-add").size()));
+        int add = addDB(map.get("db-getAll"), map.get("jaxb-upload"));
 //        System.out.println("add << " + add);
     }
 

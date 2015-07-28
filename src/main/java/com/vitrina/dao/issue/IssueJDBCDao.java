@@ -25,7 +25,7 @@ public class IssueJDBCDao implements IssueDao {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
                 select.add( new IssueJDBC(resultSet.getInt("id"),resultSet.getInt("parent_id"),resultSet.getInt("project_id"),resultSet.getString("project_name"),resultSet.getInt("tracker_id"),resultSet.getString("tracker_name"),resultSet.getInt("status_id"),resultSet.getString("status_name"),resultSet.getInt("fixed_version_id"),resultSet.getString("fixed_version_name"),resultSet.getString("subject"),resultSet.getString("start_date"),resultSet.getString("due_date")) );
-        } catch(SQLException e){ System.err.print("-SQLException-");
+        } catch(SQLException e){ System.err.print("--SQLException-- " + e.getMessage());
         } finally { if (preparedStatement != null) preparedStatement.close(); if (resultSet != null) resultSet.close(); }
 
         return select;
@@ -55,7 +55,7 @@ public class IssueJDBCDao implements IssueDao {
             preparedStatement.executeBatch();
             FactoryDriver.getConnection().commit();
         } catch (SQLException e) {
-            System.err.println("--add--");
+            System.err.println("--add-- " + e.getMessage());
             try {
                 /* When this code is executed, update statement is hits error, and make both insert and update statements rollback together */
                 FactoryDriver.getConnection().rollback();
@@ -70,7 +70,7 @@ public class IssueJDBCDao implements IssueDao {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("--delete--");
+            System.err.println("--delete-- " + e.getMessage());
             try {
                 /* When this code is executed, update statement is hits error, and make both insert and update statements rollback together */
                 FactoryDriver.getConnection().rollback();

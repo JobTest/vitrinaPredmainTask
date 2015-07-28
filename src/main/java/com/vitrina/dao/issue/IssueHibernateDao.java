@@ -29,25 +29,23 @@ public class IssueHibernateDao implements IssueDao {
         List<IssueHibernate> issuesHibernate = new LinkedList<>();
         for (Issue issue:issues)
             issuesHibernate.add( new IssueHibernate(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate()) );
-
         try {
             session.getTransaction().begin();
             for (IssueHibernate issue:issuesHibernate)
                 session.save(issue);
             session.getTransaction().commit();
         } catch(ExceptionInInitializerError e) {
-            System.err.println(e.getMessage());
+            System.err.println("--add-- " + e.getMessage());
         }
     }
     public void add(Issue issue){
         IssueHibernate issuesHibernate = new IssueHibernate(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate());
-
         try {
             Transaction transaction = session.beginTransaction();
             session.save(issuesHibernate);
             transaction.commit();
         } catch (ExceptionInInitializerError e) {
-            System.err.println(e.getMessage());
+            System.err.println("--add-- " + e.getMessage());
         }
     }
 
@@ -81,13 +79,12 @@ public class IssueHibernateDao implements IssueDao {
 
     public void update(Issue issue){
         IssueHibernate issuesHibernate = new IssueHibernate(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate());
-
         try{
             session.getTransaction().begin();
             session.update(issuesHibernate);
             session.getTransaction().commit();
         } catch (ExceptionInInitializerError e){
-            System.err.println(e.getMessage());
+            System.err.println("--update-- " + e.getMessage());
         }
     }
 
@@ -96,19 +93,17 @@ public class IssueHibernateDao implements IssueDao {
         try{
             Issue issue = find(id);
             IssueHibernate issuesHibernate = new IssueHibernate(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate());
-
             session.getTransaction().begin();
             session.delete( issuesHibernate ); //session.delete( find(id) );
             session.getTransaction().commit();
-        } catch(ExceptionInInitializerError e){ System.out.println(e.getMessage()); }
+        } catch(ExceptionInInitializerError e){ System.out.println("--delete-- " + e.getMessage()); }
     }
     public void delete(Issue issue){
         IssueHibernate issuesHibernate = new IssueHibernate(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate());
-
         try{
             session.getTransaction().begin();
             session.delete(issuesHibernate);
             session.getTransaction().commit();
-        } catch(ExceptionInInitializerError e){ System.out.println(e.getMessage()); }
+        } catch(ExceptionInInitializerError e){ System.out.println("--delete-- " + e.getMessage()); }
     }
 }

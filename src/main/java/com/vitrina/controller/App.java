@@ -12,18 +12,18 @@ public class App {
     private IssueService service;
 
     public void start() {
-        System.out.println("\n********************************[ DB-getAll ]*********************************");
+        System.out.println("\n********************************[  DB-getAll  ]*********************************");
         service.map.put("db-getAll", service.toList(new LinkedList<>()));
-        service.print(service.map.get("db-getAll"));
+//        service.print(service.map.get("db-getAll"));
 
-        System.out.println("\n********************************[ SAX-Parser ]*********************************");
+        System.out.println("\n********************************[ JAXB-Parser ]*********************************");
         String[] files = {"issues1.xml","issues2.xml","issues3.xml"};
-        service.map.put("sax-upload", service.toList(files));
-//        service.print(service.map.get("sax-upload"));
+        service.map.put("jaxb-upload", service.toList(files));
+//        service.print(service.map.get("jaxb-upload"));
 
-        System.out.println("\n********************************[ DB-Add ]*********************************");
+        System.out.println("\n********************************[   DB-Add    ]*********************************");
         String[] dueDates = {"0","10","100"};
-//        service.insert(service.map.get("db-getAll"), service.map.get("sax-upload"), dueDates);
+        service.insert(service.map.get("db-getAll"), service.map.get("jaxb-upload"), dueDates);
     }
 
     public IssueService getService() {
