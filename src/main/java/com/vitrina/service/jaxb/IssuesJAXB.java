@@ -1,7 +1,5 @@
 package com.vitrina.service.jaxb;
 
-import com.vitrina.domain.Issue;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -14,14 +12,14 @@ import java.util.List;
 
 @XmlRootElement(name = "issues")
 @XmlAccessorType (XmlAccessType.FIELD)
-public class Issues {
+public class IssuesJAXB {
     @XmlElement(name = "issue")
-    private List<Issue> issues = null; //private List<IssueJAXB> issues = null;
+    private List<IssueJAXB> issues = null;
 
-    public List<Issue> getIssues() {   //public List<IssueJAXB> getIssues() {
+    public List<IssueJAXB> getIssues() {
         return issues;
     }
-    public void setIssues(List<Issue> issues) { //public void setIssues(List<IssueJAXB> issues) {
+    public void setIssues(List<IssueJAXB> issues) { //public void setIssues(List<IssueJAXB> issues) {
         this.issues = issues;
     }
 }

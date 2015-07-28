@@ -4,6 +4,7 @@ import com.vitrina.dao.IssueDao;
 import com.vitrina.domain.Issue;
 import com.vitrina.domain.IssueHibernate;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Order;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 /**
 * Created by alexandr on 24.07.15.
+ * {@link http://apmblog.dynatrace.com/2009/03/24/understanding-caching-in-hibernate-part-three-the-second-level-cache/}
 */
 public class IssueHibernateDao implements IssueDao {
 
@@ -41,9 +43,9 @@ public class IssueHibernateDao implements IssueDao {
         IssueHibernate issuesHibernate = new IssueHibernate(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate());
 
         try {
-            session.getTransaction().begin();
+            Transaction transaction = session.beginTransaction();
             session.save(issuesHibernate);
-            session.getTransaction().commit();
+            transaction.commit();
         } catch (ExceptionInInitializerError e) {
             System.err.println(e.getMessage());
         }
@@ -64,7 +66,11 @@ public class IssueHibernateDao implements IssueDao {
     }
 
     public Issue find(int id){
-        return (Issue)session.get(Issue.class, id);
+        //return (Issue)session.get(Issue.class, id);
+        Transaction transaction = session.beginTransaction();
+        Issue issue = (Issue)session.load(Issue.class, id);
+        transaction.commit();
+        return issue;
     }
     public List<Issue> find(int minId, int maxId){
         return session.createCriteria(Issue.class).add(Expression.between("id", minId, maxId)).list();

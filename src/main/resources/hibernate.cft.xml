@@ -3,8 +3,12 @@
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 
+<!-- https://docs.jboss.org/hibernate/orm/3.3/reference/en-US/html/session-configuration.html -->
+<!-- http://apmblog.dynatrace.com/2009/03/24/understanding-caching-in-hibernate-part-three-the-second-level-cache/ -->
+
 <hibernate-configuration>
-    <session-factory>
+    <session-factory name="java:hibernate/SessionFactory">
+        <!-- properties -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/vitrina</property>
         <property name="connection.username">root</property>
@@ -18,6 +22,15 @@
         <property name="hibername.connection.autocommit">false</property>
         <property name="current_session_context_class">thread</property>
 
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="ibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+
+        <!-- mapping files -->
         <mapping class="com.vitrina.domain.IssueHibernate" />
+
+        <!-- cache settings -->
+        <!--<class-cache class="org.hibernate.auction.Item" usage="read-write"/>-->
+        <!--<class-cache class="org.hibernate.auction.Bid" usage="read-only"/>-->
+        <!--<collection-cache collection="org.hibernate.auction.Item.bids" usage="read-write"/>-->
     </session-factory>
 </hibernate-configuration>

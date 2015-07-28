@@ -17,7 +17,7 @@ public class App {
         service.print(service.map.get("db-getAll"));
 
         System.out.println("\n********************************[ SAX-Parser ]*********************************");
-        String[] files = {"issue1.xml","issue2.xml","issue3.xml"};
+        String[] files = {"issues1.xml","issues2.xml","issues3.xml"};
         service.map.put("sax-upload", service.toList(files));
 //        service.print(service.map.get("sax-upload"));
 

@@ -26,10 +26,12 @@ public class IssueService {
 
     public Map<String, List<Issue>> map;
     public IssueDao                 dao;
+    public JaxbService              jaxb;
 
     public IssueService(){
         map = Collections.synchronizedMap(new HashMap<>());
         //dao = FactoryDao.getIssue(DAO.JPA); //dao = FactoryDao.getIssue(DAO.HIBERNATE); //dao = FactoryDao.getIssue(DAO.JDBC);
+        //jaxb = new JaxbService();
     }
 
     public List<Issue> toList(List<Issue> select){
@@ -40,50 +42,18 @@ public class IssueService {
         } catch (Exception e) { System.err.println(e.getMessage()); }
         return issues;
     }
-
     public List<Issue> toList(String[] files){
-        List<Issue> issues = new LinkedList<>();
-        for(String file:files){
-            try {
-                SAXParserFactory factory = SAXParserFactory.newInstance();
-                factory.setValidating(true);
-                factory.setNamespaceAware(false);
-                javax.xml.parsers.SAXParser saxparser = factory.newSAXParser();
-
-                SaxParserService xmlIssues = new SaxParserService();
-                saxparser.parse(new File(file), xmlIssues);
-
-                issues.addAll(xmlIssues.getIssues());
-            } catch (FileNotFoundException e) {
-                e.printStackTrace(); /* обработки ошибки, файл не найден */
-            } catch (ParserConfigurationException e) {
-                e.printStackTrace(); /* обработка ошибки Parser */
-            } catch (SAXException e) {
-                e.printStackTrace(); /* обработка ошибки SAX */
-            } catch (IOException e) {
-                e.printStackTrace(); /* обработка ошибок ввода */
-            }
-        }
+        List<Issue>  issues = new LinkedList<>();
+        try {
+            for (String file:files)
+                issues.addAll( jaxb.unMarshaling(file) );
+        } catch(JAXBException e){ System.err.println(e.getMessage()); }
         return issues;
     }
-//    public List<Issue> toList(String[] files){
-////        JaxbService        service = new JaxbService();
-////        List<IssueJAXB> issuesJAXB = new LinkedList<>();
-////        List<Issue> issues = new LinkedList<>();
-////        try {
-////            for (String file:files)
-////                issuesJAXB.addAll(service.unMarshaling(file));
-////        } catch(JAXBException e){ System.err.println(e.getMessage()); }
-//
-//
-//        JaxbService    service = new JaxbService();
-//        List<Issue> issues = new LinkedList<>();
-//        try {
-//            for (String file:files)
-//                issues.addAll( service.unMarshaling(file) );
-//        } catch(JAXBException e){ System.err.println(e.getMessage()); }
-//        return issues;
-//    }
+
+    public void toFile(List<Issue> issues){
+
+    }
 
     public void insert(List<Issue> db, List<Issue> sax, String[] dueDates){
         /* Из базы удаляю устаревшие по времени записи */
@@ -159,10 +129,16 @@ public class IssueService {
     public IssueDao getDao() {
         return dao;
     }
+    public JaxbService getJaxb() {
+        return jaxb;
+    }
     public void setMap(Map<String, List<Issue>> map) {
         this.map = map;
     }
     public void setDao(IssueDao dao) {
         this.dao = dao;
+    }
+    public void setJaxb(JaxbService jaxb) {
+        this.jaxb = jaxb;
     }
 }
