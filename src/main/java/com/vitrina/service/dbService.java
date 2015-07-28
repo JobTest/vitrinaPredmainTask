@@ -105,18 +105,33 @@ public class dbService {
 //        System.out.println("add << " + add);
     }
 
-    public int addDB(List<Issue> db, List<Issue> sax){
+    public int addDB(List<Issue> db, List<Issue> jaxb){
         Map<String, List<Issue>> map = Collections.synchronizedMap(new HashMap<>());
-        map.put("sax", sax);
+        map.put("jaxb", jaxb);
         map.put("db", db);
 
-        map.get("sax").removeAll(map.get("db"));
+//        System.out.println("==============================");
+//        System.out.println("jaxb = " + map.get("jaxb").size());
+//        System.out.println("  db = " + map.get("db").size());
+
+        map.get("jaxb").removeAll(map.get("db"));
         try {
-            dao.add( map.get("sax") );
+            dao.add( map.get("jaxb") );
         } catch (SQLException e) { System.err.println(e.getMessage());
         } catch (Exception e) { System.err.println(e.getMessage()); }
 
-        return map.get("sax").size();
+//        System.out.println("------------------------------");
+//        System.out.println("jaxb = " + map.get("jaxb").size());
+//        System.out.println("  db = " + map.get("db").size());
+//
+//        System.out.println("******************************[ jaxb ]");
+//        for (Issue issue:map.get("jaxb"))
+//            System.out.println(issue);
+//        System.out.println("******************************[ db ]");
+//        for (Issue issue:map.get("db"))
+//            System.out.println(issue);
+
+        return map.get("jaxb").size();
     }
 
     public void print(List<Issue> issues){
