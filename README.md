@@ -40,3 +40,10 @@ https://docs.jboss.org/hibernate/orm/3.3/reference/en-US/html/session-configurat
 http://habrahabr.ru/sandbox/41444/
 http://www.mkyong.com/jdbc/jdbc-preparedstatement-example-batch-update/
 http://docs.oracle.com/javase/7/docs/api/javax/sql/rowset/Predicate.html
+
+(spring data)
+** (Работа с запросами, сортировкой, порционной загрузкой) http://habrahabr.ru/post/139421/
+http://jeeconf.com/archive/jeeconf-2013/materials/spring-data/
+* http://devcolibri.com/4149
+https://msdn.microsoft.com/ru-ru/library/ms181299%28v=sql.120%29.aspx
+http://examples.javacodegeeks.com/core-java/sql/commit-rollback-transaction-example/
