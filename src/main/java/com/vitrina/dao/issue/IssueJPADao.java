@@ -6,6 +6,7 @@ import com.vitrina.domain.IssueJPA;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -21,17 +22,25 @@ public class IssueJPADao implements IssueDao {
     }
 
     public void add(Issue issue){
-        em.persist(issue);
+        IssueJPA issueJPA = new IssueJPA(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate());
+
+        em.getTransaction().begin();
+        em.persist(issueJPA);
+        em.getTransaction().commit();
     }
     public void add(List<Issue> issues){
-        em.getTransaction().begin();
+        List<IssueJPA> issuesJPA = new LinkedList<>();
         for (Issue issue:issues)
+            issuesJPA.add( new IssueJPA(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate()) );
+
+        em.getTransaction().begin();
+        for (IssueJPA issue:issuesJPA)
             em.persist(issue);
         em.getTransaction().commit();
     }
 
     public List<Issue> getAll(List<Issue> select){
-        TypedQuery typedQuery = em.createQuery("SELECT issue FROM IssueJPA issue", IssueJPA.class);
+        TypedQuery typedQuery = em.createQuery("SELECT issue FROM IssueJPA issue", Issue.class);
         return select = typedQuery.getResultList();
     }
 
@@ -40,19 +49,26 @@ public class IssueJPADao implements IssueDao {
     }
 
     public void update(Issue issue){
+        IssueJPA issueJPA = new IssueJPA(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate());
+
         em.getTransaction().begin();
-        em.merge(issue);
+        em.merge(issueJPA);
         em.getTransaction().commit();
     }
 
     public void delete(Issue issue){
+        IssueJPA issueJPA = new IssueJPA(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate());
+
         em.getTransaction().begin();
-        em.remove(issue);
+        em.remove(issueJPA);
         em.getTransaction().commit();
     }
     public void delete(int id){
+        Issue issue = em.find(IssueJPA.class, id);
+        IssueJPA issueJPA = new IssueJPA(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate());
+
         em.getTransaction().begin();
-        em.remove( em.find(IssueJPA.class,id) );
+        em.remove(issueJPA);
         em.getTransaction().commit();
     }
 

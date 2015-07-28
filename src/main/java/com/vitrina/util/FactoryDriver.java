@@ -39,19 +39,13 @@ public class FactoryDriver {
     public static EntityManager getEntityManager() {
         return em == null ? em = Persistence.createEntityManagerFactory("IssueJPA").createEntityManager() : em;
     }
-    public static Session getSession() { //public static SessionFactory getSessionFactory() {
+    public static Session getSession() {
         return session == null ? session = new Configuration().configure("hibernate.cft.xml").buildSessionFactory().openSession() : session;
-//        if (sessionFactory == null){
-//            sessionFactory = new Configuration().configure("hibernate.cft.xml").buildSessionFactory();
-//            session = sessionFactory.openSession();
-//        }
-//        return session;
     }
 
     private static Connection connect = null;
     private static EntityManager   em = null;
     private static Session    session = null;
-//    private static SessionFactory sessionFactory = null;
 }
 
 class JDBCProperties {

@@ -23,9 +23,11 @@ public class IssueHibernateDao implements IssueDao {
     }
 
     public void add(Issue issue){
+        IssueHibernate issuesHibernate = new IssueHibernate(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate());
+
         try {
             session.getTransaction().begin();
-            session.save(issue);
+            session.save(issuesHibernate);
             session.getTransaction().commit();
         } catch (ExceptionInInitializerError e) {
             System.err.println(e.getMessage());

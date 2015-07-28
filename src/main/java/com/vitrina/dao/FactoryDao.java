@@ -17,13 +17,13 @@ public class FactoryDao {
     public static IssueDao getIssue(DAO type){
         switch (type){
             case JDBC:
-                issueDao = new IssueJDBCDao();                                /* Issue1Dao */
+                issueDao = new IssueJDBCDao();                                /* IssueJDBCDao */
                 break;
-            case PERSISTENCE:
-                issueDao = new IssueJPADao(FactoryDriver.getEntityManager()); /* Issue2Dao */
+            case JPA:
+                issueDao = new IssueJPADao(FactoryDriver.getEntityManager()); /* IssueJPADao */
                 break;
             case HIBERNATE:
-                issueDao = new IssueHibernateDao(FactoryDriver.getSession()); /* Issue3Dao */
+                issueDao = new IssueHibernateDao(FactoryDriver.getSession()); /* IssueHibernateDao */
                 break;
         }
         return issueDao;

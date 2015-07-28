@@ -19,11 +19,11 @@ import java.util.function.Predicate;
 public class ServiceIssue {
 
     public Map<String, List<Issue>> map;
-    public IssueDao                dao;
+    public IssueDao                 dao;
 
     public ServiceIssue(){
         map = Collections.synchronizedMap(new HashMap<>());
-//        dao = FactoryDao.getIssue(DAO.HIBERNATE); //dao = FactoryDao.getIssue(DAO.JDBC);
+        //dao = FactoryDao.getIssue(DAO.JPA); //dao = FactoryDao.getIssue(DAO.HIBERNATE); //dao = FactoryDao.getIssue(DAO.JDBC);
     }
 
     public List<Issue> toList(List<Issue> select){
