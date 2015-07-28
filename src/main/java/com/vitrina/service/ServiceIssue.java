@@ -66,8 +66,14 @@ public class ServiceIssue {
         List<Issue> deleteDB = new LinkedList<>();
         deleteDB.addAll(db);
         for (String strDueDate:dueDates){
-            Predicate<Issue> dueDate = issue -> strDueDate.equals(issue.getDueDate());
-            deleteDB.removeIf(dueDate);
+//            Predicate<Issue> dueDate = issue -> strDueDate.equals(issue.getDueDate());
+            Predicate<Issue> dueDate = new Predicate<Issue>(){
+                @Override
+                public boolean test(Issue issue){
+                    return strDueDate.equals(issue.getDueDate());
+                }
+            };
+//            deleteDB.removeIf(dueDate);
         }
         map.put("db-delete",deleteDB);
 
@@ -79,7 +85,13 @@ public class ServiceIssue {
         List<Issue> insertDB = new LinkedList<>();
         insertDB.addAll(updateDB);
         for (Issue DB:deleteDB) {
-            Predicate<Issue> id = issue -> Integer.valueOf(DB.getId()).equals(issue.getId());
+//            Predicate<Issue> id = issue -> Integer.valueOf(DB.getId()).equals(issue.getId());
+            Predicate<Issue> id = new Predicate<Issue>(){
+                @Override
+                public boolean test(Issue issue) {
+                    return Integer.valueOf(DB.getId()).equals(issue.getId());
+                }
+            };
             insertDB.removeIf(id);
         }
         map.put("db-add",insertDB);

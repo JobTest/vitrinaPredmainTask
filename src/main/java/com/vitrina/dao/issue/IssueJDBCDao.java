@@ -18,6 +18,7 @@ public class IssueJDBCDao implements IssueDao {
     private PreparedStatement preparedStatement = null;
     private ResultSet                 resultSet = null;
 
+    @Override
     public List<Issue> getAll(List<Issue> select) throws Exception {
         try {
             preparedStatement = FactoryDriver.getConnection().prepareStatement("SELECT * FROM issue");
@@ -30,6 +31,7 @@ public class IssueJDBCDao implements IssueDao {
         return select;
     }
 
+    @Override
     public void add(List<Issue> insert) throws Exception {
         try {
             preparedStatement = FactoryDriver.getConnection().prepareStatement("INSERT INTO issue (id,parent_id,project_id,project_name,tracker_id,tracker_name,fixed_version_id,fixed_version_name,status_id,status_name,subject,start_date,due_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -56,6 +58,7 @@ public class IssueJDBCDao implements IssueDao {
         } finally { if (preparedStatement != null) preparedStatement.close(); }
     }
 
+    @Override
     public void delete(int id) throws Exception {
         try {
             preparedStatement = FactoryDriver.getConnection().prepareStatement("DELETE FROM issues WHERE id=?");

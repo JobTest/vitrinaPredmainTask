@@ -19,7 +19,7 @@ public class App {
         System.out.println("\n********************************[ SAX-Parser ]*********************************");
         String[] files = {"issue1.xml","issue2.xml","issue3.xml"};
         service.map.put("sax-upload", service.toList(files));
-        service.print(service.map.get("sax-upload"));
+//        service.print(service.map.get("sax-upload"));
 
         System.out.println("\n********************************[ DB-Add ]*********************************");
         String[] dueDates = {"0","10","100"};
