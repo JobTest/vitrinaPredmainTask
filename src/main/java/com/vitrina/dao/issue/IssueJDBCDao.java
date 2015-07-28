@@ -54,7 +54,12 @@ public class IssueJDBCDao implements IssueDao {
             }
             preparedStatement.executeBatch();
             FactoryDriver.getConnection().commit();
-        } catch (SQLException e) { System.err.println(e.getMessage());
+        } catch (SQLException e) {
+            System.err.println("--add--");
+            try {
+                /* When this code is executed, update statement is hits error, and make both insert and update statements rollback together */
+                FactoryDriver.getConnection().rollback();
+            } catch (SQLException e1) { System.err.println("--rollback--"); }
         } finally { if (preparedStatement != null) preparedStatement.close(); }
     }
 
@@ -64,7 +69,12 @@ public class IssueJDBCDao implements IssueDao {
             preparedStatement = FactoryDriver.getConnection().prepareStatement("DELETE FROM issues WHERE id=?");
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
-        } catch (SQLException e) { System.err.println(e.getMessage());
+        } catch (SQLException e) {
+            System.err.println("--delete--");
+            try {
+                /* When this code is executed, update statement is hits error, and make both insert and update statements rollback together */
+                FactoryDriver.getConnection().rollback();
+            } catch (SQLException e1) { System.err.println("--rollback--"); }
         } finally { if (preparedStatement != null) preparedStatement.close(); }
     }
 }

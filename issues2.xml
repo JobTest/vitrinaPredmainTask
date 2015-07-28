@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<issues>
+    <issue>
+        <Id>150507</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>6</TrackerId>
+        <TrackerName>Проектирование</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9298</FixedVersionId>
+        <FixedVersionName>2.3. Доработки</FixedVersionName>
+        <Subject>Документация по модулю шаблонов </Subject>
+        <StartDate>2013-08-29T00:00:00+03:00</StartDate>
+        <DueDate>100</DueDate>
+    </issue>
+    <issue>
+        <Id>150527</Id>
+        <ParentId>148266</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9298</FixedVersionId>
+        <FixedVersionName>2.3. Доработки</FixedVersionName>
+        <Subject>оптимизация работы с БД</Subject>
+        <StartDate>2013-08-09T00:00:00+03:00</StartDate>
+        <DueDate>100</DueDate>
+    </issue>
+    <issue>
+        <Id>150537</Id>
+        <ParentId>150281</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Доработка метода getTemplatesByCisCache</Subject>
+        <StartDate>2013-08-21T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-05T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>150542</Id>
+        <ParentId>150281</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>ТЗ</Subject>
+        <StartDate>2013-08-21T00:00:00+03:00</StartDate>
+        <DueDate>2013-08-22T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>150544</Id>
+        <ParentId>150281</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Разработка процедуры</Subject>
+        <StartDate>2013-08-22T00:00:00+03:00</StartDate>
+        <DueDate>100</DueDate>
+    </issue>
+    <issue>
+        <Id>150545</Id>
+        <ParentId>150281</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Поднятие подписчика шаблонов</Subject>
+        <StartDate>2013-08-22T00:00:00+03:00</StartDate>
+        <DueDate>100</DueDate>
+    </issue>
+    <issue>
+        <Id>150547</Id>
+        <ParentId>150281</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Тестирование! Получение данных с бд кеша и подписчика шаблонов</Subject>
+        <StartDate>2013-08-22T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-06T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>150700</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>1</TrackerId>
+        <TrackerName>Ошибка</TrackerName>
+        <StatusId>2</StatusId>
+        <StatusName>В работе</StatusName>
+        <FixedVersionId>9298</FixedVersionId>
+        <FixedVersionName>2.3. Доработки</FixedVersionName>
+        <Subject>Некорректные коды ошибок задолженности</Subject>
+        <StartDate>2013-08-22T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-04T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>150806</Id>
+        <ParentId>148266</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Переделка метода получения отчетов по услугам</Subject>
+        <StartDate>2013-08-22T00:00:00+03:00</StartDate>
+        <DueDate>100</DueDate>
+    </issue>
+    <issue>
+        <Id>150821</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>2</TrackerId>
+        <TrackerName>Улучшение</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9298</FixedVersionId>
+        <FixedVersionName>2.3. Доработки</FixedVersionName>
+        <Subject>расширить ограничение на количество вводимых символов в поле </Subject>
+        <StartDate>2013-08-22T00:00:00+03:00</StartDate>
+        <DueDate>100</DueDate>
+    </issue>
+    <issue>
+        <Id>150824</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>2</TrackerId>
+        <TrackerName>Улучшение</TrackerName>
+        <StatusId>7</StatusId>
+        <StatusName>На тестировании</StatusName>
+        <FixedVersionId>9298</FixedVersionId>
+        <FixedVersionName>2.3. Доработки</FixedVersionName>
+        <Subject>Изменение обработки ошибок в модуле шаблонов </Subject>
+        <StartDate>2013-08-22T00:00:00+03:00</StartDate>
+        <DueDate>2013-08-23T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>150946</Id>
+        <ParentId>149506</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Создать скрипт выявления дубликатов шаблонов по новой идеологии</Subject>
+        <StartDate>2013-08-23T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>151015</Id>
+        <ParentId>148266</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>переделать методы смены состояния</Subject>
+        <StartDate>2013-08-23T00:00:00+03:00</StartDate>
+        <DueDate>100</DueDate>
+    </issue>
+    <issue>
+        <Id>151117</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>2</TrackerId>
+        <TrackerName>Улучшение</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9298</FixedVersionId>
+        <FixedVersionName>2.3. Доработки</FixedVersionName>
+        <Subject>Перевод шаблонов ПР24 в БД шаблонов</Subject>
+        <StartDate>2013-08-23T00:00:00+03:00</StartDate>
+        <DueDate>70</DueDate>
+    </issue>
+    <issue>
+        <Id>151118</Id>
+        <ParentId>151117</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>2</StatusId>
+        <StatusName>В работе</StatusName>
+        <FixedVersionId>9298</FixedVersionId>
+        <FixedVersionName>2.3. Доработки</FixedVersionName>
+        <Subject>Анализ получателей. Составление инструкции по работе с ними. </Subject>
+        <StartDate>2013-08-23T00:00:00+03:00</StartDate>
+        <DueDate>40</DueDate>
+    </issue>
+    <issue>
+        <Id>151121</Id>
+        <ParentId>151117</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9298</FixedVersionId>
+        <FixedVersionName>2.3. Доработки</FixedVersionName>
+        <Subject>Выборка получателей</Subject>
+        <StartDate>2013-08-23T00:00:00+03:00</StartDate>
+        <DueDate>100</DueDate>
+    </issue>
+    <issue>
+        <Id>151358</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>6</TrackerId>
+        <TrackerName>Проектирование</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Доработки требований версия 2.4</Subject>
+        <StartDate>2013-08-23T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-28T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>151360</Id>
+        <ParentId>151358</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Оформление принципов работы в Редмайн</Subject>
+        <StartDate>2013-08-23T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>151379</Id>
+        <ParentId>121720</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9423</FixedVersionId>
+        <FixedVersionName>2.6 Доработки API</FixedVersionName>
+        <Subject>Разработка в ДАО</Subject>
+        <StartDate>2013-08-27T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>151383</Id>
+        <ParentId>121720</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9423</FixedVersionId>
+        <FixedVersionName>2.6 Доработки API</FixedVersionName>
+        <Subject>Разработка в БД</Subject>
+        <StartDate>2013-08-27T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>151384</Id>
+        <ParentId>121840</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9423</FixedVersionId>
+        <FixedVersionName>2.6 Доработки API</FixedVersionName>
+        <Subject>Разработка в ДАО</Subject>
+        <StartDate>2013-08-27T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>151385</Id>
+        <ParentId>121840</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9423</FixedVersionId>
+        <FixedVersionName>2.6 Доработки API</FixedVersionName>
+        <Subject>Разработка в БД</Subject>
+        <StartDate>2013-08-27T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>151387</Id>
+        <ParentId>121718</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9423</FixedVersionId>
+        <FixedVersionName>2.6 Доработки API</FixedVersionName>
+        <Subject>Разработка в ДАО</Subject>
+        <StartDate>2013-08-27T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>151390</Id>
+        <ParentId>121718</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9423</FixedVersionId>
+        <FixedVersionName>2.6 Доработки API</FixedVersionName>
+        <Subject>Разработка в БД</Subject>
+        <StartDate>2013-08-27T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>151428</Id>
+        <ParentId>150128</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Сервис добавления заявки добавить на вход новый блок (API 2.x)</Subject>
+        <StartDate>2013-08-27T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-09T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>151439</Id>
+        <ParentId>150128</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Модуль расчета комиссий.Для второй версии ПК Комиссия</Subject>
+        <StartDate>2013-08-27T00:00:00+03:00</StartDate>
+        <DueDate>100</DueDate>
+    </issue>
+    <issue>
+        <Id>151468</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>1</TrackerId>
+        <TrackerName>Ошибка</TrackerName>
+        <StatusId>4</StatusId>
+        <StatusName>Обратная связь</StatusName>
+        <FixedVersionId>9298</FixedVersionId>
+        <FixedVersionName>2.3. Доработки</FixedVersionName>
+        <Subject>NullPointerException при запуске таски балковой загрузки</Subject>
+        <StartDate>2013-08-27T00:00:00+03:00</StartDate>
+        <DueDate>2013-08-28T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>152424</Id>
+        <ParentId>149502</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Обновить спецификацию ПК Шаблонов по методу клонирования.</Subject>
+        <StartDate>2013-09-03T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-03T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>152506</Id>
+        <ParentId>149502</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Добавить проверки в процедуру dbo.CreateTemplByIDForWebCashier</Subject>
+        <StartDate>2013-08-29T00:00:00+03:00</StartDate>
+        <DueDate>100</DueDate>
+    </issue>
+    <issue>
+        <Id>152517</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>2</TrackerId>
+        <TrackerName>Улучшение</TrackerName>
+        <StatusId>7</StatusId>
+        <StatusName>На тестировании</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Макрос PERIOD  в назначении платежа</Subject>
+        <StartDate>2013-08-29T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-09T00:00:00+03:00</DueDate>
+    </issue>
+</issues>

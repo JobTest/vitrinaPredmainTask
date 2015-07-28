@@ -13,7 +13,7 @@ import java.util.Vector;
 */
 public class JDBCDriver implements Driver {
     private Vector<Connection> availableConns = new Vector<Connection>(); /* Первый будет содержать список доступных для использования соединений */
-    private Vector<Connection> usedConns = new Vector<Connection>(); /* Второй список используемых в любой момент времени */
+    private Vector<Connection> usedConns = new Vector<Connection>();      /* Второй список используемых в любой момент времени */
     /* Кроме этого определяется переменная url, которая будет хранить строку подключения к бд: */
     private String url;
     private String user;
@@ -27,8 +27,8 @@ public class JDBCDriver implements Driver {
         try {
             Class.forName(driver);
         } catch (Exception e) { e.printStackTrace(); }
-        this.url = url;
-        this.user = user;
+        this.url    = url;
+        this.user   = user;
         this.passwd = passwd;
         for (int i=0; i<initConnCnt; i++)
             availableConns.addElement(createConnection());
@@ -37,7 +37,7 @@ public class JDBCDriver implements Driver {
         try {
             Class.forName(driver);
         } catch (Exception e) { e.printStackTrace(); }
-        this.url = url;
+        this.url        = url;
         this.properties = properties;
         for (int i=0; i<initConnCnt; i++)
             availableConns.addElement(createConnection());

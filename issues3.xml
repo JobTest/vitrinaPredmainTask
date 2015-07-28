@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<issues>
+    <issue>
+        <Id>152544</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>2</TrackerId>
+        <TrackerName>Улучшение</TrackerName>
+        <StatusId>7</StatusId>
+        <StatusName>На тестировании</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>6891448-Добавление поля "Референс"</Subject>
+        <StartDate>2013-08-30T00:00:00+03:00</StartDate>
+        <DueDate>2013-08-30T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>152802</Id>
+        <ParentId>152544</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Добавить поле референс в квитанцию</Subject>
+        <StartDate>2013-08-30T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>152925</Id>
+        <ParentId>152544</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Доработка DAO. Метод loadRequest</Subject>
+        <StartDate>100</StartDate>
+        <DueDate>100</DueDate>
+    </issue>
+    <issue>
+        <Id>153032</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>2</TrackerId>
+        <TrackerName>Улучшение</TrackerName>
+        <StatusId>7</StatusId>
+        <StatusName>На тестировании</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Сопоставление задолженности (переделать механизм)</Subject>
+        <StartDate>2013-08-30T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-09T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>153036</Id>
+        <ParentId>128536</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9298</FixedVersionId>
+        <FixedVersionName>2.3. Доработки</FixedVersionName>
+        <Subject>Тестирование.Задолженность.Добавление обработки ситуаций при нарушении порядка выполнения операций в API</Subject>
+        <StartDate>2013-08-30T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>153079</Id>
+        <ParentId>153032</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Переименовать ошибку KС_Err0034 и поменять тип</Subject>
+        <StartDate>2013-08-30T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-09T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>153081</Id>
+        <ParentId>153032</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Удалить ошибку KС_Err0035</Subject>
+        <StartDate>2013-08-30T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-09T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>153447</Id>
+        <ParentId>145991</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Повторный вызов сервиса создания шаблонов по заявке</Subject>
+        <StartDate>2013-09-02T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-02T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>153645</Id>
+        <ParentId>151358</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Мои задачи Нарская 2.4</Subject>
+        <StartDate>2013-09-02T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-28T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>153665</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>1</TrackerId>
+        <TrackerName>Ошибка</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>NaB.Не работает скоростная комиссия</Subject>
+        <StartDate>2013-09-03T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-06T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>153719</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>2</TrackerId>
+        <TrackerName>Улучшение</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9298</FixedVersionId>
+        <FixedVersionName>2.3. Доработки</FixedVersionName>
+        <Subject>Добавление новых полей в табл. load_log (для загрузки внешних шаблонов)</Subject>
+        <StartDate>2013-09-02T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>153862</Id>
+        <ParentId>145991</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>7</StatusId>
+        <StatusName>На тестировании</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Тестирование! Проверить сохранение/обновление шаблона по ид заявки</Subject>
+        <StartDate>2013-09-03T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>153984</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>2</TrackerId>
+        <TrackerName>Улучшение</TrackerName>
+        <StatusId>4</StatusId>
+        <StatusName>Обратная связь</StatusName>
+        <FixedVersionId>9298</FixedVersionId>
+        <FixedVersionName>2.3. Доработки</FixedVersionName>
+        <Subject>На selectPA не вернулись услуги</Subject>
+        <StartDate>2013-09-03T00:00:00+03:00</StartDate>
+        <DueDate>100</DueDate>
+    </issue>
+    <issue>
+        <Id>154008</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>7</TrackerId>
+        <TrackerName>Тестирование</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Перепроверить метод create  </Subject>
+        <StartDate>2013-09-03T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>154197</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>2</TrackerId>
+        <TrackerName>Улучшение</TrackerName>
+        <StatusId>7</StatusId>
+        <StatusName>На тестировании</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Сервис получение настроек получателя. Порядок отображения параметров поиска</Subject>
+        <StartDate>2013-09-03T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-09T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>154211</Id>
+        <ParentId>153665</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Исключить проверку и обновление услуги комиссии из общего порядка формирования платежа</Subject>
+        <StartDate>2013-09-03T00:00:00+03:00</StartDate>
+        <DueDate>100</DueDate>
+    </issue>
+    <issue>
+        <Id>154242</Id>
+        <ParentId>153665</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>2</StatusId>
+        <StatusName>В работе</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Доработка расчета комиссии при выборе клиентом опциональной комиссии</Subject>
+        <StartDate>2013-09-03T00:00:00+03:00</StartDate>
+        <DueDate>10</DueDate>
+    </issue>
+    <issue>
+        <Id>154553</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>8</TrackerId>
+        <TrackerName>Разработка</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>0</FixedVersionId>
+        <Subject>Рефакторинг поддерживаемых сервисов</Subject>
+        <StartDate>2013-09-04T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-04T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>154554</Id>
+        <ParentId>154553</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>0</FixedVersionId>
+        <Subject>Версия  2.4</Subject>
+        <StartDate>2013-09-04T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-04T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>154665</Id>
+        <ParentId>150700</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9298</FixedVersionId>
+        <FixedVersionName>2.3. Доработки</FixedVersionName>
+        <Subject>ошибки с кодами с DT_000005 по DT_000009 включительно в логе tomcat'а должны быть с типом DebtRegularException.</Subject>
+        <StartDate>2013-09-04T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>154864</Id>
+        <ParentId>150281</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Добавить поля в dbo.GetExtTemplatesByCis_Short</Subject>
+        <StartDate>2013-09-05T00:00:00+03:00</StartDate>
+        <DueDate>100</DueDate>
+    </issue>
+    <issue>
+        <Id>155039</Id>
+        <ParentId>147444</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9422</FixedVersionId>
+        <FixedVersionName>2.5 Доработки API</FixedVersionName>
+        <Subject>Сервисы "Добавление заявки" и "Сохранение заявки как шаблон". Анонимный клиент</Subject>
+        <StartDate>2013-09-19T00:00:00+03:00</StartDate>
+        <DueDate>2013-10-14T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>155045</Id>
+        <ParentId>147444</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9422</FixedVersionId>
+        <FixedVersionName>2.5 Доработки API</FixedVersionName>
+        <Subject>Сервис сохранения заявки в Платежный портал. Анонимный клиент</Subject>
+        <StartDate>2013-09-19T00:00:00+03:00</StartDate>
+        <DueDate>2013-10-14T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>155302</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>7</TrackerId>
+        <TrackerName>Тестирование</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9298</FixedVersionId>
+        <FixedVersionName>2.3. Доработки</FixedVersionName>
+        <Subject>Создание тест-кейсов</Subject>
+        <StartDate>2013-09-06T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>155390</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>1</TrackerId>
+        <TrackerName>Ошибка</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Нельзя выбрать получателя если не настроены параметры поиска для кассы старого Биплана</Subject>
+        <StartDate>2013-09-06T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>155454</Id>
+        <ParentId>153665</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>3</StatusId>
+        <StatusName>Решена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Не работает скоростная комиссия (доработка)</Subject>
+        <StartDate>2013-09-06T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-06T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>155639</Id>
+        <ParentId>147444</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9422</FixedVersionId>
+        <FixedVersionName>2.5 Доработки API</FixedVersionName>
+        <Subject>Сервис получения оплаченных заявок. Анонимный клиент</Subject>
+        <StartDate>2013-09-19T00:00:00+03:00</StartDate>
+        <DueDate>2013-10-14T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>155646</Id>
+        <ParentId>147444</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9422</FixedVersionId>
+        <FixedVersionName>2.5 Доработки API</FixedVersionName>
+        <Subject>Сервис сторнирования оплаченной заявки. Анонимный клиент</Subject>
+        <StartDate>2013-09-19T00:00:00+03:00</StartDate>
+        <DueDate>2013-10-14T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>155660</Id>
+        <ParentId>147444</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9422</FixedVersionId>
+        <FixedVersionName>2.5 Доработки API</FixedVersionName>
+        <Subject>Сервис получения суммы платежей клиента за календарный месяц с 1-го числа. Анонимный клиент</Subject>
+        <StartDate>2013-09-19T00:00:00+03:00</StartDate>
+        <DueDate>2013-10-14T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>155662</Id>
+        <ParentId>147444</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9422</FixedVersionId>
+        <FixedVersionName>2.5 Доработки API</FixedVersionName>
+        <Subject>Изменения DAO. Анонимный клиент.</Subject>
+        <StartDate>2013-09-19T00:00:00+03:00</StartDate>
+        <DueDate>2013-10-14T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>155689</Id>
+        <ParentId>145742</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9422</FixedVersionId>
+        <FixedVersionName>2.5 Доработки API</FixedVersionName>
+        <Subject>Cервисы "Получение реквизитов получателя" и "Получение реквизитов по шаблону"</Subject>
+        <StartDate>2013-09-19T00:00:00+03:00</StartDate>
+        <DueDate>2013-10-14T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>155692</Id>
+        <ParentId>145742</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9422</FixedVersionId>
+        <FixedVersionName>2.5 Доработки API</FixedVersionName>
+        <Subject>Сервис "Добавление заявки" и "Сохранение заявки как шаблона"</Subject>
+        <StartDate>2013-09-19T00:00:00+03:00</StartDate>
+        <DueDate>2013-10-14T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>155702</Id>
+        <ParentId>145742</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9422</FixedVersionId>
+        <FixedVersionName>2.5 Доработки API</FixedVersionName>
+        <Subject>Подсистема "Задолженность". Запрет изменения предыдущего значения счетчика</Subject>
+        <StartDate>2013-09-19T00:00:00+03:00</StartDate>
+        <DueDate>2013-10-14T00:00:00+03:00</DueDate>
+    </issue>
+    <issue>
+        <Id>155784</Id>
+        <ParentId>149499</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Тестирование! Апдейт шаблонов. Изменение жестких полей</Subject>
+        <StartDate>2013-09-09T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>155785</Id>
+        <ParentId>0</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>1</TrackerId>
+        <TrackerName>Ошибка</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>В поле "name" тега </Subject>
+        <StartDate>2013-09-09T00:00:00+03:00</StartDate>
+        <DueDate>0</DueDate>
+    </issue>
+    <issue>
+        <Id>155819</Id>
+        <ParentId>151358</ParentId>
+        <ProjectId>2928</ProjectId>
+        <ProjectName>API 2.x</ProjectName>
+        <TrackerId>5</TrackerId>
+        <TrackerName>Scrum</TrackerName>
+        <StatusId>1</StatusId>
+        <StatusName>Новая/Утверждена</StatusName>
+        <FixedVersionId>9299</FixedVersionId>
+        <FixedVersionName>2.4. Доработки</FixedVersionName>
+        <Subject>Уведомление потребителей</Subject>
+        <StartDate>2013-09-09T00:00:00+03:00</StartDate>
+        <DueDate>2013-09-09T00:00:00+03:00</DueDate>
+    </issue>
+</issues>

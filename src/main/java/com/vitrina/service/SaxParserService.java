@@ -10,9 +10,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
- * @author dn200978lak
- */
+*
+* @author dn200978lak
+*/
 public class SaxParserService extends DefaultHandler {
 
     private boolean bIssueID    = false;

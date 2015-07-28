@@ -31,6 +31,7 @@ public class FactoryDriver {
             properties.setProperty("characterEncoding", jdbcProperties.property.getProperty("jdbc.characterEncoding"));
             try {
                 driverManager = JDBCDriver.getInstance(jdbcProperties.property.getProperty("jdbc.url"), jdbcProperties.property.getProperty("jdbc.driver"), 10, properties);
+                /* Эта функция забирает из availableConns очередной Connection и добавляет его в usedConns, затем возвращает это соединение, тем самым он становится используемым: */
                 connect = driverManager.getConnection(); //connect = DriverManager.getConnection(URL, properties);
             } catch (SQLException e) { System.err.print("-SQLException-"); }
         }

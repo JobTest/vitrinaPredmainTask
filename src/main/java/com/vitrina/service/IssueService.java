@@ -2,8 +2,10 @@ package com.vitrina.service;
 
 import com.vitrina.dao.IssueDao;
 import com.vitrina.domain.Issue;
+import com.vitrina.service.jaxb.IssueJAXB;
 import org.xml.sax.SAXException;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
@@ -20,12 +22,12 @@ import java.util.function.Predicate;
  * ****************************************
  * Functional style in Java with predicates
  */
-public class ServiceIssue {
+public class IssueService {
 
     public Map<String, List<Issue>> map;
     public IssueDao                 dao;
 
-    public ServiceIssue(){
+    public IssueService(){
         map = Collections.synchronizedMap(new HashMap<>());
         //dao = FactoryDao.getIssue(DAO.JPA); //dao = FactoryDao.getIssue(DAO.HIBERNATE); //dao = FactoryDao.getIssue(DAO.JDBC);
     }
@@ -64,6 +66,24 @@ public class ServiceIssue {
         }
         return issues;
     }
+//    public List<Issue> toList(String[] files){
+////        JaxbService        service = new JaxbService();
+////        List<IssueJAXB> issuesJAXB = new LinkedList<>();
+////        List<Issue> issues = new LinkedList<>();
+////        try {
+////            for (String file:files)
+////                issuesJAXB.addAll(service.unMarshaling(file));
+////        } catch(JAXBException e){ System.err.println(e.getMessage()); }
+//
+//
+//        JaxbService    service = new JaxbService();
+//        List<Issue> issues = new LinkedList<>();
+//        try {
+//            for (String file:files)
+//                issues.addAll( service.unMarshaling(file) );
+//        } catch(JAXBException e){ System.err.println(e.getMessage()); }
+//        return issues;
+//    }
 
     public void insert(List<Issue> db, List<Issue> sax, String[] dueDates){
         /* Из базы удаляю устаревшие по времени записи */
@@ -77,7 +97,7 @@ public class ServiceIssue {
                     return strDueDate.equals(issue.getDueDate());
                 }
             };
-//            deleteDB.removeIf(dueDate);
+            deleteDB.removeIf(dueDate);
         }
         map.put("db-delete",deleteDB);
 

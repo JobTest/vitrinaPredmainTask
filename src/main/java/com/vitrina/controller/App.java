@@ -1,6 +1,6 @@
 package com.vitrina.controller;
 
-import com.vitrina.service.ServiceIssue;
+import com.vitrina.service.IssueService;
 
 import java.util.LinkedList;
 
@@ -9,27 +9,27 @@ import java.util.LinkedList;
  */
 public class App {
 
-    private ServiceIssue service;
+    private IssueService service;
 
     public void start() {
         System.out.println("\n********************************[ DB-getAll ]*********************************");
         service.map.put("db-getAll", service.toList(new LinkedList<>()));
-//        service.print(service.map.get("db-getAll"));
+        service.print(service.map.get("db-getAll"));
 
         System.out.println("\n********************************[ SAX-Parser ]*********************************");
         String[] files = {"issue1.xml","issue2.xml","issue3.xml"};
         service.map.put("sax-upload", service.toList(files));
-        service.print(service.map.get("sax-upload"));
+//        service.print(service.map.get("sax-upload"));
 
         System.out.println("\n********************************[ DB-Add ]*********************************");
         String[] dueDates = {"0","10","100"};
 //        service.insert(service.map.get("db-getAll"), service.map.get("sax-upload"), dueDates);
     }
 
-    public ServiceIssue getService() {
+    public IssueService getService() {
         return service;
     }
-    public void setService(ServiceIssue service) {
+    public void setService(IssueService service) {
         this.service = service;
     }
 }
