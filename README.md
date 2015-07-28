@@ -1,7 +1,8 @@
 vitrinaPredmainTask
 ===================
 
-(spring несколько баз данных)
+(spring несколько баз данных) Распределённая система кеша ehcache для приложений любого уровня
+---
 http://acestime.com/2012/01/11/spring-framework-mongodb/#.VbeSkmD7t0w
 https://gkruglov.wordpress.com/2012/08/25/пример-использования-dbunit-для-наполнени/
 http://atamanenko.blogspot.com/2012/02/jpa-spring-data-jpa.html
@@ -20,6 +21,22 @@ http://rsdn.ru/forum/java/3716694.flat
 https://github.com/Cache-Spring/HibernateEHCacheExample/blob/master/src/main/java/com/journaldev/hibernate/main/HibernateEHCacheMain.java
 (hibernate limit cache size config)
 * http://ehcache.org/documentation/2.8/configuration/cache-size
+* https://github.com/Cache-Spring/docs/blob/master/spring.txt
 http://apmblog.dynatrace.com/2009/03/24/understanding-caching-in-hibernate-part-three-the-second-level-cache/
 https://docs.jboss.org/hibernate/orm/3.3/reference/en-US/html/session-configuration.html
 * https://github.com/Cache-Spring/docs/blob/master/spring.txt
+* http://ehcache.org/
+* http://habrahabr.ru/post/25140/
+* http://spring-projects.ru/guides/caching/
+http://habrahabr.ru/post/98972/
+
+(hibernate limit cache size config)
+-----
+http://ehcache.org/documentation/2.8/configuration/cache-size
+http://apmblog.dynatrace.com/2009/03/24/understanding-caching-in-hibernate-part-three-the-second-level-cache/
+https://docs.jboss.org/hibernate/orm/3.3/reference/en-US/html/session-configuration.html
+
+
+http://habrahabr.ru/sandbox/41444/
+http://www.mkyong.com/jdbc/jdbc-preparedstatement-example-batch-update/
+http://docs.oracle.com/javase/7/docs/api/javax/sql/rowset/Predicate.html
