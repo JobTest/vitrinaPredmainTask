@@ -11,7 +11,7 @@
         <property name="dao" ref="dao"></property>
     </bean>
 
-    <bean id="dao" factory-method="getIssueJDBCDao" class="com.vitrina.dao.FactoryDao"></bean> <!--<bean id="dao" factory-bean="hibernateDao"></bean>-->
+    <bean id="dao" factory-method="getIssueHibernateDao" class="com.vitrina.dao.FactoryDao"></bean> <!--<bean id="dao" factory-bean="hibernateDao"></bean>-->
     <!--<bean id="hibernateDao" class="com.vitrina.dao.issue.IssueHibernateDao"></bean>-->
     <!--<bean id="jpaDao" class="com.vitrina.dao.issue.IssueJPADao"></bean>-->
     <!--<bean id="dbcDao" class="com.vitrina.dao.issue.IssueJDBCDao"></bean>-->

@@ -1,5 +1,6 @@
 package com.vitrina.service;
 
+import com.vitrina.domain.Issue;
 import com.vitrina.domain.IssueJDBC;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -18,8 +19,8 @@ public class SaxParserService extends DefaultHandler {
     private boolean bSubject    = false;
     private boolean bStart_date = false;
     private boolean bDue_date   = false;
-    private IssueJDBC issue;
-    private List<IssueJDBC> issues;
+    private Issue issue;
+    private List<Issue> issues;
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
@@ -100,7 +101,7 @@ public class SaxParserService extends DefaultHandler {
         super.endDocument();
     }
 
-    public List<IssueJDBC> getIssues(){
+    public List<Issue> getIssues(){
         return issues;
     }
 }
