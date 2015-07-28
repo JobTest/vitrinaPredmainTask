@@ -1,6 +1,6 @@
 package com.vitrina.controller;
 
-import com.vitrina.service.IssueService;
+import com.vitrina.service.dbService;
 
 import java.util.LinkedList;
 
@@ -9,7 +9,7 @@ import java.util.LinkedList;
  */
 public class App {
 
-    private IssueService service;
+    private dbService service;
 
     public void start() {
         System.out.println("\n********************************[  DB-getAll  ]*********************************");
@@ -26,10 +26,10 @@ public class App {
         service.insert(service.map.get("db-getAll"), service.map.get("jaxb-upload"), dueDates);
     }
 
-    public IssueService getService() {
+    public dbService getService() {
         return service;
     }
-    public void setService(IssueService service) {
+    public void setService(dbService service) {
         this.service = service;
     }
 }

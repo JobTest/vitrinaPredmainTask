@@ -22,13 +22,13 @@ import java.util.function.Predicate;
  * ****************************************
  * Functional style in Java with predicates
  */
-public class IssueService {
+public class dbService {
 
     public Map<String, List<Issue>> map;
     public IssueDao                 dao;
     public JaxbService              jaxb;
 
-    public IssueService(){
+    public dbService(){
         map = Collections.synchronizedMap(new HashMap<>());
         //dao = FactoryDao.getIssue(DAO.JPA); //dao = FactoryDao.getIssue(DAO.HIBERNATE); //dao = FactoryDao.getIssue(DAO.JDBC);
         //jaxb = new JaxbService();
