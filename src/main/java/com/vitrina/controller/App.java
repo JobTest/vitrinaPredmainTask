@@ -16,18 +16,21 @@ public class App {
         System.out.println("\n********************************[ getAll << DB (" + service.map.get("db-getAll").size() + ") ]******************************");
 //        service.print(service.map.get("db-getAll"));
 
-        String[] files = {"issue1.xml","issue2.xml"}; //String[] files = {"issue1.xml","issue2.xml","issue3.xml"};
-        service.map.put("jaxb-upload", service.toList(files));
-        System.out.println("\n********************************[ Parser << JAXB (" + service.map.get("jaxb-upload").size() + ") ]****************************");
-//        service.print(service.map.get("jaxb-upload"));
+        String[] files = {"issue1.xml","issue2.xml","issue3.xml"}; //String[] files = {"issue1.xml","issue2.xml","issue3.xml"};
+        service.map.put("xml-upload", service.toList(files));
+        System.out.println("\n********************************[ Parser << XML (" + service.map.get("xml-upload").size() + ") ]*****************************");
+//        service.print(service.map.get("xml-upload"));
 
         String[] dueDates = {"0","10","20","40","70","100"};
-        service.prepareDB(service.map.get("db-getAll"), service.map.get("jaxb-upload"), dueDates);
-        System.out.println("\n********************************[ Add >> DB (" + service.map.get("db-add").size() + ") ]*********************************");
-        System.out.println("--------------------------------");
-        System.out.println( "db-delete: |>> (" + (service.map.get("db-getAll").size()-service.map.get("db-delete").size()) + ")  -" + service.map.get("db-delete").size());
-        System.out.println( "db-update: |>> (" + (service.map.get("db-getAll").size()-service.map.get("db-delete").size()) + ")  ~" + service.map.get("db-update").size() );
-        System.out.println( "   db-add: |>> (" + (service.map.get("db-getAll").size()-service.map.get("db-delete").size()+service.map.get("db-add").size()) + ") +" + service.map.get("db-add").size() );
+        service.prepareDB(service.map.get("db-getAll"), service.map.get("xml-upload"), dueDates);
+        System.out.println("\n**********************[ Delete/Update/Add >> DB (-" + service.map.get("db-delete").size() + "/~" + service.map.get("db-update").size() + "/+" + service.map.get("db-add").size() + ") ]**********************");
+//        System.out.println( "db-delete: |>> (" + (service.map.get("db-getAll").size()-service.map.get("db-delete").size()) + ")  -" + service.map.get("db-delete").size());
+//        System.out.println( "db-update: |>> (" + (service.map.get("db-getAll").size()-service.map.get("db-delete").size()) + ")  ~" + service.map.get("db-update").size() );
+//        System.out.println( "   db-add: |>> (" + (service.map.get("db-getAll").size()-service.map.get("db-delete").size()+service.map.get("db-add").size()) + ") +" + service.map.get("db-add").size() );
+        service.executeDB(service.map.get("db-delete"), service.map.get("db-update"), service.map.get("db-add"));
+
+//        System.out.println("-------------------------------------------");
+//        service.print(service.map.get("db-add"));
     }
 
     public dbService getService() {

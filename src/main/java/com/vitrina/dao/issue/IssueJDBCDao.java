@@ -17,15 +17,18 @@ public class IssueJDBCDao implements IssueDao {
 
     private PreparedStatement preparedStatement = null;
     private ResultSet                 resultSet = null;
-
+    private final String            SQL_GET_ALL = "SELECT * FROM issue";
+    private final String                SQL_ADD = "INSERT INTO issue (id,parent_id,project_id,project_name,tracker_id,tracker_name,fixed_version_id,fixed_version_name,status_id,status_name,subject,start_date,due_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private final String             SQL_UPDATE = "UPDATE issue SET parent_id=?,project_id=?,project_name=?,tracker_id=?,tracker_name=?,fixed_version_id=?,fixed_version_name=?,status_id=?,status_name=?,subject=?,start_date=?,due_date=? WHERE id=?";
+    private final String             SQL_DELETE = "DELETE FROM issues WHERE id=?";
     @Override
     public List<Issue> getAll(List<Issue> select) throws Exception {
         try {
-            preparedStatement = FactoryDriver.getConnection().prepareStatement("SELECT * FROM issue");
+            preparedStatement = FactoryDriver.getConnection().prepareStatement(SQL_GET_ALL);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
                 select.add( new IssueJDBC(resultSet.getInt("id"),resultSet.getInt("parent_id"),resultSet.getInt("project_id"),resultSet.getString("project_name"),resultSet.getInt("tracker_id"),resultSet.getString("tracker_name"),resultSet.getInt("status_id"),resultSet.getString("status_name"),resultSet.getInt("fixed_version_id"),resultSet.getString("fixed_version_name"),resultSet.getString("subject"),resultSet.getString("start_date"),resultSet.getString("due_date")) );
-        } catch(SQLException e){ System.err.print("--SQLException-- " + e.getMessage());
+        } catch(SQLException e){ System.err.print("[getAll] " + e.getMessage());
         } finally { if (preparedStatement != null) preparedStatement.close(); if (resultSet != null) resultSet.close(); }
 
         return select;
@@ -34,7 +37,7 @@ public class IssueJDBCDao implements IssueDao {
     @Override
     public void add(List<Issue> insert) throws Exception {
         try {
-            preparedStatement = FactoryDriver.getConnection().prepareStatement("INSERT INTO issue (id,parent_id,project_id,project_name,tracker_id,tracker_name,fixed_version_id,fixed_version_name,status_id,status_name,subject,start_date,due_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            preparedStatement = FactoryDriver.getConnection().prepareStatement(SQL_ADD);
             FactoryDriver.getConnection().setAutoCommit(false);
             for (Issue issue:insert) {
                 preparedStatement.setInt(1, issue.getId());
@@ -55,11 +58,11 @@ public class IssueJDBCDao implements IssueDao {
             preparedStatement.executeBatch();
             FactoryDriver.getConnection().commit();
         } catch (SQLException e) {
-            System.err.println("--add-- " + e.getMessage());
+            System.err.println("[add] " + e.getMessage());
             try {
                 /* When this code is executed, update statement is hits error, and make both insert and update statements rollback together */
                 FactoryDriver.getConnection().rollback();
-            } catch (SQLException e1) { System.err.println("--rollback--"); }
+            } catch (SQLException e1) { System.err.println("[rollback] " + e.getMessage()); }
         } finally { if (preparedStatement != null) preparedStatement.close(); }
     }
 
@@ -67,7 +70,7 @@ public class IssueJDBCDao implements IssueDao {
     public void update(Issue issue) throws Exception {
         try{
 //            preparedStatement = FactoryDriver.getConnection().prepareStatement("UPDATE issue SET parent_id='" + issue.getParentId() + "',project_id='" + issue.getProjectId() + "',project_name='" + issue.getProjectName() + "',tracker_id='" + issue.getTrackerId() + "',tracker_name='" + issue.getTrackerName() + "',fixed_version_id='" + issue.getFixedVersionId() + "',fixed_version_name='" + issue.getFixedVersionName() + "',status_id='" + issue.getStatusId() + "',status_name='" + issue.getStatusName() + "',subject='" + issue.getSubject() + "',start_date='" + issue.getStartDate() + "',due_date='" + issue.getDueDate() + "' WHERE id='" + issue.getId() + "'");
-            preparedStatement = FactoryDriver.getConnection().prepareStatement("UPDATE issue SET parent_id=?,project_id=?,project_name=?,tracker_id=?,tracker_name=?,fixed_version_id=?,fixed_version_name=?,status_id=?,status_name=?,subject=?,start_date=?,due_date=? WHERE id=?");
+            preparedStatement = FactoryDriver.getConnection().prepareStatement(SQL_UPDATE);
             preparedStatement.setInt(1, issue.getParentId());
             preparedStatement.setInt(2, issue.getProjectId());
             preparedStatement.setString(3, issue.getProjectName());
@@ -83,17 +86,17 @@ public class IssueJDBCDao implements IssueDao {
             preparedStatement.setInt(13, issue.getId());
             FactoryDriver.getConnection().commit();
         } catch (SQLException e) {
-            System.err.println("--update-- " + e.getMessage());
+            System.err.println("[update] " + e.getMessage());
             try {
                 FactoryDriver.getConnection().rollback();
-            } catch (SQLException e1) { System.err.println("--rollback--"); }
+            } catch (SQLException e1) { System.err.println("[rollback] " + e.getMessage()); }
         }
     }
     public void update(List<Issue> issues) throws Exception {
         try {
             for (Issue issue:issues){
 //                preparedStatement = FactoryDriver.getConnection().prepareStatement("UPDATE issue SET parent_id='" + issue.getParentId() + "',project_id='" + issue.getProjectId() + "',project_name='" + issue.getProjectName() + "',tracker_id='" + issue.getTrackerId() + "',tracker_name='" + issue.getTrackerName() + "',fixed_version_id='" + issue.getFixedVersionId() + "',fixed_version_name='" + issue.getFixedVersionName() + "',status_id='" + issue.getStatusId() + "',status_name='" + issue.getStatusName() + "',subject='" + issue.getSubject() + "',start_date='" + issue.getStartDate() + "',due_date='" + issue.getDueDate() + "' WHERE id='" + issue.getId() + "'");
-                preparedStatement = FactoryDriver.getConnection().prepareStatement("UPDATE issue SET parent_id=?,project_id=?,project_name=?,tracker_id=?,tracker_name=?,fixed_version_id=?,fixed_version_name=?,status_id=?,status_name=?,subject=?,start_date=?,due_date=? WHERE id=?");
+                preparedStatement = FactoryDriver.getConnection().prepareStatement(SQL_UPDATE);
                 preparedStatement.setInt(1, issue.getParentId());
                 preparedStatement.setInt(2, issue.getProjectId());
                 preparedStatement.setString(3, issue.getProjectName());
@@ -111,25 +114,25 @@ public class IssueJDBCDao implements IssueDao {
             }
             FactoryDriver.getConnection().commit();
         } catch (SQLException e) {
-            System.err.println("--update-- " + e.getMessage());
+            System.err.println("[update] " + e.getMessage());
             try {
                 FactoryDriver.getConnection().rollback();
-            } catch (SQLException e1) { System.err.println("--rollback--"); }
+            } catch (SQLException e1) { System.err.println("[rollback] " + e.getMessage()); }
         }
     }
 
     @Override
     public void delete(int id) throws Exception {
         try {
-            preparedStatement = FactoryDriver.getConnection().prepareStatement("DELETE FROM issues WHERE id=?");
+            preparedStatement = FactoryDriver.getConnection().prepareStatement(SQL_DELETE);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("--delete-- " + e.getMessage());
+            System.err.println("[delete] " + e.getMessage());
             try {
                 /* When this code is executed, update statement is hits error, and make both insert and update statements rollback together */
                 FactoryDriver.getConnection().rollback();
-            } catch (SQLException e1) { System.err.println("--rollback--"); }
+            } catch (SQLException e1) { System.err.println("[rollback]" + e.getMessage()); }
         } finally { if (preparedStatement != null) preparedStatement.close(); }
     }
 }

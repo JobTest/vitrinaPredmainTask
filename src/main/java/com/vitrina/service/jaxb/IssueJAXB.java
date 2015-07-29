@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class IssueJAXB implements Issue {
 
-    private Integer Id;
+    private int Id;
     private int ParentId;
     private int ProjectId;
     private String ProjectName;
