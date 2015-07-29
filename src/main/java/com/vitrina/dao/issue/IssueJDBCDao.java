@@ -21,6 +21,7 @@ public class IssueJDBCDao implements IssueDao {
     private final String                SQL_ADD = "INSERT INTO issue (id,parent_id,project_id,project_name,tracker_id,tracker_name,fixed_version_id,fixed_version_name,status_id,status_name,subject,start_date,due_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private final String             SQL_UPDATE = "UPDATE issue SET parent_id=?,project_id=?,project_name=?,tracker_id=?,tracker_name=?,fixed_version_id=?,fixed_version_name=?,status_id=?,status_name=?,subject=?,start_date=?,due_date=? WHERE id=?";
     private final String             SQL_DELETE = "DELETE FROM issues WHERE id=?";
+
     @Override
     public List<Issue> getAll(List<Issue> select) throws Exception {
         try {
@@ -40,19 +41,20 @@ public class IssueJDBCDao implements IssueDao {
             preparedStatement = FactoryDriver.getConnection().prepareStatement(SQL_ADD);
             FactoryDriver.getConnection().setAutoCommit(false);
             for (Issue issue:insert) {
-                preparedStatement.setInt(1, issue.getId());
-                preparedStatement.setInt(2, issue.getParentId());
-                preparedStatement.setInt(3, issue.getProjectId());
-                preparedStatement.setString(4, issue.getProjectName());
-                preparedStatement.setInt(5, issue.getTrackerId());
-                preparedStatement.setString(6, issue.getTrackerName());
-                preparedStatement.setInt(7, issue.getFixedVersionId());
-                preparedStatement.setString(8, issue.getFixedVersionName());
-                preparedStatement.setInt(9, issue.getStatusId());
-                preparedStatement.setString(10, issue.getStatusName());
-                preparedStatement.setString(11, issue.getSubject());
-                preparedStatement.setString(12, issue.getStartDate());
-                preparedStatement.setString(13, issue.getDueDate());
+                int i=0;
+                preparedStatement.setInt(++i, issue.getId());
+                preparedStatement.setInt(++i, issue.getParentId());
+                preparedStatement.setInt(++i, issue.getProjectId());
+                preparedStatement.setString(++i, issue.getProjectName());
+                preparedStatement.setInt(++i, issue.getTrackerId());
+                preparedStatement.setString(++i, issue.getTrackerName());
+                preparedStatement.setInt(++i, issue.getFixedVersionId());
+                preparedStatement.setString(++i, issue.getFixedVersionName());
+                preparedStatement.setInt(++i, issue.getStatusId());
+                preparedStatement.setString(++i, issue.getStatusName());
+                preparedStatement.setString(++i, issue.getSubject());
+                preparedStatement.setString(++i, issue.getStartDate());
+                preparedStatement.setString(++i, issue.getDueDate());
                 preparedStatement.addBatch();
             }
             preparedStatement.executeBatch();
@@ -70,20 +72,21 @@ public class IssueJDBCDao implements IssueDao {
     public void update(Issue issue) throws Exception {
         try{
 //            preparedStatement = FactoryDriver.getConnection().prepareStatement("UPDATE issue SET parent_id='" + issue.getParentId() + "',project_id='" + issue.getProjectId() + "',project_name='" + issue.getProjectName() + "',tracker_id='" + issue.getTrackerId() + "',tracker_name='" + issue.getTrackerName() + "',fixed_version_id='" + issue.getFixedVersionId() + "',fixed_version_name='" + issue.getFixedVersionName() + "',status_id='" + issue.getStatusId() + "',status_name='" + issue.getStatusName() + "',subject='" + issue.getSubject() + "',start_date='" + issue.getStartDate() + "',due_date='" + issue.getDueDate() + "' WHERE id='" + issue.getId() + "'");
+            int i=0;
             preparedStatement = FactoryDriver.getConnection().prepareStatement(SQL_UPDATE);
-            preparedStatement.setInt(1, issue.getParentId());
-            preparedStatement.setInt(2, issue.getProjectId());
-            preparedStatement.setString(3, issue.getProjectName());
-            preparedStatement.setInt(4, issue.getTrackerId());
-            preparedStatement.setString(5, issue.getTrackerName());
-            preparedStatement.setInt(6, issue.getFixedVersionId());
-            preparedStatement.setString(7, issue.getFixedVersionName());
-            preparedStatement.setInt(8, issue.getStatusId());
-            preparedStatement.setString(9, issue.getStatusName());
-            preparedStatement.setString(10, issue.getSubject());
-            preparedStatement.setString(11, issue.getStartDate());
-            preparedStatement.setString(12, issue.getDueDate());
-            preparedStatement.setInt(13, issue.getId());
+            preparedStatement.setInt(++i, issue.getParentId());
+            preparedStatement.setInt(++i, issue.getProjectId());
+            preparedStatement.setString(++i, issue.getProjectName());
+            preparedStatement.setInt(++i, issue.getTrackerId());
+            preparedStatement.setString(++i, issue.getTrackerName());
+            preparedStatement.setInt(++i, issue.getFixedVersionId());
+            preparedStatement.setString(++i, issue.getFixedVersionName());
+            preparedStatement.setInt(++i, issue.getStatusId());
+            preparedStatement.setString(++i, issue.getStatusName());
+            preparedStatement.setString(++i, issue.getSubject());
+            preparedStatement.setString(++i, issue.getStartDate());
+            preparedStatement.setString(++i, issue.getDueDate());
+            preparedStatement.setInt(++i, issue.getId());
             FactoryDriver.getConnection().commit();
         } catch (SQLException e) {
             System.err.println("[update] " + e.getMessage());
@@ -96,20 +99,21 @@ public class IssueJDBCDao implements IssueDao {
         try {
             for (Issue issue:issues){
 //                preparedStatement = FactoryDriver.getConnection().prepareStatement("UPDATE issue SET parent_id='" + issue.getParentId() + "',project_id='" + issue.getProjectId() + "',project_name='" + issue.getProjectName() + "',tracker_id='" + issue.getTrackerId() + "',tracker_name='" + issue.getTrackerName() + "',fixed_version_id='" + issue.getFixedVersionId() + "',fixed_version_name='" + issue.getFixedVersionName() + "',status_id='" + issue.getStatusId() + "',status_name='" + issue.getStatusName() + "',subject='" + issue.getSubject() + "',start_date='" + issue.getStartDate() + "',due_date='" + issue.getDueDate() + "' WHERE id='" + issue.getId() + "'");
+                int i=0;
                 preparedStatement = FactoryDriver.getConnection().prepareStatement(SQL_UPDATE);
-                preparedStatement.setInt(1, issue.getParentId());
-                preparedStatement.setInt(2, issue.getProjectId());
-                preparedStatement.setString(3, issue.getProjectName());
-                preparedStatement.setInt(4, issue.getTrackerId());
-                preparedStatement.setString(5, issue.getTrackerName());
-                preparedStatement.setInt(6, issue.getFixedVersionId());
-                preparedStatement.setString(7, issue.getFixedVersionName());
-                preparedStatement.setInt(8, issue.getStatusId());
-                preparedStatement.setString(9, issue.getStatusName());
-                preparedStatement.setString(10, issue.getSubject());
-                preparedStatement.setString(11, issue.getStartDate());
-                preparedStatement.setString(12, issue.getDueDate());
-                preparedStatement.setInt(13, issue.getId());
+                preparedStatement.setInt(++i, issue.getParentId());
+                preparedStatement.setInt(++i, issue.getProjectId());
+                preparedStatement.setString(++i, issue.getProjectName());
+                preparedStatement.setInt(++i, issue.getTrackerId());
+                preparedStatement.setString(++i, issue.getTrackerName());
+                preparedStatement.setInt(++i, issue.getFixedVersionId());
+                preparedStatement.setString(++i, issue.getFixedVersionName());
+                preparedStatement.setInt(++i, issue.getStatusId());
+                preparedStatement.setString(++i, issue.getStatusName());
+                preparedStatement.setString(++i, issue.getSubject());
+                preparedStatement.setString(++i, issue.getStartDate());
+                preparedStatement.setString(++i, issue.getDueDate());
+                preparedStatement.setInt(++i, issue.getId());
                 preparedStatement.executeUpdate();
             }
             FactoryDriver.getConnection().commit();
@@ -124,8 +128,9 @@ public class IssueJDBCDao implements IssueDao {
     @Override
     public void delete(int id) throws Exception {
         try {
+            int i=0;
             preparedStatement = FactoryDriver.getConnection().prepareStatement(SQL_DELETE);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(++i, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("[delete] " + e.getMessage());

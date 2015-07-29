@@ -42,7 +42,7 @@ public class dbService {
         } catch (Exception e) { System.err.println(e.getMessage()); }
         return issues;
     }
-    public List<Issue> toList(String[] files){
+    public List<Issue> toList(final String[] files){
         List<Issue> issues = new LinkedList<>();
         for(String file:files){
             try {
@@ -76,7 +76,7 @@ public class dbService {
 //        return issues;
 //    }
 
-    public void prepareDB(List<Issue> oldData, List<Issue> newData, String[] oldDates){
+    public void prepareDB(final List<Issue> oldData, final List<Issue> newData, final String[] oldDates){
         List<Issue> DELETE_OLD = new LinkedList<>();
         List<Issue> REMAIN_OLD = new LinkedList<>();
         List<Issue>    ADD_NEW = new LinkedList<>();
@@ -118,7 +118,7 @@ public class dbService {
         map.put("db-update",REMAIN_NEW);
         map.put("db-add",ADD_NEW);
     }
-    public void executeDB(List<Issue> delete, List<Issue> update, List<Issue> add){
+    public void executeDB(final List<Issue> delete, final List<Issue> update, final List<Issue> add){
         deleteDB(delete);
         updateDB(update);
         addDB(add);

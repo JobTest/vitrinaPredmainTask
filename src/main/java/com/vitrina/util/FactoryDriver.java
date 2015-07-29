@@ -3,6 +3,7 @@ package com.vitrina.util;
 import com.vitrina.util.drivers.JDBCDriver;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -43,14 +44,25 @@ public class FactoryDriver {
     public static Session getSession() {
         return session == null ? session = new Configuration().configure("hibernate.cft.xml").buildSessionFactory().openSession() : session;
     }
+    public static SimpleDriverDataSource getDataSource(){
+        if (dataSource != null) {
+            DataSourceProperties dataSourceProperties = new DataSourceProperties("jdbc.properties");
+            dataSource = new SimpleDriverDataSource();
+//            dataSource.setDriverClass((Class<? extends java.sql.Driver>) Driver.class); //dataSourceProperties.property.getProperty("spring.Driver")
+            dataSource.setUsername(dataSourceProperties.property.getProperty("spring.username"));
+            dataSource.setUrl(dataSourceProperties.property.getProperty("spring.url"));
+            dataSource.setPassword(dataSourceProperties.property.getProperty("spring.password"));
+        }
+        return dataSource;
+    }
 
-    private static Connection connect = null;
-    private static EntityManager   em = null;
-    private static Session    session = null;
+    private static Connection                connect = null;
+    private static EntityManager                  em = null;
+    private static Session                   session = null;
+    private static SimpleDriverDataSource dataSource = null;
 }
 
 class JDBCProperties {
-
     public Properties property = new Properties();
 
     public JDBCProperties(){}
@@ -61,7 +73,7 @@ class JDBCProperties {
             if (inputStream != null)
                 this.property.load(inputStream);
             else
-                throw new FileNotFoundException("--FileNotFound--");
+                throw new FileNotFoundException("[FileNotFound] ");
         } catch (IOException e) {
             System.err.println(e.getMessage());
         } catch (Exception e) {
@@ -75,5 +87,30 @@ class JDBCProperties {
             }
         }
     }
+}
 
+class DataSourceProperties {
+    public Properties property = new Properties();
+
+    public DataSourceProperties(String file) {
+        InputStream inputStream = null;
+        try {
+            inputStream = getClass().getClassLoader().getResourceAsStream(file);
+            if (inputStream != null)
+                this.property.load(inputStream);
+            else
+                throw new FileNotFoundException("[FileNotFound] ");
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        } finally {
+            try {
+                if (inputStream != null)
+                    inputStream.close();
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+    }
 }

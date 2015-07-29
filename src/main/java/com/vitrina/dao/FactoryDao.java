@@ -3,6 +3,7 @@ package com.vitrina.dao;
 import com.vitrina.dao.issue.IssueJDBCDao;
 import com.vitrina.dao.issue.IssueJPADao;
 import com.vitrina.dao.issue.IssueHibernateDao;
+import com.vitrina.dao.issue.IssueSpringDao;
 import com.vitrina.util.FactoryDriver;
 
 /**
@@ -25,6 +26,9 @@ public class FactoryDao {
             case HIBERNATE:
                 issueDao = new IssueHibernateDao(FactoryDriver.getSession()); /* IssueHibernateDao */
                 break;
+            case SPRING:
+                issueDao = new IssueSpringDao(FactoryDriver.getDataSource()); /* IssueSpringDao */
+                break;
         }
         return issueDao;
     }
@@ -38,6 +42,9 @@ public class FactoryDao {
     }
     public static IssueDao getIssueHibernateDao(){
         return new IssueHibernateDao(FactoryDriver.getSession());
+    }
+    public static IssueDao getIssueSpringDao(){
+        return new IssueSpringDao(FactoryDriver.getDataSource());
     }
     ////////////////////////////////////////////////////////
 }
