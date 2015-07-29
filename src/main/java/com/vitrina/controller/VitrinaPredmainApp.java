@@ -7,7 +7,7 @@ import java.util.LinkedList;
 /**
  * Created by alexandr on 15.07.15.
  */
-public class App {
+public class VitrinaPredmainApp {
 
     private dbService service;
 

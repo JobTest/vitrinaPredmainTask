@@ -18,7 +18,7 @@ public class MainApp {
 
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-        App app = (App)context.getBean("App");
+        VitrinaPredmainApp app = (VitrinaPredmainApp)context.getBean("App");
         app.start();
     }
 
