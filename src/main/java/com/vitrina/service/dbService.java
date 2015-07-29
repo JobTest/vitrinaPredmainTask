@@ -43,19 +43,44 @@ public class dbService {
         return issues;
     }
     public List<Issue> toList(String[] files){
-        List<Issue>  issues = new LinkedList<>();
-        try {
-            for (String file:files)
-                issues.addAll( jaxb.unMarshaling(file) );
-        } catch(JAXBException e){ System.err.println(e.getMessage()); }
+        List<Issue> issues = new LinkedList<>();
+        for(String file:files){
+            try {
+                SAXParserFactory factory = SAXParserFactory.newInstance();
+                factory.setValidating(true);
+                factory.setNamespaceAware(false);
+                javax.xml.parsers.SAXParser saxparser = factory.newSAXParser();
+
+                SaxParserService xmlIssues = new SaxParserService();
+                saxparser.parse(new File(file), xmlIssues);
+
+                issues.addAll(xmlIssues.getIssues());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace(); /* обработки ошибки, файл не найден */
+            } catch (ParserConfigurationException e) {
+                e.printStackTrace(); /* обработка ошибки Parser */
+            } catch (SAXException e) {
+                e.printStackTrace(); /* обработка ошибки SAX */
+            } catch (IOException e) {
+                e.printStackTrace(); /* обработка ошибок ввода */
+            }
+        }
         return issues;
     }
+//    public List<Issue> toList(String[] files){
+//        List<Issue>  issues = new LinkedList<>();
+//        try {
+//            for (String file:files)
+//                issues.addAll( jaxb.unMarshaling(file) );
+//        } catch(JAXBException e){ System.err.println(e.getMessage()); }
+//        return issues;
+//    }
 
     public void toFile(List<Issue> issues){
 
     }
 
-    public void insert(List<Issue> db, List<Issue> sax, String[] dueDates){
+    public void insert(List<Issue> db, List<Issue> jaxb, String[] dueDates){
         /* Из базы удаляю устаревшие по времени записи */
         List<Issue> deleteDB = new LinkedList<>();
         deleteDB.addAll(db);
@@ -72,7 +97,7 @@ public class dbService {
         map.put("db-delete",deleteDB);
 
         List<Issue> updateDB = new LinkedList<>();
-        updateDB.addAll(sax);
+        updateDB.addAll(jaxb);
         updateDB.removeAll(deleteDB);
 
         /* Добавляю новые записи в базу */
