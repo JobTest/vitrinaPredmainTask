@@ -47,3 +47,12 @@ http://jeeconf.com/archive/jeeconf-2013/materials/spring-data/
 * http://devcolibri.com/4149
 https://msdn.microsoft.com/ru-ru/library/ms181299%28v=sql.120%29.aspx
 http://examples.javacodegeeks.com/core-java/sql/commit-rollback-transaction-example/
+
+
+
+java json xml
+---
+
+* `JSON и XML. Что лучше?`: [http://habrahabr.ru/post/31225/](http://habrahabr.ru/post/31225/)
+* `Converting JSON to XML to Java Objects using XStream`: [http://www.javacodegeeks.com/2014/07/converting-json-to-xml-to-java-objects-using-xstream.html](http://www.javacodegeeks.com/2014/07/converting-json-to-xml-to-java-objects-using-xstream.html)
+
