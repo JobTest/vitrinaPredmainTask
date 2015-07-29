@@ -123,20 +123,20 @@ public class dbService {
         updateDB(update);
         addDB(add);
     }
-    public void deleteDB(List<Issue> issues){
+    private void deleteDB(List<Issue> issues){
         try {
             for (Issue issue:issues)
                 dao.delete(issue.getId());
         } catch (SQLException e) { System.err.println(e.getMessage());
         } catch (Exception e) { System.err.println(e.getMessage()); }
     }
-    public void addDB(List<Issue> issues){
+    private void addDB(List<Issue> issues){
         try {
             dao.add( issues );
         } catch (SQLException e) { System.err.println(e.getMessage());
         } catch (Exception e) { System.err.println(e.getMessage()); }
     }
-    public void updateDB(List<Issue> issues){
+    private void updateDB(List<Issue> issues){
         try {
             for (Issue issue:issues)
                 dao.update(issue);
