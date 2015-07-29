@@ -48,6 +48,7 @@ public class IssueJPADao implements IssueDao {
         return em.find(IssueJPA.class, id);
     }
 
+    @Override
     public void update(Issue issue){
         IssueJPA issueJPA = new IssueJPA(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate());
         em.getTransaction().begin();

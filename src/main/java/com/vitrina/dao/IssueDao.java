@@ -12,5 +12,6 @@ public interface IssueDao {
     List<Issue> getAll(List<Issue> select) throws Exception;
     void add(List<Issue> insert) throws Exception;
     void delete(int id) throws Exception;
+    void update(Issue issue) throws Exception;
 
 }
