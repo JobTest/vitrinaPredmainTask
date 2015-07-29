@@ -16,7 +16,8 @@ public class App {
         System.out.println("\n********************************[ getAll << DB (" + service.map.get("db-getAll").size() + ") ]******************************");
 //        service.print(service.map.get("db-getAll"));
 
-        String[] files = {"issue1.xml","issue2.xml","issue3.xml"}; //String[] files = {"issue1.xml","issue2.xml","issue3.xml"};
+        String[] files = {"issue1.xml","issue2.xml","issue3.xml"};
+//        String[] files = {"issues1.xml","issues2.xml","issues3.xml"};
         service.map.put("xml-upload", service.toList(files));
         System.out.println("\n********************************[ Parser << XML (" + service.map.get("xml-upload").size() + ") ]*****************************");
 //        service.print(service.map.get("xml-upload"));
