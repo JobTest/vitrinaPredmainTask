@@ -31,6 +31,12 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.2.2.Final</version>
         </dependency>
+        <!-- ORACLE JDBC driver, need install yourself -->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc14</artifactId>
+            <version>10.2.0.3.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>

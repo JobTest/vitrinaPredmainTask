@@ -19,18 +19,18 @@ CREATE DATABASE vitrina CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE IF NOT EXISTS `issue` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent_id` int(8) DEFAULT 0,
-  `project_id` int(8) NOT NULL,
-  `project_name` varchar(16) NOT NULL,
-  `tracker_id` int(8) NOT NULL,
-  `tracker_name` varchar(16) NOT NULL,
-  `fixed_version_id` int(8) NOT NULL,
-  `fixed_version_name` varchar(16) NOT NULL,
-  `status_id` int(8) NOT NULL,
-  `status_name` varchar(32) NOT NULL,
-  `subject` varchar(128) NOT NULL,
-  `start_date` varchar(32) NOT NULL,
-  `due_date` varchar(32) NOT NULL,
+  `parent_id` int(11) DEFAULT 0,
+  `project_id` int(11) NOT NULL,
+  `project_name` varchar(255) NOT NULL,
+  `tracker_id` int(11) NOT NULL,
+  `tracker_name` varchar(255) NOT NULL,
+  `fixed_version_id` int(11) NOT NULL,
+  `fixed_version_name` varchar(255) NOT NULL,
+  `status_id` int(11) NOT NULL,
+  `status_name` varchar(255) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `start_date` varchar(255) NOT NULL,
+  `due_date` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 

@@ -12,11 +12,14 @@ import java.util.*;
 public class VitrinaPredmainApp {
 
     public VitrinaPredmainApp(){
-        configFile  = "hibernate.cft.xml"; //configFile = "IssueJPA"; //configFile = "jdbc.properties"; //configFile = "spring.properties";
+//        configFile = "jdbc_postgresql.properties"; //jdbc_postgresql.properties//jdbc_mysql.properties
+//        configFile  = "hibernate_postgresql.cft.xml"; //hibernate_postgresql.cft.xml//hibernate_mysql.cft.xml
+//        configFile = "PostgresSQLIssueJPA"; //MySQLIssueJPA//PostgresSQLIssueJPA//OracleIssueJPA
+//        configFile = "spring.properties";
         dueDates    = new String[]{"0","10","20","40","70","100"};
         folder.put(".xml", new File("data"));
 //        files = new String[]{"issues1.xml","issues2.xml","issues3.xml"};
-        serviceData = Collections.synchronizedMap( new HashMap<>() );
+        serviceData = Collections.synchronizedMap(new HashMap<>());
     }
 
     public void start() {
@@ -51,7 +54,7 @@ public class VitrinaPredmainApp {
     }
 
     private DBService service;
-    private final String              configFile;
+    private final String              configFile = null;
     private final String[]              dueDates;
     private final Map<String,File>        folder = new HashMap<>();
     //private final String[]                 files = {"issues1.xml","issues2.xml","issues3.xml"};
