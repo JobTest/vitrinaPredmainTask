@@ -11,11 +11,11 @@ import java.util.*;
  */
 public class VitrinaPredmainApp {
 
-    private dbService service;
+    private dbService                    service;
     private Map<String, List<Issue>> serviceData;
     private final String[]              dueDates = {"0","10","20","40","70","100"};
     private final File[]                   files = {new File("issue1.xml"),new File("issue2.xml"),new File("issue3.xml")};
-    //private final String[] files = {"issues1.xml","issues2.xml","issues3.xml"};
+    //private final String[]                 files = {"issues1.xml","issues2.xml","issues3.xml"};
 
     public VitrinaPredmainApp(){
         serviceData = Collections.synchronizedMap( new HashMap<>() );
