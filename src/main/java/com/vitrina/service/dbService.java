@@ -24,17 +24,21 @@ import java.util.function.Predicate;
  */
 public class dbService {
 
-    public Map<String, List<Issue>> map;
     public IssueDao                 dao;
     public JaxbService              jaxb;
 
     public dbService(){
-        map = Collections.synchronizedMap(new HashMap<>());
         //dao = FactoryDao.getIssue(DAO.JPA); //dao = FactoryDao.getIssue(DAO.HIBERNATE); //dao = FactoryDao.getIssue(DAO.JDBC);
         //jaxb = new JaxbService();
     }
 
-    public List<Issue> toList(List<Issue> select){
+    public Map loadData(final List<Issue> oldData, final File[] newData) {
+        Map<String, List<Issue>> data = Collections.synchronizedMap( new HashMap<>() );
+        data.put("old-db", toList(oldData));
+        data.put("new-xml", toList(newData));
+        return data;
+    }
+    private List<Issue> toList(List<Issue> select){
         List<Issue> issues = null;
         try {
             issues = dao.getAll(select);
@@ -42,9 +46,9 @@ public class dbService {
         } catch (Exception e) { System.err.println(e.getMessage()); }
         return issues;
     }
-    public List<Issue> toList(final String[] files){
+    private List<Issue> toList(final File[] files){
         List<Issue> issues = new LinkedList<>();
-        for(String file:files){
+        for(File file:files){
             try {
                 SAXParserFactory factory = SAXParserFactory.newInstance();
                 factory.setValidating(true);
@@ -52,7 +56,7 @@ public class dbService {
                 javax.xml.parsers.SAXParser saxparser = factory.newSAXParser();
 
                 SaxParserService xmlIssues = new SaxParserService();
-                saxparser.parse(new File(file), xmlIssues);
+                saxparser.parse(file, xmlIssues);
 
                 issues.addAll(xmlIssues.getIssues());
             } catch (FileNotFoundException e) {
@@ -76,17 +80,18 @@ public class dbService {
 //        return issues;
 //    }
 
-    public void prepareDB(final List<Issue> oldData, final List<Issue> newData, final String[] oldDates){
-        List<Issue> DELETE_OLD = new LinkedList<>();
-        List<Issue> REMAIN_OLD = new LinkedList<>();
-        List<Issue>    ADD_NEW = new LinkedList<>();
-        List<Issue> REMAIN_NEW = new LinkedList<>();
+    public Map parseData(final List<Issue> oldData, final List<Issue> newData, final String[] oldDates){
+        Map<String, List<Issue>> data = Collections.synchronizedMap( new HashMap<>() );
+        List<Issue>        DELETE_OLD = new LinkedList<>();
+        List<Issue>        REMAIN_OLD = new LinkedList<>();
+        List<Issue>           ADD_NEW = new LinkedList<>();
+        List<Issue>        REMAIN_NEW = new LinkedList<>();
         REMAIN_OLD.addAll(oldData);
         DELETE_OLD.addAll(oldData);
         REMAIN_NEW.addAll(newData);
         ADD_NEW.addAll(newData);
 
-        /* (1) Из базы удаляю устаревшие по времени записи */
+        /* (1) Из базы удаляю устаревшие по времени < 'DueDate' записи */
         for (String oldDate:oldDates){
 //            Predicate<Issue> dueDate = issue -> strDueDate.equals(issue.getDueDate());
             Predicate<Issue> dueDate = new Predicate<Issue>(){
@@ -99,7 +104,7 @@ public class dbService {
         }
         DELETE_OLD.removeAll(REMAIN_OLD);
 
-        /* (2) Добавляю новые записи в базу */
+        /* (2) Добавляю новые по != 'ID' записи в базу */
         for (Issue remain_old:REMAIN_OLD) {
             Predicate<Issue> id = new Predicate<Issue>() {
                 @Override
@@ -110,15 +115,16 @@ public class dbService {
             ADD_NEW.removeIf(id);
         }
 
-        /* (2) Обновляю поля в базе для существующих записей */
+        /* (2) Обновляю поля в базе для существующих записей 'Object.equals()' */
         REMAIN_NEW.removeAll(ADD_NEW);
         REMAIN_NEW.removeAll(REMAIN_OLD);
 
-        map.put("db-delete",DELETE_OLD);
-        map.put("db-update",REMAIN_NEW);
-        map.put("db-add",ADD_NEW);
+        data.put("db-delete",DELETE_OLD);
+        data.put("db-update",REMAIN_NEW);
+        data.put("db-add",ADD_NEW);
+        return data;
     }
-    public void executeDB(final List<Issue> delete, final List<Issue> update, final List<Issue> add){
+    public void updateData(final List<Issue> delete, final List<Issue> update, final List<Issue> add){
         deleteDB(delete);
         updateDB(update);
         addDB(add);
@@ -149,17 +155,11 @@ public class dbService {
             System.out.println(issue);
     }
 
-    public Map<String, List<Issue>> getMap() {
-        return map;
-    }
     public IssueDao getDao() {
         return dao;
     }
     public JaxbService getJaxb() {
         return jaxb;
-    }
-    public void setMap(Map<String, List<Issue>> map) {
-        this.map = map;
     }
     public void setDao(IssueDao dao) {
         this.dao = dao;

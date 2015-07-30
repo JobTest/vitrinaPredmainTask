@@ -46,12 +46,12 @@ public class FactoryDriver {
     }
     public static SimpleDriverDataSource getDataSource(){
         if (dataSource != null) {
-            DataSourceProperties dataSourceProperties = new DataSourceProperties("jdbc.properties");
+            DataSourceProperties dataSourceProperties = new DataSourceProperties("spring.properties");
             dataSource = new SimpleDriverDataSource();
-//            dataSource.setDriverClass((Class<? extends java.sql.Driver>) Driver.class); //dataSourceProperties.property.getProperty("spring.Driver")
-            dataSource.setUsername(dataSourceProperties.property.getProperty("spring.username"));
-            dataSource.setUrl(dataSourceProperties.property.getProperty("spring.url"));
-            dataSource.setPassword(dataSourceProperties.property.getProperty("spring.password"));
+//            dataSource.setDriverClass((Class<? extends java.sql.Driver>) Driver.class); //dataSourceProperties.property.getProperty("spring.datasource.driver")
+            dataSource.setUsername(dataSourceProperties.property.getProperty("spring.datasource.username"));
+            dataSource.setUrl(dataSourceProperties.property.getProperty("spring.datasource.url"));
+            dataSource.setPassword(dataSourceProperties.property.getProperty("spring.datasource.password"));
         }
         return dataSource;
     }
