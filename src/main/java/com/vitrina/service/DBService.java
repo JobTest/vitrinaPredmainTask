@@ -24,19 +24,21 @@ import java.util.function.Predicate;
  */
 public class DBService implements DBServiceI {
 
-    public DBService(){
-        //dao = FactoryDao.getIssue(DAO.JPA); //dao = FactoryDao.getIssue(DAO.HIBERNATE); //dao = FactoryDao.getIssue(DAO.JDBC);
+    public DBService(){}
+    public DBService(String configFile){
+        //dao = FactoryDao.getIssue(DAO.JPA,configFile); //dao = FactoryDao.getIssue(DAO.HIBERNATE,configFile); //dao = FactoryDao.getIssue(DAO.JDBC,configFile);
         //jaxb = new JaxbService();
     }
 
     @Override
     public Map loadData(final String oldData, final Map<String,File> newData) {
         Map<String, List<Issue>> data = Collections.synchronizedMap( new HashMap<>() );
-        data.put("old-db",toList(oldData));
+        //dao = FactoryDao.getIssue(DAO.JPA,configFile);
+        data.put("old-db",toList());
         data.put("new-xml",toList(newData));
         return data;
     }
-    private List<Issue> toList(final String dbName){
+    private List<Issue> toList(){
         List<Issue> issues = null;
         try {
             issues = dao.getAll(new LinkedList<>());
@@ -170,14 +172,21 @@ public class DBService implements DBServiceI {
     public JaxbService getJaxb() {
         return jaxb;
     }
+    public String getConfigFile() {
+        return configFile;
+    }
     public void setDao(IssueDao dao) {
         this.dao = dao;
     }
     public void setJaxb(JaxbService jaxb) {
         this.jaxb = jaxb;
     }
+    public void setConfigFile(String configFile) {
+        this.configFile = configFile;
+    }
 
-    public IssueDao     dao;
-    public JaxbService jaxb;
+    public IssueDao      dao;
+    public JaxbService  jaxb;
+    public String configFile;
 }
 

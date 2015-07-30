@@ -21,11 +21,12 @@ public class FactoryDriver {
 
     private FactoryDriver(){}
 
-    public static Connection getConnection() throws ExceptionInInitializerError, IOException {
+
+    public static Connection getConnection(String configFile) throws ExceptionInInitializerError, IOException {
         if( connect == null ) {
             Driver driverManager = null;
             Properties properties = new Properties();
-            JDBCProperties jdbcProperties = new JDBCProperties("jdbc.properties");
+            JDBCProperties jdbcProperties = new JDBCProperties(configFile);
             properties.setProperty("user", jdbcProperties.property.getProperty("jdbc.username"));
             properties.setProperty("password", jdbcProperties.property.getProperty("jdbc.password"));
             properties.setProperty("useUnicode", jdbcProperties.property.getProperty("jdbc.useUnicode"));
@@ -38,15 +39,15 @@ public class FactoryDriver {
         }
         return connect;
     }
-    public static EntityManager getEntityManager() {
-        return em == null ? em = Persistence.createEntityManagerFactory("IssueJPA").createEntityManager() : em;
+    public static EntityManager getEntityManager(String configFile) {
+        return em == null ? em = Persistence.createEntityManagerFactory(configFile).createEntityManager() : em;
     }
-    public static Session getSession() {
-        return session == null ? session = new Configuration().configure("hibernate.cft.xml").buildSessionFactory().openSession() : session;
+    public static Session getSession(String configFile) {
+        return session == null ? session = new Configuration().configure(configFile).buildSessionFactory().openSession() : session;
     }
-    public static SimpleDriverDataSource getDataSource(){
+    public static SimpleDriverDataSource getDataSource(String configFile){
         if (dataSource != null) {
-            DataSourceProperties dataSourceProperties = new DataSourceProperties("spring.properties");
+            DataSourceProperties dataSourceProperties = new DataSourceProperties(configFile);
             dataSource = new SimpleDriverDataSource();
 //            dataSource.setDriverClass((Class<? extends java.sql.Driver>) Driver.class); //dataSourceProperties.property.getProperty("spring.datasource.driver")
             dataSource.setUsername(dataSourceProperties.property.getProperty("spring.datasource.username"));
@@ -61,6 +62,7 @@ public class FactoryDriver {
     private static Session                   session = null;
     private static SimpleDriverDataSource dataSource = null;
 }
+
 
 class JDBCProperties {
     public Properties property = new Properties();
