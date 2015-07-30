@@ -22,54 +22,64 @@ import java.util.function.Predicate;
  * ****************************************
  * Functional style in Java with predicates
  */
-public class dbService {
+public class DBService implements DBServiceI {
 
-    public IssueDao                 dao;
-    public JaxbService              jaxb;
-
-    public dbService(){
+    public DBService(){
         //dao = FactoryDao.getIssue(DAO.JPA); //dao = FactoryDao.getIssue(DAO.HIBERNATE); //dao = FactoryDao.getIssue(DAO.JDBC);
         //jaxb = new JaxbService();
     }
 
-    public Map loadData(final List<Issue> oldData, final File[] newData) {
+    @Override
+    public Map loadData(final String oldData, final Map<String,File> newData) {
         Map<String, List<Issue>> data = Collections.synchronizedMap( new HashMap<>() );
-        data.put("old-db", toList(oldData));
-        data.put("new-xml", toList(newData));
+        data.put("old-db",toList(oldData));
+        data.put("new-xml",toList(newData));
         return data;
     }
-    private List<Issue> toList(List<Issue> select){
+    private List<Issue> toList(final String dbName){
         List<Issue> issues = null;
         try {
-            issues = dao.getAll(select);
+            issues = dao.getAll(new LinkedList<>());
         } catch (SQLException e) { System.err.println(e.getMessage());
         } catch (Exception e) { System.err.println(e.getMessage()); }
         return issues;
     }
-    private List<Issue> toList(final File[] files){
+    private List<Issue> toList(final Map<String,File> folders){
         List<Issue> issues = new LinkedList<>();
-        for(File file:files){
-            try {
-                SAXParserFactory factory = SAXParserFactory.newInstance();
-                factory.setValidating(true);
-                factory.setNamespaceAware(false);
-                javax.xml.parsers.SAXParser saxparser = factory.newSAXParser();
+        for(String type : folders.keySet()) {
+            for (File file : getFiles(folders.get(type),type)) {
+                try {
+                    SAXParserFactory factory = SAXParserFactory.newInstance();
+                    factory.setValidating(true);
+                    factory.setNamespaceAware(false);
+                    javax.xml.parsers.SAXParser saxparser = factory.newSAXParser();
 
-                SaxParserService xmlIssues = new SaxParserService();
-                saxparser.parse(file, xmlIssues);
+                    SaxParserService xmlIssues = new SaxParserService();
+                    saxparser.parse(file, xmlIssues);
 
-                issues.addAll(xmlIssues.getIssues());
-            } catch (FileNotFoundException e) {
-                e.printStackTrace(); /* обработки ошибки, файл не найден */
-            } catch (ParserConfigurationException e) {
-                e.printStackTrace(); /* обработка ошибки Parser */
-            } catch (SAXException e) {
-                e.printStackTrace(); /* обработка ошибки SAX */
-            } catch (IOException e) {
-                e.printStackTrace(); /* обработка ошибок ввода */
+                    issues.addAll(xmlIssues.getIssues());
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace(); /* обработки ошибки, файл не найден */
+                } catch (ParserConfigurationException e) {
+                    e.printStackTrace(); /* обработка ошибки Parser */
+                } catch (SAXException e) {
+                    e.printStackTrace(); /* обработка ошибки SAX */
+                } catch (IOException e) {
+                    e.printStackTrace(); /* обработка ошибок ввода */
+                }
             }
         }
         return issues;
+    }
+    private List<File> getFiles(final File folder, final String type) {
+        List<File> files = new LinkedList<>();
+        for (final File file:folder.listFiles())
+            if (file.isDirectory())
+                getFiles(file,type);
+            else
+                if (file.isFile() && file.getName().endsWith(type))
+                    files.add(file);
+        return files;
     }
 //    public List<Issue> toList(String[] files){
 //        List<Issue>  issues = new LinkedList<>();
@@ -80,6 +90,7 @@ public class dbService {
 //        return issues;
 //    }
 
+    @Override
     public Map parseData(final List<Issue> oldData, final List<Issue> newData, final String[] oldDates){
         Map<String, List<Issue>> data = Collections.synchronizedMap( new HashMap<>() );
         List<Issue>        DELETE_OLD = new LinkedList<>();
@@ -124,6 +135,8 @@ public class dbService {
         data.put("db-add",ADD_NEW);
         return data;
     }
+
+    @Override
     public void updateData(final List<Issue> delete, final List<Issue> update, final List<Issue> add){
         deleteDB(delete);
         updateDB(update);
@@ -150,10 +163,6 @@ public class dbService {
         } catch (Exception e) { System.err.println(e.getMessage()); }
     }
 
-    public void print(List<Issue> issues){
-        for (Issue issue:issues)
-            System.out.println(issue);
-    }
 
     public IssueDao getDao() {
         return dao;
@@ -167,5 +176,8 @@ public class dbService {
     public void setJaxb(JaxbService jaxb) {
         this.jaxb = jaxb;
     }
+
+    public IssueDao     dao;
+    public JaxbService jaxb;
 }
 

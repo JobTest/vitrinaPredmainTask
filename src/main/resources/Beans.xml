@@ -8,7 +8,7 @@
         <property name="service" ref="Service"></property>
     </bean>
 
-    <bean id="Service" class="com.vitrina.service.dbService">
+    <bean id="Service" class="com.vitrina.service.DBService">
         <property name="dao" ref="Dao"></property>
         <property name="jaxb" ref="Jaxb"></property>
     </bean>
