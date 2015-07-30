@@ -46,10 +46,12 @@ public class FactoryDriver {
         return session == null ? session = new Configuration().configure(configFile).buildSessionFactory().openSession() : session;
     }
     public static SimpleDriverDataSource getDataSource(String configFile){
+        // > http://www.mkyong.com/spring/maven-spring-jdbc-example/
+        //   http://www.tutorialspoint.com/spring/spring_jdbc_example.htm
         if (dataSource != null) {
             DataSourceProperties dataSourceProperties = new DataSourceProperties(configFile);
             dataSource = new SimpleDriverDataSource();
-//            dataSource.setDriverClass((Class<? extends java.sql.Driver>) Driver.class); //dataSourceProperties.property.getProperty("spring.datasource.driver")
+//            dataSource.setDriverClass(dataSourceProperties.property.getProperty("spring.datasource.driver"));
             dataSource.setUsername(dataSourceProperties.property.getProperty("spring.datasource.username"));
             dataSource.setUrl(dataSourceProperties.property.getProperty("spring.datasource.url"));
             dataSource.setPassword(dataSourceProperties.property.getProperty("spring.datasource.password"));

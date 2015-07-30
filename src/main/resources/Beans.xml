@@ -14,8 +14,8 @@
     </bean>
 
     <bean id="Jaxb" class="com.vitrina.service.JaxbService"></bean>
-    <bean id="Dao" factory-method="getIssueHibernateDao" class="com.vitrina.dao.FactoryDao">
-        <constructor-arg value="hibernate_mysql.cft.xml"/>
+    <bean id="Dao" factory-method="getIssueSpringDao" class="com.vitrina.dao.FactoryDao">
+        <constructor-arg value="spring.properties"/>
     </bean> <!--<bean id="dao" factory-bean="hibernateDao"></bean>-->
     <!--<bean id="hibernateDao" class="com.vitrina.dao.issue.IssueHibernateDao"></bean>-->
     <!--<bean id="jpaDao" class="com.vitrina.dao.issue.IssueJPADao"></bean>-->
