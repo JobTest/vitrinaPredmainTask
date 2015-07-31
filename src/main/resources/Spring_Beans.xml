@@ -9,7 +9,7 @@
     </bean>
 
     <bean id="Service" class="com.vitrina.service.DBService">
-        <property name="dao" ref="SpringJDBCDao"></property>
+        <property name="dao" ref="JPADao"></property>
         <property name="jaxb" ref="Jaxb"></property>
     </bean>
 
@@ -22,7 +22,7 @@
         <constructor-arg value="hibernate_postgresql.cft.xml"/>
     </bean>
     <bean id="JPADao" factory-method="getIssueJPADao" class="com.vitrina.dao.FactoryDao">
-        <constructor-arg value="MySQLIssueJPA"/>
+        <constructor-arg value="PostgreSQLIssueJPA"/>
     </bean>
     <bean id="SpringJDBCDao" factory-method="getIssueSpringDao" class="com.vitrina.dao.FactoryDao">
         <constructor-arg ref="PostgreSQLDataSource"/>
