@@ -26,8 +26,8 @@ public class IssueJDBCDao implements IssueDao {
     private final String             SQL_DELETE = "DELETE FROM issues WHERE id=?";
 
     public IssueJDBCDao(){}
-    public IssueJDBCDao(String configFile) throws IOException {
-        connection = FactoryDriver.getConnection(configFile);
+    public IssueJDBCDao(String dbConfig) throws IOException {
+        connection = FactoryDriver.getConnection(dbConfig);
     }
 
     @Override

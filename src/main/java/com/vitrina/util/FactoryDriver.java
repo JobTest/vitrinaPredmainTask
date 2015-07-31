@@ -22,11 +22,11 @@ public class FactoryDriver {
     private FactoryDriver(){}
 
 
-    public static Connection getConnection(String configFile) throws ExceptionInInitializerError, IOException {
+    public static Connection getConnection(String dbConfig) throws ExceptionInInitializerError, IOException {
         if( connect == null ) {
             Driver driverManager = null;
             Properties properties = new Properties();
-            JDBCProperties jdbcProperties = new JDBCProperties(configFile);
+            JDBCProperties jdbcProperties = new JDBCProperties(dbConfig);
             properties.setProperty("user", jdbcProperties.property.getProperty("jdbc.username"));
             properties.setProperty("password", jdbcProperties.property.getProperty("jdbc.password"));
             properties.setProperty("useUnicode", jdbcProperties.property.getProperty("jdbc.useUnicode"));
@@ -39,11 +39,11 @@ public class FactoryDriver {
         }
         return connect;
     }
-    public static EntityManager getEntityManager(String configFile) {
-        return em == null ? em = Persistence.createEntityManagerFactory(configFile).createEntityManager() : em;
+    public static EntityManager getEntityManager(String dbConfig) {
+        return em == null ? em = Persistence.createEntityManagerFactory(dbConfig).createEntityManager() : em;
     }
-    public static Session getSession(String configFile) {
-        return session == null ? session = new Configuration().configure(configFile).buildSessionFactory().openSession() : session;
+    public static Session getSession(String dbConfig) {
+        return session == null ? session = new Configuration().configure(dbConfig).buildSessionFactory().openSession() : session;
     }
     public static DataSource getDataSource(DataSource dataSource){
         // > http://javatalks.ru/topics/25965
@@ -52,10 +52,9 @@ public class FactoryDriver {
         return dataSource;
     }
 
-    private static Connection    connect = null;
-    private static EntityManager      em = null;
-    private static Session       session = null;
-    private static DataSource dataSource = null;
+    private static Connection connect = null;
+    private static EntityManager   em = null;
+    private static Session    session = null;
 }
 
 class JDBCProperties {

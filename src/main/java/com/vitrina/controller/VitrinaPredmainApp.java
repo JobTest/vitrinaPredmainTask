@@ -12,10 +12,10 @@ import java.util.*;
 public class VitrinaPredmainApp {
 
     public VitrinaPredmainApp(){
-//        config = "jdbc_postgresql.properties";   //jdbc_postgresql.properties//jdbc_mysql.properties
-//        config = "hibernate_postgresql.cft.xml"; //hibernate_postgresql.cft.xml//hibernate_mysql.cft.xml
-//        config = "PostgresSQLIssueJPA";          //MySQLIssueJPA//PostgresSQLIssueJPA//OracleIssueJPA
-//        config = "PostgreSQLDataSource";         //PostgreSQLDataSource//MySQLDataSource
+//        dbConfig = "jdbc_postgresql.properties";   //jdbc_postgresql.properties//jdbc_mysql.properties
+//        dbConfig = "hibernate_postgresql.cft.xml"; //hibernate_postgresql.cft.xml//hibernate_mysql.cft.xml
+//        dbConfig = "PostgresSQLIssueJPA";          //MySQLIssueJPA//PostgresSQLIssueJPA//OracleIssueJPA
+//        dbConfig = "PostgreSQLDataSource";         //PostgreSQLDataSource//MySQLDataSource//OracleDataSource
         dueDates    = new String[]{"0","10","20","40","70","100"};
         folder.put(".xml", new File("data"));
 //        files = new String[]{"issues1.xml","issues2.xml","issues3.xml"};
@@ -23,7 +23,7 @@ public class VitrinaPredmainApp {
     }
 
     public void start() {
-        serviceData.putAll(service.loadData(config, folder));
+        serviceData.putAll(service.loadData(dbConfig, folder));
         System.out.println("\n********************************[ Old << DB (" + serviceData.get("old-db").size() + ") ]******************************");
 //        print(serviceData.get("old-db"));
         System.out.println("\n********************************[ New << XML (" + serviceData.get("new-xml").size() + ") ]*****************************");
@@ -53,10 +53,10 @@ public class VitrinaPredmainApp {
         this.service = service;
     }
 
-    private DBService                service;
-    private final String             config = null;
-    private final String[]           dueDates;
-    private final Map<String,File>   folder = new HashMap<>();
-    //private final String[]           files = {"issues1.xml","issues2.xml","issues3.xml"};
+    private DBService                    service;
+    private final String                dbConfig = null;
+    private final String[]              dueDates;
+    private final Map<String,File>        folder = new HashMap<>();
+    //private final String[]                 files = {"issues1.xml","issues2.xml","issues3.xml"};
     private Map<String, List<Issue>> serviceData;
 }
