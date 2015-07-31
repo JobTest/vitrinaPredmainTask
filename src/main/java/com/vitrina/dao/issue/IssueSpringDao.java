@@ -24,13 +24,13 @@ import java.util.List;
  */
 public class IssueSpringDao implements IssueDao {
 
-    private JdbcTemplate jdbcTemplate;
+    private JdbcTemplate                jdbcTemplate;
     private NamedParameterJdbcTemplate namedTemplate;
-    private final String SQL_GET_ALL = "SELECT * FROM issue";
-    private final String     SQL_GET = "SELECT * FROM issue WHERE id=?";
-    private final String     SQL_ADD = "INSERT INTO issue (id,parent_id,project_id,project_name,tracker_id,tracker_name,fixed_version_id,fixed_version_name,status_id,status_name,subject,start_date,due_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    private final String  SQL_UPDATE = "UPDATE issue SET parent_id=?,project_id=?,project_name=?,tracker_id=?,tracker_name=?,fixed_version_id=?,fixed_version_name=?,status_id=?,status_name=?,subject=?,start_date=?,due_date=? WHERE id=?";
-    private final String  SQL_DELETE = "DELETE FROM issues WHERE id=?";
+    private final String                 SQL_GET_ALL = "SELECT * FROM issue";
+    private final String                     SQL_GET = "SELECT * FROM issue WHERE id=?";
+    private final String                     SQL_ADD = "INSERT INTO issue (id,parent_id,project_id,project_name,tracker_id,tracker_name,fixed_version_id,fixed_version_name,status_id,status_name,subject,start_date,due_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private final String                  SQL_UPDATE = "UPDATE issue SET parent_id=?,project_id=?,project_name=?,tracker_id=?,tracker_name=?,fixed_version_id=?,fixed_version_name=?,status_id=?,status_name=?,subject=?,start_date=?,due_date=? WHERE id=?";
+    private final String                  SQL_DELETE = "DELETE FROM issues WHERE id=?";
 
     public IssueSpringDao(){}
     public IssueSpringDao(DataSource dataSource) {
@@ -39,7 +39,7 @@ public class IssueSpringDao implements IssueDao {
     }
 
     @Override
-    public List<Issue> getAll(List<Issue> select) throws Exception {
+    public List<Issue> getAll(List<Issue> issues) throws Exception {
         return jdbcTemplate.query(SQL_GET_ALL, rowMapper);
     }
 //    public Issue get(Integer id) {

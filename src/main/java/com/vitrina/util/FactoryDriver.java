@@ -3,8 +3,8 @@ package com.vitrina.util;
 import com.vitrina.util.drivers.JDBCDriver;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
-import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
+import javax.activation.DataSource;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import java.io.FileNotFoundException;
@@ -45,24 +45,26 @@ public class FactoryDriver {
     public static Session getSession(String configFile) {
         return session == null ? session = new Configuration().configure(configFile).buildSessionFactory().openSession() : session;
     }
-    public static SimpleDriverDataSource getDataSource(String configFile){
+    public static DataSource getDataSource(DataSource dataSource){
+//    public static SimpleDriverDataSource getDataSource(String configFile){
         // > http://www.mkyong.com/spring/maven-spring-jdbc-example/
         //   http://www.tutorialspoint.com/spring/spring_jdbc_example.htm
-        if (dataSource != null) {
-            DataSourceProperties dataSourceProperties = new DataSourceProperties(configFile);
-            dataSource = new SimpleDriverDataSource();
-//            dataSource.setDriverClass(dataSourceProperties.property.getProperty("spring.datasource.driver"));
-            dataSource.setUsername(dataSourceProperties.property.getProperty("spring.datasource.username"));
-            dataSource.setUrl(dataSourceProperties.property.getProperty("spring.datasource.url"));
-            dataSource.setPassword(dataSourceProperties.property.getProperty("spring.datasource.password"));
-        }
+        /////////////////////////////////////////////////////////////////////
+//        if (dataSource != null) {
+//            DataSourceProperties dataSourceProperties = new DataSourceProperties(configFile);
+//            dataSource = new SimpleDriverDataSource();
+////            dataSource.setDriverClass(dataSourceProperties.property.getProperty("spring.datasource.driver"));
+//            dataSource.setUsername(dataSourceProperties.property.getProperty("spring.datasource.username"));
+//            dataSource.setUrl(dataSourceProperties.property.getProperty("spring.datasource.url"));
+//            dataSource.setPassword(dataSourceProperties.property.getProperty("spring.datasource.password"));
+//        }
         return dataSource;
     }
 
     private static Connection                connect = null;
     private static EntityManager                  em = null;
     private static Session                   session = null;
-    private static SimpleDriverDataSource dataSource = null;
+    private static DataSource dataSource = null; //private static SimpleDriverDataSource dataSource = null;
 }
 
 

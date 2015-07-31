@@ -1,11 +1,12 @@
 package com.vitrina.dao;
 
+import com.vitrina.dao.issue.IssueHibernateDao;
 import com.vitrina.dao.issue.IssueJDBCDao;
 import com.vitrina.dao.issue.IssueJPADao;
-import com.vitrina.dao.issue.IssueHibernateDao;
 import com.vitrina.dao.issue.IssueSpringDao;
 import com.vitrina.util.FactoryDriver;
 
+import javax.sql.DataSource;
 import java.io.IOException;
 
 /**
@@ -17,7 +18,7 @@ public class FactoryDao {
 
     private FactoryDao(){}
 
-    public static IssueDao getIssue(DAO type, String configFile){ //public static IssueDao getIssue(DAO type){
+    public static IssueDao getIssue(DAO type, String configFile){
         switch (type){
             case JDBC:
                 try {
@@ -30,8 +31,16 @@ public class FactoryDao {
             case HIBERNATE:
                 issueDao = new IssueHibernateDao(FactoryDriver.getSession(configFile)); /* IssueHibernateDao */
                 break;
+//            case SPRING:
+//                issueDao = new IssueSpringDao(FactoryDriver.getDataSource(configFile)); /* IssueSpringDao */
+//                break;
+        }
+        return issueDao;
+    }
+    public static IssueDao getIssue(DAO type, DataSource dataSource){
+        switch (type){
             case SPRING:
-                issueDao = new IssueSpringDao(FactoryDriver.getDataSource(configFile)); /* IssueSpringDao */
+                issueDao = new IssueSpringDao(FactoryDriver.getDataSource(dataSource)); /* IssueSpringDao */
                 break;
         }
         return issueDao;
@@ -51,8 +60,8 @@ public class FactoryDao {
     public static IssueDao getIssueHibernateDao(String configFile){
         return new IssueHibernateDao(FactoryDriver.getSession(configFile));
     }
-    public static IssueDao getIssueSpringDao(String configFile){
-        return new IssueSpringDao(FactoryDriver.getDataSource(configFile));
+    public static IssueDao getIssueSpringDao(DataSource dataSource){ //public static IssueDao getIssueSpringDao(String configFile){
+        return new IssueSpringDao(FactoryDriver.getDataSource(dataSource)); //return new IssueSpringDao(FactoryDriver.getDataSource(configFile));
     }
     ////////////////////////////////////////////////////////
 }

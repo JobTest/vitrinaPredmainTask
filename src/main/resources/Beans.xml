@@ -15,7 +15,8 @@
 
     <bean id="Jaxb" class="com.vitrina.service.JaxbService"></bean>
     <bean id="Dao" factory-method="getIssueSpringDao" class="com.vitrina.dao.FactoryDao">
-        <constructor-arg value="spring.properties"/>
+        <constructor-arg value="dataSource"/>
+        <constructor-arg ref="dataSource"/>
     </bean> <!--<bean id="dao" factory-bean="hibernateDao"></bean>-->
     <!--<bean id="hibernateDao" class="com.vitrina.dao.issue.IssueHibernateDao"></bean>-->
     <!--<bean id="jpaDao" class="com.vitrina.dao.issue.IssueJPADao"></bean>-->
