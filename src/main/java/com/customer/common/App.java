@@ -1,9 +1,9 @@
-package com.mkyong.common;
+package com.customer.common;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import com.mkyong.customer.dao.CustomerDAO;
-import com.mkyong.customer.model.Customer;
+import com.customer.dao.CustomerDAO;
+import com.customer.model.Customer;
 
 /**
  * Created by alexandr on 31.07.15.
@@ -18,7 +18,7 @@ public class App {
     	 
         CustomerDAO    customerDAO = (CustomerDAO) context.getBean("customerDAO");
         Customer          customer = new Customer(1, "mkyong",28);
-//        customerDAO.insert(customer);
+        customerDAO.insert(customer);
 
         System.out.println( customerDAO.findByCustomerId(1) );
     }

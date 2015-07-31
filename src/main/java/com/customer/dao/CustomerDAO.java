@@ -1,6 +1,6 @@
-package com.mkyong.customer.dao;
+package com.customer.dao;
 
-import com.mkyong.customer.model.Customer;
+import com.customer.model.Customer;
 
 public interface CustomerDAO {
 

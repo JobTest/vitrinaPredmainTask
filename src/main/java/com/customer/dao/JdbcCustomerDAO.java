@@ -1,7 +1,6 @@
-package com.mkyong.customer.dao.impl;
+package com.customer.dao;
 
-import com.mkyong.customer.dao.CustomerDAO;
-import com.mkyong.customer.model.Customer;
+import com.customer.model.Customer;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
