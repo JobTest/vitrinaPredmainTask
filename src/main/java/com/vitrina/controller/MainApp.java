@@ -17,7 +17,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class MainApp {
 
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml"); //ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
         VitrinaPredmainApp app = (VitrinaPredmainApp)context.getBean("App");
         app.start();
     }

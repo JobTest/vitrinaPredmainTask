@@ -3,7 +3,7 @@ package com.vitrina.dao;
 import com.vitrina.dao.issue.IssueHibernateDao;
 import com.vitrina.dao.issue.IssueJDBCDao;
 import com.vitrina.dao.issue.IssueJPADao;
-import com.vitrina.dao.issue.IssueSpringDao;
+import com.vitrina.dao.issue.IssueSpringJDBCDao;
 import com.vitrina.util.FactoryDriver;
 
 import javax.sql.DataSource;
@@ -14,54 +14,51 @@ import java.io.IOException;
  */
 public class FactoryDao {
 
-    private static IssueDao issueDao;
-
     private FactoryDao(){}
 
-    public static IssueDao getIssue(DAO type, String configFile){
+    public static IssueDao getIssue(DAO type, String config){
         switch (type){
             case JDBC:
                 try {
-                    issueDao = new IssueJDBCDao(configFile);                            /* IssueJDBCDao */
+                    issueDao = new IssueJDBCDao(config);                            /* IssueJDBCDao */
                 } catch (IOException e) { System.err.println("[IOException] " + e.getMessage()); }
                 break;
             case JPA:
-                issueDao = new IssueJPADao(FactoryDriver.getEntityManager(configFile)); /* IssueJPADao */
+                issueDao = new IssueJPADao(FactoryDriver.getEntityManager(config)); /* IssueJPADao */
                 break;
             case HIBERNATE:
-                issueDao = new IssueHibernateDao(FactoryDriver.getSession(configFile)); /* IssueHibernateDao */
-                break;
-//            case SPRING:
-//                issueDao = new IssueSpringDao(FactoryDriver.getDataSource(configFile)); /* IssueSpringDao */
-//                break;
-        }
-        return issueDao;
-    }
-    public static IssueDao getIssue(DAO type, DataSource dataSource){
-        switch (type){
-            case SPRING:
-                issueDao = new IssueSpringDao(FactoryDriver.getDataSource(dataSource)); /* IssueSpringDao */
+                issueDao = new IssueHibernateDao(FactoryDriver.getSession(config)); /* IssueHibernateDao */
                 break;
         }
         return issueDao;
     }
 
-    ////////////////////////////////////////////////////////
-    public static IssueDao getIssueJDBCDao(String configFile){
+    public static IssueDao getIssue(DAO type, DataSource config){
+        switch (type){
+            case SPRING:
+                issueDao = new IssueSpringJDBCDao(FactoryDriver.getDataSource(config)); /* IssueSpringDao */
+                break;
+        }
+        return issueDao;
+    }
+
+
+    public static IssueDao getIssueJDBCDao(String config){
         try {
-            issueDao = new IssueJDBCDao(configFile);
-            return new IssueJDBCDao(configFile);
+            issueDao = new IssueJDBCDao(config);
+            return new IssueJDBCDao(config);
         } catch (IOException e) { System.err.println("[IOException] " + e.getMessage()); }
         return issueDao;
     }
-    public static IssueDao getIssueJPADao(String configFile){
-        return new IssueJPADao(FactoryDriver.getEntityManager(configFile));
+    public static IssueDao getIssueJPADao(String config){
+        return new IssueJPADao(FactoryDriver.getEntityManager(config));
     }
-    public static IssueDao getIssueHibernateDao(String configFile){
-        return new IssueHibernateDao(FactoryDriver.getSession(configFile));
+    public static IssueDao getIssueHibernateDao(String config){
+        return new IssueHibernateDao(FactoryDriver.getSession(config));
     }
-    public static IssueDao getIssueSpringDao(DataSource dataSource){ //public static IssueDao getIssueSpringDao(String configFile){
-        return new IssueSpringDao(FactoryDriver.getDataSource(dataSource)); //return new IssueSpringDao(FactoryDriver.getDataSource(configFile));
+    public static IssueDao getIssueSpringDao(DataSource config){
+        return new IssueSpringJDBCDao(FactoryDriver.getDataSource(config));
     }
-    ////////////////////////////////////////////////////////
+
+    private static IssueDao issueDao;
 }

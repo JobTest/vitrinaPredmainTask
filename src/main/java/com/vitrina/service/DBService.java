@@ -24,16 +24,11 @@ import java.util.function.Predicate;
  */
 public class DBService implements DBServiceI {
 
-    public DBService(){}
-    public DBService(String configFile){
-        //dao = FactoryDao.getIssue(DAO.JPA,configFile); //dao = FactoryDao.getIssue(DAO.HIBERNATE,configFile); //dao = FactoryDao.getIssue(DAO.JDBC,configFile);
-        //jaxb = new JaxbService();
-    }
-
     @Override
     public Map loadData(final String oldData, final Map<String,File> newData) {
         Map<String, List<Issue>> data = Collections.synchronizedMap( new HashMap<>() );
-        //dao = FactoryDao.getIssue(DAO.JPA,configFile);
+        //dao = FactoryDao.getIssue(DAO.JPA,oldData); //dao = FactoryDao.getIssue(DAO.HIBERNATE,oldData); //dao = FactoryDao.getIssue(DAO.JDBC,oldData);
+        //jaxb = new JaxbService();
         data.put("old-db",toList());
         data.put("new-xml",toList(newData));
         return data;

@@ -22,7 +22,7 @@ import java.util.List;
  * ****************************************************************
  * Работа со spring-jdbc
  */
-public class IssueSpringDao implements IssueDao {
+public class IssueSpringJDBCDao implements IssueDao {
 
     private JdbcTemplate                jdbcTemplate;
     private NamedParameterJdbcTemplate namedTemplate;
@@ -32,8 +32,8 @@ public class IssueSpringDao implements IssueDao {
     private final String                  SQL_UPDATE = "UPDATE issue SET parent_id=?,project_id=?,project_name=?,tracker_id=?,tracker_name=?,fixed_version_id=?,fixed_version_name=?,status_id=?,status_name=?,subject=?,start_date=?,due_date=? WHERE id=?";
     private final String                  SQL_DELETE = "DELETE FROM issues WHERE id=?";
 
-    public IssueSpringDao(){}
-    public IssueSpringDao(DataSource dataSource) {
+    public IssueSpringJDBCDao(){}
+    public IssueSpringJDBCDao(DataSource dataSource) {
         jdbcTemplate  = new JdbcTemplate(dataSource);
         namedTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
