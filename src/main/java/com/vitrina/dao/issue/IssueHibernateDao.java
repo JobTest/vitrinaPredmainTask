@@ -51,30 +51,30 @@ public class IssueHibernateDao implements IssueDao {
 
     @Override
     public List<Issue> getAll(List<Issue> select){
-        return select = session.createCriteria(Issue.class).list();
+        return select = session.createCriteria(IssueHibernate.class).list();
     }
     public List<Issue> getAll(int limit) {
-        return session.createCriteria(Issue.class).setMaxResults(limit).list();
+        return session.createCriteria(IssueHibernate.class).setMaxResults(limit).list();
     }
     public List<Issue> getAll(String sort){
-        return session.createCriteria(Issue.class).addOrder(Order.asc(sort)).list();
+        return session.createCriteria(IssueHibernate.class).addOrder(Order.asc(sort)).list();
     }
     public List<Issue> getAll(int limit, String sort) {
-        return session.createCriteria(Issue.class).setMaxResults(limit).addOrder(Order.asc(sort)).list();
+        return session.createCriteria(IssueHibernate.class).setMaxResults(limit).addOrder(Order.asc(sort)).list();
     }
 
     public Issue find(int id){
         //return (Issue)session.get(Issue.class, id);
         Transaction transaction = session.beginTransaction();
-        Issue issue = (Issue)session.load(Issue.class, id);
+        Issue issue = (Issue)session.load(IssueHibernate.class, id);
         transaction.commit();
         return issue;
     }
     public List<Issue> find(int minId, int maxId){
-        return session.createCriteria(Issue.class).add(Expression.between("id", minId, maxId)).list();
+        return session.createCriteria(IssueHibernate.class).add(Expression.between("id", minId, maxId)).list();
     }
     public List<Issue> findByTracker(String like){
-        return session.createCriteria(Issue.class).add(Expression.like("TrackerName", like + "%")).list();
+        return session.createCriteria(IssueHibernate.class).add(Expression.like("TrackerName", like + "%")).list();
     }
 
     @Override
@@ -92,10 +92,12 @@ public class IssueHibernateDao implements IssueDao {
     @Override
     public void delete(int id){
         try{
-            Issue issue = find(id);
-            IssueHibernate issuesHibernate = new IssueHibernate(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate());
             Transaction transaction = session.beginTransaction();
-            session.delete( issuesHibernate ); //session.delete( find(id) );
+            Issue issue = (Issue)session.load(IssueHibernate.class, id);
+//            Issue issue = find(id);
+            System.out.println(issue);
+//            IssueHibernate issuesHibernate = new IssueHibernate(issue.getId(),issue.getParentId(),issue.getProjectId(),issue.getProjectName(),issue.getTrackerId(),issue.getTrackerName(),issue.getStatusId(),issue.getStatusName(),issue.getFixedVersionId(),issue.getFixedVersionName(),issue.getSubject(),issue.getStartDate(),issue.getDueDate());
+            session.delete( issue ); //session.delete( issuesHibernate ); //session.delete( find(id) );
             transaction.commit();
         } catch(ExceptionInInitializerError e){ System.out.println("[delete] " + e.getMessage()); }
     }

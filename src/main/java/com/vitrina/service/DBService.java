@@ -135,8 +135,8 @@ public class DBService implements DBServiceI {
     @Override
     public void dataUpdate(final List<Issue> delete, final List<Issue> update, final List<Issue> add){
         deleteDB(delete);
-        updateDB(update);
-        addDB(add);
+//        updateDB(update);
+//        addDB(add);
     }
     private void deleteDB(List<Issue> issues){
         try {
