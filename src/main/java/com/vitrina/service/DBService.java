@@ -25,7 +25,7 @@ import java.util.function.Predicate;
 public class DBService implements DBServiceI {
 
     @Override
-    public Map loadData(final String oldData, final Map<String,File> newData) {
+    public Map dataLoad(final String oldData, final Map<String,File> newData) {
         Map<String, List<Issue>> data = Collections.synchronizedMap( new HashMap<>() );
         data.put("old-db",toList(oldData));
         data.put("new-xml",toList(newData));
@@ -87,7 +87,7 @@ public class DBService implements DBServiceI {
 //    }
 
     @Override
-    public Map parseData(final List<Issue> oldData, final List<Issue> newData, final String[] oldDates){
+    public Map dataParse(final List<Issue> oldData, final List<Issue> newData, final String[] oldDates){
         Map<String, List<Issue>> data = Collections.synchronizedMap( new HashMap<>() );
         List<Issue>        DELETE_OLD = new LinkedList<>();
         List<Issue>        REMAIN_OLD = new LinkedList<>();
@@ -133,7 +133,7 @@ public class DBService implements DBServiceI {
     }
 
     @Override
-    public void updateData(final List<Issue> delete, final List<Issue> update, final List<Issue> add){
+    public void dataUpdate(final List<Issue> delete, final List<Issue> update, final List<Issue> add){
         deleteDB(delete);
         updateDB(update);
         addDB(add);

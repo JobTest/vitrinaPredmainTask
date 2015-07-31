@@ -23,18 +23,18 @@ public class VitrinaPredmainApp {
     }
 
     public void start() {
-        serviceData.putAll(service.loadData(dbConfig, folder));
+        serviceData.putAll(service.dataLoad(dbConfig, folder));
         System.out.println("\n********************************[ Old << DB (" + serviceData.get("old-db").size() + ") ]******************************");
 //        print(serviceData.get("old-db"));
         System.out.println("\n********************************[ New << XML (" + serviceData.get("new-xml").size() + ") ]*****************************");
 //        print(serviceData.get("new-xml"));
 
-        serviceData.putAll( service.parseData(serviceData.get("old-db"), serviceData.get("new-xml"), dueDates) );
+        serviceData.putAll( service.dataParse(serviceData.get("old-db"), serviceData.get("new-xml"), dueDates) );
         System.out.println("\n********************[ Delete/Update/Add >> DB (-" + serviceData.get("db-delete").size() + "/~" + serviceData.get("db-update").size() + "/+" + serviceData.get("db-add").size() + ") ]*********************");
 //        System.out.println( "db-delete: |>> (" + (serviceData.get("old-db").size()-serviceData.get("db-delete").size()) + ")  -" + serviceData.get("db-delete").size());
 //        System.out.println( "db-update: |>> (" + (serviceData.get("old-db").size()-serviceData.get("db-delete").size()) + ")  ~" + serviceData.get("db-update").size() );
 //        System.out.println( "   db-add: |>> (" + (serviceData.get("old-db").size()-serviceData.get("db-delete").size()+serviceData.get("db-add").size()) + ") +" + serviceData.get("db-add").size() );
-        service.updateData( serviceData.get("db-delete"), serviceData.get("db-update"), serviceData.get("db-add") );
+        service.dataUpdate( serviceData.get("db-delete"), serviceData.get("db-update"), serviceData.get("db-add") );
 
 //        System.out.println("-------------------------------------------");
 //        print(serviceData.get("db-add"));

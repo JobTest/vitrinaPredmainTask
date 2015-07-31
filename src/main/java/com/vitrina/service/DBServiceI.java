@@ -18,7 +18,7 @@ public interface DBServiceI {
      * @param newData
      * @return
      */
-    Map loadData(final String oldData, final Map<String,File> newData);
+    Map dataLoad(final String oldData, final Map<String,File> newData);
 
     /**
      * #2 Разбираем (старые/новые) данные и определяем список данных для обновления
@@ -28,7 +28,7 @@ public interface DBServiceI {
      * @param oldDates
      * @return
      */
-    Map parseData(final List<Issue> oldData, final List<Issue> newData, final String[] oldDates);
+    Map dataParse(final List<Issue> oldData, final List<Issue> newData, final String[] oldDates);
 
     /**
      * #3 Выполняем обновления данных
@@ -37,6 +37,6 @@ public interface DBServiceI {
      * @param update
      * @param add
      */
-    void updateData(final List<Issue> delete, final List<Issue> update, final List<Issue> add);
+    void dataUpdate(final List<Issue> delete, final List<Issue> update, final List<Issue> add);
 
 }
