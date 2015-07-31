@@ -27,13 +27,12 @@ public class DBService implements DBServiceI {
     @Override
     public Map loadData(final String oldData, final Map<String,File> newData) {
         Map<String, List<Issue>> data = Collections.synchronizedMap( new HashMap<>() );
-        //dao = FactoryDao.getIssue(DAO.JPA,oldData); //dao = FactoryDao.getIssue(DAO.HIBERNATE,oldData); //dao = FactoryDao.getIssue(DAO.JDBC,oldData);
-        //jaxb = new JaxbService();
-        data.put("old-db",toList());
+        data.put("old-db",toList(oldData));
         data.put("new-xml",toList(newData));
         return data;
     }
-    private List<Issue> toList(){
+    private List<Issue> toList(final String dbConfig){
+        //dao = FactoryDao.getIssue(DAO.JPA,dbConfig); //dao = FactoryDao.getIssue(DAO.HIBERNATE,dbConfig); //dao = FactoryDao.getIssue(DAO.JDBC,dbConfig);
         List<Issue> issues = null;
         try {
             issues = dao.getAll(new LinkedList<>());
