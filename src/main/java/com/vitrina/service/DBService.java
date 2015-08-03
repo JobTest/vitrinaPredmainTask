@@ -2,10 +2,8 @@ package com.vitrina.service;
 
 import com.vitrina.dao.IssueDao;
 import com.vitrina.domain.Issue;
-import com.vitrina.service.jaxb.IssueJAXB;
 import org.xml.sax.SAXException;
 
-import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
@@ -135,7 +133,7 @@ public class DBService implements DBServiceI {
     @Override
     public void dataUpdate(final List<Issue> delete, final List<Issue> update, final List<Issue> add){
         deleteDB(delete);
-//        updateDB(update);
+        updateDB(update);
 //        addDB(add);
     }
     private void deleteDB(List<Issue> issues){
