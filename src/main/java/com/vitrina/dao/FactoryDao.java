@@ -27,7 +27,7 @@ public class FactoryDao {
                 issueDao = new IssueJPADao(FactoryDriver.getEntityManager(dbConfig)); /* IssueJPADao */
                 break;
             case HIBERNATE:
-                issueDao = new IssueHibernateDao(FactoryDriver.getSession(dbConfig)); /* IssueHibernateDao */
+                issueDao = new IssueHibernateDao(FactoryDriver.getFactory(dbConfig)); /* IssueHibernateDao */
                 break;
         }
         return issueDao;
@@ -53,7 +53,7 @@ public class FactoryDao {
         return new IssueJPADao(FactoryDriver.getEntityManager(dbConfig));
     }
     public static IssueDao getIssueHibernateDao(String dbConfig){
-        return new IssueHibernateDao(FactoryDriver.getSession(dbConfig));
+        return new IssueHibernateDao(FactoryDriver.getFactory(dbConfig));
     }
     public static IssueDao getIssueSpringDao(DataSource dbConfig){
         return new IssueSpringJDBCDao(FactoryDriver.getDataSource(dbConfig));

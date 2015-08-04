@@ -1,7 +1,7 @@
 package com.vitrina.util;
 
 import com.vitrina.util.drivers.JDBCDriver;
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import javax.persistence.EntityManager;
@@ -42,8 +42,8 @@ public class FactoryDriver {
     public static EntityManager getEntityManager(String dbConfig) {
         return em == null ? em = Persistence.createEntityManagerFactory(dbConfig).createEntityManager() : em;
     }
-    public static Session getSession(String dbConfig) {
-        return session == null ? session = new Configuration().configure(dbConfig).buildSessionFactory().openSession() : session;
+    public static SessionFactory getFactory(String dbConfig) {
+        return factory == null ? factory = new Configuration().configure(dbConfig).buildSessionFactory() : factory;
     }
     public static DataSource getDataSource(DataSource dataSource){
         // > http://javatalks.ru/topics/25965
@@ -54,7 +54,7 @@ public class FactoryDriver {
 
     private static Connection connect = null;
     private static EntityManager   em = null;
-    private static Session    session = null;
+    private static SessionFactory factory = null; //private static Session    session = null;
 }
 
 class JDBCProperties {
