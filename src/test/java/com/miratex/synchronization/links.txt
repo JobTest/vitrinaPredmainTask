@@ -1,0 +1,11 @@
+(linkedlist java уменьшить размер после удаления)
+http://habrahabr.ru/post/162017/
+http://habrahabr.ru/post/233797/
+
+(java hashmap copy)
+http://www.java2novice.com/java-collections-and-util/hashmap/copy-to-another/
+http://beginnersbook.com/2014/08/how-to-copy-one-hashmap-content-to-another-hashmap/
+http://stackoverflow.com/questions/17337440/how-to-copy-one-hashmap-content-to-another-hashmap
+http://stackoverflow.com/questions/2356809/shallow-copy-of-a-map-in-java
+http://www.tutorialspoint.com/java/util/hashmap_clone.htm
+http://stackoverflow.com/questions/10079266/copying-a-java-hashmap
