@@ -3,15 +3,12 @@ package com.vitrina.dao.issue;
 import com.vitrina.dao.IssueDao;
 import com.vitrina.domain.Issue;
 import com.vitrina.domain.IssueHibernate;
-import com.vitrina.util.FactoryDriver;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Order;
 
-import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
