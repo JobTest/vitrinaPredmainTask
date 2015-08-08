@@ -28,7 +28,7 @@ class User2 implements Cloneable {
         this.age = age;
     }
     public String getBirthday() {
-        return birthday.get(Calendar.DAY_OF_MONTH) + "." + birthday.get(Calendar.MONTH) + "." + birthday.get(Calendar.YEAR);
+        return birthday.get(Calendar.DAY_OF_MONTH) + "" + birthday.get(Calendar.MONTH) + "." + birthday.get(Calendar.YEAR);
     }
     public void setBirthday(int day, int month, int year) {
         birthday = new GregorianCalendar();

@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         /* ******************************************[ Immutable ]***************************************** */
-        ImmutableTest immutableTest1 = new ImmutableTest("Alexandr", new Date(), "HostingMax,Ignite,PrivatBank".split(","));
+        ImmutableImpl immutableTest1 = new ImmutableImpl("Alexandr", new Date(), "HostingMax,Ignite,PrivatBank".split(","));
         ImmutableDateHolder immutableDateHolder = new ImmutableDateHolder(new Date());
 
         /* ******************************************[ Разница между String/StringBuffer/StringBuilder ]***************************************** */

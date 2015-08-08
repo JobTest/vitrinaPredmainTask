@@ -20,7 +20,7 @@ package com.miratex.synchronization;
  * Точно такая же разница и между ассоциативными коллекциями – java.util.Hashtable и java.util.HashMap. Hashtable синхронизирован (thread-safe), HashMap – нет. Преимущества и недостатки абсолютно те же.
  * Ну ладно, у ArrayList есть синхронизированный аналог, у HashMap тоже. А как быть с остальными? Есть еще, например, java.util.LinkedList. Есть java.util.LinkedHashMap и java.util.TreeMap. Есть, наконец, целый класс множеств, унаследованных от java.util.Set – java.util.HashSet, java.util.TreeSet, java.util.LinkedHashSet. Как быть с ними, если очень хочется? Писать самостоятельно?
  */
-public class DeadLockTest {
+public class DeadLockImpl {
 
     public static void main(String[] args){
         A      a1 = new A();

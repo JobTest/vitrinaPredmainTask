@@ -1,8 +1,5 @@
 package com.miratex.cloneable;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-
 /**
  * Created by alexandr on 07.08.15.
  ** {@link http://echuprina.blogspot.com/2012/02/cloneable.html}

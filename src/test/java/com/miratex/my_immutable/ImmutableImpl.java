@@ -18,9 +18,9 @@ import java.util.Date;
  * Неизменяемые классы идеальны для представления значения абстрактных типов данных, таких как числа, перечислимые типы или цвета.
  * (Так например: класс 'String' - является Immutable; а вот объекты Spring-а - являются Mutable)
  */
-public final class ImmutableTest {
+public final class ImmutableImpl {
 
-    public ImmutableTest(String name, Date dateOfBirth, String[] skills) { //public ImmutableTest(String name, Date dateOfBirth, String... skills) {
+    public ImmutableImpl(String name, Date dateOfBirth, String[] skills) { //public ImmutableTest(String name, Date dateOfBirth, String... skills) {
         this.name = name;
         /* при конструировании объекта, полям присваиваются новые объекты, вместо ссылок */
         this.dateOfBirth = new Date(dateOfBirth.getTime());
