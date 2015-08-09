@@ -40,7 +40,7 @@ public class UseStaticServiceTest {
     }
 
 
-    private static final Object OBJECT_PARAM = new Object();
-    private static final String RETURN_STRING = "result";
+    private static final Object        OBJECT_PARAM = new Object();
+    private static final String       RETURN_STRING = "result";
     private final UseStaticService useStaticService = new UseStaticService();
 }

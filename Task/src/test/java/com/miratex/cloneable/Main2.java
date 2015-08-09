@@ -3,6 +3,7 @@ package com.miratex.cloneable;
 import org.mockito.ArgumentMatcher;
 import org.mockito.Mockito;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.mockito.Mockito.anyInt;
@@ -19,7 +20,10 @@ public class Main2 {
     public static void main(String[] args) {
 //        demo1();
 //        demo2();
-        demo3();
+        /* http://habrahabr.ru/post/72617/ */
+//        demo3();
+//        demo4();
+        demo5();
     }
 
     public static void demo1(){
@@ -57,8 +61,7 @@ public class Main2 {
     }
     private static int evenInt() {
         return Mockito.intThat(new ArgumentMatcher<Integer>() {
-            @Override
-            public boolean matches(Object arg) {
+            @Override public boolean matches(Object arg) {
                 return ((Integer) arg) % 2 == 0;
             }
         });
@@ -74,5 +77,67 @@ public class Main2 {
         /* проверяем, были ли вызваны методы add с параметром "one" и clear */
         System.out.println("verify-add: " + verify(mockedList).add("one"));
         verify(mockedList).clear();
+    }
+
+    public static void demo4(){
+        /* Вы можете создавать mock для конкретного класса, не только для интерфейса */
+        LinkedList mockedList = mock(LinkedList.class);
+
+        /* stub'инг */
+        when(mockedList.get(0)).thenReturn("first");
+        when(mockedList.get(1)).thenThrow(new RuntimeException());
+
+        /* получим "first" || получим RuntimeException || получим "null" ибо get(999) не был определен*/
+        System.out.println( mockedList.get(0) );
+//        System.out.println( mockedList.get(1) );
+        System.out.println( mockedList.get(999) );
+
+        /* используем mock-объект */
+        mockedList.add("once");
+
+        mockedList.add("twice");
+        mockedList.add("twice");
+
+        mockedList.add("three times");
+        mockedList.add("three times");
+        mockedList.add("three times");
+
+        //по умолчанию проверка, что вызывался 1 раз ~ times(1)
+        verify(mockedList).add("once");
+        verify(mockedList, times(1)).add("once");
+
+        //точное число вызовов
+        verify(mockedList, times(2)).add("twice");
+        verify(mockedList, times(3)).add("three times");
+
+        //никогда ~ never() ~ times(0)
+        verify(mockedList, never()).add("never happened");
+
+        //как минимум, как максимум
+        verify(mockedList, atLeastOnce()).add("three times");
+//        verify(mockedList, atLeast(2)).add("five times");
+        verify(mockedList, atMost(5)).add("three times");
+    }
+
+    public static void demo5(){
+        List list = new LinkedList();
+        List spy = spy(list);
+
+        //опционально, определяем лишь метод size()
+        when(spy.size()).thenReturn(100);
+
+        //используем реальные методы
+        spy.add("one");
+        spy.add("two");
+
+        //получим "one"
+        System.out.println(spy.get(0));
+
+        //метод size() нами переопределён - получим 100
+        System.out.println(spy.size());
+
+        //можем проверить
+        verify(spy).add("one");
+        verify(spy).add("two");
     }
 }
