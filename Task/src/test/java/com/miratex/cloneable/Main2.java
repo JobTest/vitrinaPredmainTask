@@ -7,6 +7,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by Саша on 08.08.2015.
@@ -17,7 +18,8 @@ public class Main2 {
 
     public static void main(String[] args) {
 //        demo1();
-        demo2();
+//        demo2();
+        demo3();
     }
 
     public static void demo1(){
@@ -60,5 +62,17 @@ public class Main2 {
                 return ((Integer) arg) % 2 == 0;
             }
         });
+    }
+
+    public static void demo3(){
+        List mockedList = mock(List.class);
+
+        /* используем его */
+        mockedList.add("one");
+        mockedList.clear();
+
+        /* проверяем, были ли вызваны методы add с параметром "one" и clear */
+        System.out.println("verify-add: " + verify(mockedList).add("one"));
+        verify(mockedList).clear();
     }
 }
