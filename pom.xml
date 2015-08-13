@@ -21,6 +21,7 @@
     <modules>
         <module>Task</module>
         <module>PowerMock</module>
+        <module>MyHibernate</module>
     </modules>
 
     <profiles></profiles>
