@@ -1,12 +1,24 @@
 package com.miratex.my.pools;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by Саша on 14.08.2015.
  */
-public class Test {
+public class PoolTest {
+
+    List<MyThread> threads;
+
+    public PoolTest(){
+        threads = Arrays.asList(new MyThread("5,3"), new MyThread("2,8"), new MyThread("4,4"));
+    }
+    public PoolTest(int pool){
+        threads = new ArrayList<>(pool);
+        for (int p=0; p<pool; p++)
+            threads.add(new MyThread("pool-"+p));
+    }
 
     public static void main(String[] args) {
         /* ********************************************************** */
@@ -16,15 +28,18 @@ public class Test {
         System.out.println( "("+number+") " + find(numbers,number,find) );
 
         /* ********************************************************** */
-        System.out.println( func(5,3) );
+        PoolTest test = new PoolTest(10);
+//        System.out.println( test.func(5,3) );
 
-        List<MyThread> threads = Arrays.asList(new MyThread("5,3"), new MyThread("2,8"), new MyThread("4,4"));
-        for (MyThread thread:threads)
+        for (MyThread thread:test.threads)
             thread.start();
-        threads.get(0).continousThread(5,3);
-        threads.get(1).continousThread(2,8);
-        threads.get(2).continousThread(4,4);
-        for (MyThread thread:threads)
+        System.out.println( test.threads.get(0).funcc(1,7) );
+        System.out.println( test.threads.get(1).funcc(2,6) );
+        System.out.println( test.threads.get(2).funcc(3,5) );
+        System.out.println( test.threads.get(2).funcc(4,4) );
+        System.out.println( test.threads.get(2).funcc(5,3) );
+        System.out.println( test.threads.get(2).funcc(6,2) );
+        for (MyThread thread:test.threads)
             thread.stopThread();
     }
 
@@ -48,30 +63,23 @@ public class Test {
         return numbers[++find]!=number ? find(numbers,number,find) : find;
     }
 
-    public static int func(int number, int step){
+    public synchronized int func(int number, int step){
+        try{ Thread.sleep(500); }catch(InterruptedException e){}
         return 1<step ? number*func(number,step-1) : number;
     }
 
 
-    static class MyThread extends Thread {
+    class MyThread extends Thread {
         public MyThread(String name){
             super(name);
-        }
-        public MyThread(int number, int step){
-            this.number = number;
-            this.step = step;
         }
 
         @Override
         public void run(){
             synchronized(this){
                 while (!isStop){
-//                    System.out.println("started!");
-                    try {
-                        System.out.println("started!");
-                        wait();
-                        System.out.println( func(number,step) );
-                    }catch (InterruptedException e){}
+                    try { wait(); } catch(InterruptedException e){}
+                    func=func(number,step);
                 }
             }
         }
@@ -82,19 +90,22 @@ public class Test {
                 notify();
             }
         }
-        public void continousThread(int number, int step){
+        public int funcc(int number, int step){
+            this.number = number;
+            this.step = step;
             synchronized(this){
-//                if(getState().toString().equals("WAITING")) {
-                    this.number = number;
-                    this.step = step;
+                if(getState().toString().equals("WAITING")) {
                     notify();
-//                }
+                }
             }
+            try { Thread.sleep(1000); }catch (InterruptedException e){}
+            return func;
         }
 
         private boolean isStop = false;
         private int number;
         private int step;
+        private int func;
     }
 }
 
