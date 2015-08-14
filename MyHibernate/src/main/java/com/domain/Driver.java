@@ -1,6 +1,7 @@
 package com.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by alexandr on 13.08.15.
@@ -11,7 +12,7 @@ import javax.persistence.*;
 public class Driver {
 
     @Id
-//    @GeneratedValue
+    @GeneratedValue
     @Column(name="id")
     private int id;
 
@@ -21,16 +22,26 @@ public class Driver {
     @Column(name="address")
     private String address;
 
+//    @OneToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+//    private Car car;
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinTable(name="owner")
+    private Car car;
 //    @ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 //    @JoinTable(name="owner")
-//    private Car car;
+//    private List<Car> cars;
 
     public Driver(){}
     public Driver(String name, String address, Car car){
         this.name = name;
         this.address = address;
-//        this.car = car;
+        this.car = car;
     }
+//    public Driver(String name, String address, List<Car> cars){
+//        this.name = name;
+//        this.address = address;
+//        this.cars = cars;
+//    }
 
     public int getId() {
         return id;
@@ -50,11 +61,17 @@ public class Driver {
     public void setAddress(String address) {
         this.address = address;
     }
-//    public Car getCar() {
-//        return car;
+    public Car getCar() {
+        return car;
+    }
+    public void setCar(Car car) {
+        this.car = car;
+    }
+//    public List<Car> getCars() {
+//        return cars;
 //    }
-//    public void setCar(Car car) {
-//        this.car = car;
+//    public void setCars(List<Car> cars) {
+//        this.cars = cars;
 //    }
 
     @Override
@@ -63,7 +80,8 @@ public class Driver {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
-//                ", car=" + car +
+                ", car=" + car +
+//                ", cars=" + cars +
                 '}';
     }
 }
