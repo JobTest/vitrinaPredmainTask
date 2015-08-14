@@ -22,6 +22,7 @@ public class Driver {
     @Column(name="address")
     private String address;
 
+    /* http://www.mkyong.com/hibernate/hibernate-many-to-many-relationship-example-annotation/ */
 //    @OneToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 //    private Car car;
     @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
