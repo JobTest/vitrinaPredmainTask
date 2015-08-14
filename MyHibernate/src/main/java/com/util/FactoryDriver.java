@@ -13,7 +13,7 @@ public class FactoryDriver {
     private FactoryDriver(){}
 
     public static SessionFactory getSessionFactory(){
-        return sessionFactory == null ? sessionFactory = new Configuration().configure("hibernate_mysql.cft.xml").buildSessionFactory() : sessionFactory;
+        return sessionFactory == null ? sessionFactory = new Configuration().configure("hibernate_mysql.cfg.xml").buildSessionFactory() : sessionFactory;
     }
 
 }
