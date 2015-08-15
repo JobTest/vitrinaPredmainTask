@@ -1,12 +1,7 @@
 package com.journaldev.hibernate.main;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.stat.Statistics;
-
 import com.journaldev.hibernate.model.Employee;
-import com.journaldev.hibernate.util.HibernateUtil;
 
 /**
  * Created by Саша on 14.08.2015.
@@ -14,7 +9,7 @@ import com.journaldev.hibernate.util.HibernateUtil;
  * **********************************************************************************************
  * Hibernate EHCache Project
  */
-public class HibernateEHCacheMain {
+public class App {
 
 	public void printStatistics(Statistics statistics, int count) {
 		System.out.println("---------------[ " + count + " ]---------------");

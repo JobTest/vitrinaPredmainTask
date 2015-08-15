@@ -86,7 +86,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.journaldev.hibernate.main.HibernateEHCacheMain</mainClass>
+                            <mainClass>com.journaldev.hibernate.main.App</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
