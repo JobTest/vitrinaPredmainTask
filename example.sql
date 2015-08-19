@@ -10,6 +10,14 @@
 -- (ZK+Spring 3+Hibernate: две головы хорошо, а три лучше) http://habrahabr.ru/post/129189/
 -- (Как работает аннотация @Inject?) https://toster.ru/q/44878
 
+-- (INSERT INTO with SELECT) http://dba.stackexchange.com/questions/52786/insert-into-with-select-subquery-db2-9-5
+-- (foreign key constraints, cascade delete) http://stackoverflow.com/questions/2914936/mysql-foreign-key-constraints-cascade-delete
+-- (Create a temporary table in a SELECT...) http://stackoverflow.com/questions/5859391/create-a-temporary-table-in-a-select-statement-without-a-separate-create-table
+--                                           http://dba.stackexchange.com/questions/57971/how-long-will-a-temporary-memory-table-persist-if-i-dont-drop-it-mysql
+-- (Removing Some Foreign keys) http://stackoverflow.com/questions/838354/mysql-removing-some-foreign-keys
+--                              http://www.mysqltutorial.org/mysql-foreign-key/
+
+
 CREATE TABLE `Teacher` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) DEFAULT NULL,

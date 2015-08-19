@@ -23,7 +23,7 @@
         <module>PowerMock</module>
         <module>MyHibernate</module>
         <module>HibernateEHCacheExample</module>
-
+        <module>DBUnitExample</module>
     </modules>
 
     <profiles></profiles>
