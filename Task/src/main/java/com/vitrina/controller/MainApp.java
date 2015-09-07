@@ -13,6 +13,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  * {@link http://spring-projects.ru/guides/relational-data-access/}
  * {@link http://javatalks.ru/topics/25965}
+ *
+ * VM options: -Duser.language=en -Duser.region=us
  */
 public class MainApp {
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<!-- https://docs.jboss.org/hibernate/orm/3.3/reference/en-US/html/session-configuration.html -->
+<!-- http://apmblog.dynatrace.com/2009/03/24/understanding-caching-in-hibernate-part-three-the-second-level-cache/ -->
+
+<hibernate-configuration>
+    <session-factory name="java:hibernate/SessionFactory">
+        <!-- properties -->
+        <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="connection.url">jdbc:oracle:thin:@//localhost:1521/xe</property>
+        <property name="connection.username">HR</property>
+        <property name="connection.password">hr</property>
+        <property name="connection.pool_size">1</property>
+        <property name="connection.useUnicode">true</property>
+        <property name="connection.characterEncoding">UTF-8</property>
+        <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <property name="show_sql">false</property>
+        <property name="hbm2ddl.auto">update</property> <!--<property name="hbm2ddl.auto">create</property>-->
+        <property name="hibername.connection.autocommit">true</property>
+        <property name="current_session_context_class">thread</property>
+
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <!--<property name="hibernate.cache.use_query_cache">true</property>-->
+        <property name="ibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+        <!--<property name="net.sf.ehcache.configurationResourceName">/myehcache.xml</property>-->
+
+        <!-- mapping files -->
+        <mapping class="com.vitrina.domain.IssueHibernate" />
+
+        <!-- cache settings -->
+        <!--<class-cache class="org.hibernate.auction.Item" usage="read-write"/>-->
+        <!--<class-cache class="org.hibernate.auction.Bid" usage="read-only"/>-->
+        <!--<collection-cache collection="org.hibernate.auction.Item.bids" usage="read-write"/>-->
+    </session-factory>
+</hibernate-configuration>

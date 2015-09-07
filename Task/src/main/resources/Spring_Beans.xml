@@ -9,22 +9,22 @@
     </bean>
 
     <bean id="Service" class="com.vitrina.service.DBService">
-        <property name="dao" ref="JPADao"></property><!--<property name="dao" ref="HibernateDao"></property>-->
+        <property name="dao" ref="HibernateDao"></property><!--<property name="dao" ref="HibernateDao"></property>-->
         <property name="jaxb" ref="Jaxb"></property>
     </bean>
 
     <bean id="Jaxb" class="com.vitrina.service.JaxbService"></bean>
 
     <bean id="JDBCDao" factory-method="getIssueJDBCDao" class="com.vitrina.dao.FactoryDao">
-        <constructor-arg value="jdbc_postgresql.properties"/>
+        <constructor-arg value="jdbc_oracle.properties"/><!--<constructor-arg value="jdbc_postgresql.properties"/>-->
     </bean>
     <bean id="HibernateDao" factory-method="getIssueHibernateDao" class="com.vitrina.dao.FactoryDao">
-        <constructor-arg value="hibernate_mysql.cft.xml"/>
+        <constructor-arg value="hibernate_oracle.cft.xml"/><!--<constructor-arg value="hibernate_mysql.cft.xml"/>-->
     </bean>
     <bean id="JPADao" factory-method="getIssueJPADao" class="com.vitrina.dao.FactoryDao">
-        <constructor-arg value="PostgreSQLIssueJPA"/><!--<constructor-arg value="OracleIssueJPA"/>-->
+        <constructor-arg value="OracleIssueJPA"/><!--<constructor-arg value="PostgreSQLIssueJPA"/>-->
     </bean>
     <bean id="SpringJDBCDao" factory-method="getIssueSpringDao" class="com.vitrina.dao.FactoryDao">
-        <constructor-arg ref="PostgreSQLDataSource"/>
+        <constructor-arg ref="PostgreSQLDataSource"/><!--<constructor-arg ref="OracleDataSource"/>-->
     </bean>
 </beans>
