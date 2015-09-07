@@ -1,5 +1,6 @@
 Установка Oracle SQL Developer на линукс (ubuntu) Updated 2015-05-12
 ----
+* `Установка Oracle Express Edition 11g R2 на Ubuntu 12.04`: [http://logic4web.com/2012/09/ustanovka-oracle-xe-11gr2-na-ubuntu-12-04/](http://logic4web.com/2012/09/ustanovka-oracle-xe-11gr2-na-ubuntu-12-04/)   Для тех, кому лень все делать ручками, я закинул в один файл (oracle.sh_.zip). Просто запихать его виде oracle.sh в папку /root, где уже лежит oracle-xe-11.2.0-1.0.x86_64.rpm, и запустить его.
 * `Решить данную проблему можно выполнив следующую команду`:[http://kidun.ru/index.php/component/content/article?id=94](http://kidun.ru/index.php/component/content/article?id=94)
 
 A fatal error has been detected by the Java Runtime Environment:
