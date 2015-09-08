@@ -1,4 +1,4 @@
-//package com.vitrina.oracle;
+//package com.oracle;
 //
 //import oracle.jdbc.pool.OracleDataSource;
 //

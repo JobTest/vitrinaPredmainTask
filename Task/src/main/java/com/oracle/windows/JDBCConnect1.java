@@ -1,4 +1,4 @@
-package com.vitrina.oracle.windows;
+package com.oracle.windows;
 
 import java.sql.*;
 import java.util.Locale;

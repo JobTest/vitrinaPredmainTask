@@ -1,4 +1,4 @@
-package com.vitrina.oracle.windows;
+package com.oracle.windows;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

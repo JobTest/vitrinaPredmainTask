@@ -36,7 +36,7 @@
             <property name="hibernate.connection.autocommit" value="true"/><!--<property name="hibernate.connection.autocommit" value="false"/>-->
             <!-- to customise per database -->
             <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />
-            <property name="hibernate.connection.url" value="jdbc:oracle:thin:@//localhost:1521/xe" />
+            <property name="hibernate.connection.url" value="jdbc:oracle:thin:@//10.13.71.34:1521/xe" /><!--<property name="hibernate.connection.url" value="jdbc:oracle:thin:@//localhost:1521/xe" />-->
             <property name="hibernate.connection.username" value="HR"/>
             <property name="hibernate.connection.password" value="hr"/>
         </properties>

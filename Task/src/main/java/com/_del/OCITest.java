@@ -1,4 +1,4 @@
-//package com.vitrina.oracle;
+//package com.oracle;
 //
 //import java.sql.*;
 //import java.util.Locale;

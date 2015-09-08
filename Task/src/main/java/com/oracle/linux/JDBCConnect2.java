@@ -1,4 +1,4 @@
-package com.vitrina.oracle.windows;
+package com.oracle.linux;
 
 import java.sql.*;
 import java.util.Locale;
@@ -7,16 +7,12 @@ import java.util.Locale;
  * Created by alexandr on 07.09.15.
  * @author alexandr
  * {@link https://community.oracle.com/thread/430906}
- * {@link http://www.wikiguga.com/topic/08dbc5d44687e108ecd8e48455c4ca73}
- * {@link http://www.sql.ru/forum/864343/ibm-rad-proekt-jpa-i-konnekt-k-oracle-10g-kak}
    {@link http://forum.sources.ru/index.php?showtopic=201692&view=showall}
- * ***********************************************************************
+ * **************************************************
  * java.sql.SQLException: ORA-00604: error occurred at recursive SQL level 1 ORA-12705: Cannot access NLS data files or invalid environment specified
  *
  * ORA-00604: error occurred at recursive SQL level 1
  * ORA-12705: Cannot access NLS data files or invalid environment specified
- *
- * VM options: -Duser.language=en -Duser.region=us
  *
    {@link http://newsoalife.blogspot.com/2012/03/lost-oracle-sys-and-system-password.html}
    {@link http://how2-sapbasis.blogspot.com/2012/06/password-reset-for-oracle-user-system.html}
@@ -38,12 +34,19 @@ import java.util.Locale;
  * {@link https://blogs.oracle.com/rajeshthekkadath/entry/resolving_oracle_error_ora_28000}
  * {@link http://docs.oracle.com/cd/E11882_01/server.112/e10831/installation.htm#COMSC00007}
  * ********************************
- * 1. Заходим: юзером 'SYSTEM' в 'Oracle SQL Developer'
- * 2. Hазворачиваем/Выбираем: 'Other Users' >> 'HR' >> [Edit User]
- * 3. Устанавливаем/Снимаем: 'New Password', 'Confirm Password', 'Acount is looked'
+ * SQL> ALTER USER HR IDENTIFIED BY hr ACCOUNT UNLOCK;
  *
- * SQL> CONNECT HR/hr
- * Connected.
+ * User altered.
+ *
+ * SQL> grant connect, resource to HR;
+ *
+ * Grant succeeded.
+ *
+ * SQL> quit
+ *
+ * > /u01/app/oracle/product/11.2.0/xe/bin/sqlplus
+ *  HR
+ *  hr
  *
  * SQL> SELECT table_name FROM user_tables;
  *
@@ -58,38 +61,44 @@ import java.util.Locale;
  * {@link http://blog.mclaughlinsoftware.com/tag/reset-apex-password/}
  ** {@link http://www.wikiguga.com/topic/76a0ef06c1faccb107c4d231e193948e}
  * ********************************
- * > cd C:\oraclexe\app\oracle\product\11.2.0\server\apex
- * > sqlplus
+ * > ssh jenkins@10.13.71.34
+ * >   jenkins34
+ * >
+ * > su oracle
+ * >   oracle
+ * >
+ * > cd /home/oracle-xe/app/oracle/product/11.2.0/xe/apex
+ * > /u01/app/oracle/product/11.2.0/xe/bin/sqlplus
  *  SYSTEM
- *  oracle2
+ *  oracle
  * SQL> @apxchpwd.sql
-Enter a value below for the password for the Application Express ADMIN user.
+   Enter a value below for the password for the Application Express ADMIN user.
  * admin
 
-Enter a password for the ADMIN user              []
+   Enter a password for the ADMIN user              []
 
-Session altered.
+   Session altered.
 
-...changing password for ADMIN
+   ...changing password for ADMIN
 
-PL/SQL procedure successfully completed.
+   PL/SQL procedure successfully completed.
 
 
-Commit complete.
+   Commit complete.
  *
- * URL: http://127.0.0.1:8080/apex/apex_admin
+ * URL: http://10.13.71.34:8082/apex/apex_admin
  * ADMIN / admin
  *
- * ADMIN / !A1d9m7i8n
+ * ADMIN / !DN200978lak
  *
  * >> [Reset User Password]
  *     User     Full Name           Workspace       Default Schema  Created     Last Updated    Password
- * >> 'ALEX 	                    HR              HR              ...         ...             Reset'
+ * >> 'ALEX2	Alexandr Lazarchuk  MY_WORKSPACE    ALEX            ...         ...             Reset'
  * >> [Edit]
  *
- * URL(user): http://127.0.0.1:8080/apex
- * HR / ALEX / alex
- * HR / ALEX / alex2
+ * URL(user): http://10.13.71.34:8082/apex
+ * MY_WORKSPACE / ALEX2 / alex2
+ * MY_WORKSPACE / ALEX2 / !Sasha1978
  */
 public class JDBCConnect2 {
 
@@ -99,7 +108,7 @@ public class JDBCConnect2 {
     public static void main(String[] args) {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            Locale.setDefault(Locale.US); //Locale.setDefault(new Locale("es","ES"));
+            Locale.setDefault(new Locale("es","ES"));
 
             Connection conn = DriverManager.getConnection(URL,USER,PASSWORD);
             String      sql = "SELECT * FROM EMPLOYEES";
@@ -113,7 +122,7 @@ public class JDBCConnect2 {
         } catch (Exception e) { System.err.println(e.getMessage()); }
     }
 
-    public static String      URL = "jdbc:oracle:thin:@//127.0.0.1:1521/XE";
+    public static String      URL = "jdbc:oracle:thin:@//10.13.71.34:1521/XE";
     public static String     USER = "HR";
     public static String PASSWORD = "hr";
 }

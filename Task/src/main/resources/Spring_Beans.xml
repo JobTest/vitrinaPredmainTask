@@ -9,7 +9,7 @@
     </bean>
 
     <bean id="Service" class="com.vitrina.service.DBService">
-        <property name="dao" ref="HibernateDao"></property><!--<property name="dao" ref="HibernateDao"></property>-->
+        <property name="dao" ref="JDBCDao"></property><!--<property name="dao" ref="HibernateDao"></property>-->
         <property name="jaxb" ref="Jaxb"></property>
     </bean>
 
