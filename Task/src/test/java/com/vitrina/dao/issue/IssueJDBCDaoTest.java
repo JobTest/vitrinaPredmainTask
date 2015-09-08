@@ -23,6 +23,21 @@ import static org.junit.Assert.*;
  * {@link http://www.marcphilipp.de/blog/2012/03/13/database-tests-with-dbunit-part-1/}
  * {@link http://stackoverflow.com/questions/30315760/could-not-get-jdbc-connection-in-junit}
  *
+ * http://www.chrisrichardson.net/kb/testing/ormunit/ORMUnitCookbook.html
+ * https://toster.ru/q/32609
+ * https://objectpartners.com/2010/11/09/unit-testing-your-persistence-tier-code/
+ * https://code.google.com/p/ormunit/source/browse/trunk/ormunit-hibernate/src/test/resources/net/chrisrichardson/ormunit/hibernate/tests/example.hbm.xml?spec=svn8&r=8
+ * https://forums.manning.com/posts/list/10896.page
+ *
+ * http://citforum.ru/database/oracle/recursive/
+ * http://www.adp-gmbh.ch/ora/sql/connect_by.html
+ * https://technology.amis.nl/2009/09/01/oracle-rdbms-11gr2-goodbye-connect-by-or-the-end-of-hierarchical-querying-as-we-know-it/
+ *
+ * http://10.13.70.133/Kvitka/Kvitka/tree/develop/Database/Scripts/src/main/resources/test/functions
+ * http://10.13.70.133/Kvitka/Kvitka/blob/develop/Database/RollbackUtil/src/test/java/com/kvitka/db/rollback/InputRequestBuilderTest.java
+ * http://10.13.70.133/Kvitka/Kvitka/blob/develop/Database/RollbackUtil/src/test/java/com/kvitka/db/rollback/RollbackManagerFactoryTest.java
+ * http://10.13.70.133/Kvitka/Kvitka/blob/develop/Database/RollbackUtil/pom.xml
+ *
  */
 public class IssueJDBCDaoTest {
 
