@@ -16,6 +16,12 @@ import static org.junit.Assert.*;
  * @version miratex-master
  * @date 08/09/2015
  * **********************************
+ * {@link http://dbunit.sourceforge.net/howto.html}
+ * {@link https://www.playframework.com/documentation/2.4.x/JavaTestingWithDatabases}
+ * {@link http://www.onjava.com/pub/a/onjava/2004/01/21/dbunit.html}
+ * {@link http://www.danhaywood.com/2011/12/20/db-unit-testing-with-dbunit-json-hsqldb-and-junit-rules/}
+ * {@link http://www.marcphilipp.de/blog/2012/03/13/database-tests-with-dbunit-part-1/}
+ * {@link http://stackoverflow.com/questions/30315760/could-not-get-jdbc-connection-in-junit}
  *
  */
 public class IssueJDBCDaoTest {

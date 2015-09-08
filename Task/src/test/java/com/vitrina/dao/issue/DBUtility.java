@@ -6,6 +6,22 @@ import org.hibernate.internal.util.StringHelper;
 import java.sql.*;
 import java.util.Locale;
 
+/**
+ * @author Lazarchuk Aleksandr
+ * @version miratex-master
+ * @date 08/09/2015
+ * **********************************
+ * http://www.java2s.com/Code/Java/Database-SQL-JDBC/Testofloadingadriverandconnectingtoadatabase.htm
+ * http://examples.javacodegeeks.com/core-java/sql/jdbc-databasemetadata-example/
+ * http://stackoverflow.com/questions/1601203/jdbc-databasemetadata-getcolumns-returns-duplicate-columns
+ * http://stackoverflow.com/questions/2780284/how-to-get-all-table-names-from-a-database
+ * http://www.programcreek.com/java-api-examples/index.php?api=java.sql.DatabaseMetaData
+ * http://stackoverflow.com/questions/12725041/check-sql-database-connection-in-java
+ * http://stackoverflow.com/questions/7764671/java-jdbc-connection-status
+ * http://dev.mysql.com/doc/connector-j/en/connector-j-usagenotes-connect-drivermanager.html
+ *
+ */
+
 public class DBUtility {
     private static final String[] TYPES = {"TABLE","VIEW"};
     public static void getTableMetadata(Connection jdbcConnection, String tableNamePattern, String schema, String catalog, boolean isQuoted) throws HibernateException {
